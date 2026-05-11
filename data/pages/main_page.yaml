@@ -1,0 +1,334 @@
+# 主页面配置文件
+# 应用程序主窗口配置
+app_config:
+  main_window_name: "装车管理系统"
+
+# 主页面元素定位
+elements:
+  # 顶部菜单栏所有菜单
+  # 用户管理模块元素定位
+  user_management :
+    user_management_parent_menu:
+      name: "用户管理"
+      # 暂时移除 control_type，用更宽松的定位方式
+      # control_type: "MenuItem"
+    user_management_child_menu:
+      name: "用户信息管理"
+      # control_type: "MenuItem"
+    passWord_change_menu:
+      name: "密码修改"
+      # control_type: "MenuItem"
+    userName_change_menu:
+      name: "用户名修改"
+      # control_type: "MenuItem"
+    user_login_menu:
+      name: "用户登录"
+      # control_type: "MenuItem"
+    user_logout_menu:
+      name: "退出登录"
+      # control_type: "MenuItem"
+  # 系统管理模块元素定位
+  system_management:
+    system_management_parent_menu:
+        name: "系统配置"
+        # 暂时移除 control_type，用更宽松的定位方式
+        # control_type: "MenuItem"
+    customer_menu:
+      name: "客户信息管理"
+      #control_type: "MenuItem"
+    serial_port_menu:
+      name: "串口信息管理"
+      #control_type: "MenuItem"
+    station_menu:
+        name: "货位信息管理"
+        #control_type: "MenuItem"
+    oil_menu:
+      name: "油品信息管理"
+      #control_type: "MenuItem"
+    configuration_settings_menu:
+      name: "配置设定"
+      #control_type: "MenuItem"
+    oil_density_menu:
+      name: "发油密度"
+      #control_type: "MenuItem"
+    station_tank_menu:
+      name: "货位油罐配置"
+      #control_type: "MenuItem"
+    oil_distribution_rules_menu:
+      name: "发油规则设置"
+      #control_type: "MenuItem"
+    system_decimal_settings_menu:
+      name: "系统单位小数设置"
+      #control_type: "MenuItem"
+    AI_configuration_menu:
+      name: "AI配置"
+      #control_type: "MenuItem"
+      child_menus:
+        marginal_box_menu:
+            name: "边缘盒子配置"
+            #control_type: "MenuItem"
+        job_position_menu:
+            name: "作业位配置"
+            #control_type: "MenuItem"
+        camera_menu:
+            name: "摄像头配置"
+            #control_type: "MenuItem"
+        claude_server_menu:
+            name: "云服务器配置"
+            #control_type: "MenuItem"
+        self_developed_algorithm_parameter_menu:
+            name: "自研算法配置"
+            #control_type: "MenuItem"
+        self_developed_AI_task_start_and_stop_menu:
+          name: "自研算法配置"
+          #control_type: "MenuItem"
+    station_oil_extraction_limit_menu:
+      name: "货位提油限制"
+      #control_type: "MenuItem"
+    car_menu:
+      name: "车辆管理"
+      #control_type: "MenuItem"
+    document_menu:
+      name: "文档管理"
+      #control_type: "MenuItem"
+    score_menu:
+      name: "评分管理"
+      #control_type: "MenuItem"
+    voice_menu:
+      name: "语音播报设置"
+      #control_type: "MenuItem"
+    device_menu:
+      name: "设备信息管理"
+      #control_type: "MenuItem"
+  #装车仪模块元素定位
+  loading_instrument:
+    loading_instrument_parent_menu:
+        name: "装车仪"
+        #control_type: "MenuItem"
+    read_write_standard_density_menu:
+        name: "读写标准密度"
+        #control_type: "MenuItem"
+    read_write_ethanol_ratio_menu:
+      name: "读写乙醇比"
+      #control_type: "MenuItem"
+    read_write_flow_rate_menu:
+      name: "读写流速参数"
+      #control_type: "MenuItem"
+    read_write_cumulative_amount_menu:
+      name: "读写累积量"
+      #control_type: "MenuItem"
+    read_write_pulse_parameters_menu:
+      name: "读写脉冲参数"
+      #control_type: "MenuItem"
+    read_write_temperature_change_menu:
+      name: "读写温变参数"
+      #control_type: "MenuItem"
+    read_write_passWrod_menu:
+      name: "读写密码"
+      #control_type: "MenuItem"
+    read_history_menu:
+      name: "读写历史记录"
+      #control_type: "MenuItem"
+    read_write_average_temperature_menu:
+      name: "读写平均温度修正量"
+      #control_type: "MenuItem"
+    additive_menu:
+        name: "添加剂"
+        #control_type: "MenuItem"
+        child_menus:
+          read_write_additive_ratio_menu:
+            name: "读写添加剂配比"
+            #control_type: "MenuItem"
+          read_write_additive_meter_menu:
+            name: "读写添加剂计密"
+            #control_type: "MenuItem"
+  #报表管理元素定位
+  report_management:
+    report_management_parent_menu:
+      name: "报表管理"
+      #control_type: "MenuItem"
+    online_oil_delivery_report_menu:
+      name: "联机发油报表"
+      #control_type: "MenuItem"
+    offline_oil_delivery_report_menu:
+      name: "脱机发油报表"
+      #control_type: "MenuItem"
+    check_in_record_report_menu:
+      name: "打卡记录查询报表"
+      #control_type: "MenuItem"
+    flow_meter_loss_and_gain_report_menu:
+      name: "流量计班结损溢报表"
+      #control_type: "MenuItem"
+    operation_log_report_menu:
+      name: "操作日志查询"
+      #control_type: "MenuItem"
+    outbound_daily_summary_report_menu:
+      name: "出库日结表"
+      #control_type: "MenuItem"
+    oil_dispensing_data_statistics_report_menu:
+      name: "发油数据统计"
+      #control_type: "MenuItem"
+    posting_intermediate_report_menu:
+      name: "过账中间表"
+      #control_type: "MenuItem"
+    logistics_density_confirmation_issued_report_menu:
+      name: "物流密度确认下发"
+      #control_type: "MenuItem"
+    logistics_density_confirmation_issued_log_menu:
+      name: "物流密度确认下发日志"
+      #control_type: "MenuItem"
+    oil_dispensing_density_inquiry_report_menu:
+      name: "发油密度查询"
+      #control_type: "MenuItem"
+    microcomputer_oil_dispensing_report_menu:
+      name: "微机发油报表"
+      #control_type: "MenuItem"
+    oil_application_work_report_menu:
+      name: "发油作业报告单"
+      #control_type: "MenuItem"
+    data_upload_liquid_level_deepen_platform_report_menu:
+      name: "数据上传液位深化平台报表"
+      #control_type: "MenuItem"
+    temperature_density_record_inquiry_report_menu:
+      name: "温度密度记录查询报表"
+      #control_type: "MenuItem"
+    oil_dispensing_loss_and_gain_report_menu:
+      name: "发油损溢报表"
+      #control_type: "MenuItem"
+    alarm_record_report_menu:
+      name: "告警记录报表"
+      #control_type: "MenuItem"
+    crane_position_statistics_report_menu:
+      name: "鹤位统计报表"
+      #control_type: "MenuItem"
+    distribution_record_report_menu:
+      name: "发放记录报表"
+      #control_type: "MenuItem"
+    oil_dispensing_platform_statistics_report_menu:
+      name: "付油台提油统计表"
+      #control_type: "MenuItem"
+    oil_depot_flowmeter_oil_dispensing_report_menu:
+      name: "油库流量计发油记录"
+      #control_type: "MenuItem"
+    station_alarm_record_report_menu:
+      name: "货位报警记录"
+      #control_type: "MenuItem"
+    flowmeter_summary_report_menu:
+      name: "流量计汇总报表"
+      #control_type: "MenuItem"
+  #系统工具元素定位
+  system_tools:
+      system_tools_parent_menu:
+        name: "系统工具"
+        #control_type: "MenuItem"
+      working_card_management_menu:
+        name: "工作卡管理"
+        #control_type: "MenuItem"
+      key_card_management_menu:
+        name: "钥匙卡管理"
+        #control_type: "MenuItem"
+      joint_venture_card_management_menu:
+        name: "合资卡管理"
+        #control_type: "MenuItem"
+      managed_card_management_menu:
+        name: "代管卡管理"
+        #control_type: "MenuItem"
+      vehicle_card_binding_management_menu:
+        name: "车辆绑卡管理"
+        #control_type: "MenuItem"
+      backup_database_menu:
+        name: "备份数据库"
+        #control_type: "MenuItem"
+  #帮助元素定位
+  help:
+      help_parent_menu:
+        name: "帮助"
+        #control_type: "MenuItem"
+      register_menu:
+        name: "注册"
+        #control_type: "MenuItem"
+      version_menu:
+        name: "版本"
+        #control_type: "MenuItem"
+      manual_menu:
+        name: "手册"
+        #control_type: "MenuItem"
+  #左侧菜单栏所有菜单（推荐使用，已有AutomationId或Name）
+  left_menu:
+      home_page_menu:
+        name: "首页"
+#        control_type: "Button"
+      monitoring_page_menu:
+        name: "监控页面"
+#        control_type: "Button"
+      loading_and_invoicing_menu:
+        name: "装车开票"
+#        control_type: "Button"
+      customer_management_menu:
+        name: "客户管理"
+#        control_type: "Button"
+      oil_information_menu:
+        name: "油品信息"
+#        control_type: "Button"
+      configuration_settings_menu:
+        name: "配置设定"
+#        control_type: "Button"
+      station_ticket_verification_settings_menu:
+        name: "货位验票设置"
+#        control_type: "Button"
+      delivery_notification_setting_menu:
+        name: "发货通知设置"
+#        control_type: "Button"
+      queuing_vehicle_menu:
+        name: "排队车辆"
+#        control_type: "Button"
+      emergency_stop_menu:
+        name: "急停"
+#        control_type: "Button"
+
+
+
+  #右侧窗体元素定位
+  right_window:
+    #AI警情信息
+    AI_alarm_information:
+      name: "AI警情信息"
+      auto_id: "label2"
+      control_type: "Text"
+
+    #货位报警情况
+    station_alarm_situation:
+
+    #货位作业情况
+    station_work_situation:
+
+    #发油统计
+    oil_dispensing_statistics:
+
+    #发油损溢数据
+    oil_dispensing_loss_and_gain_data:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 主页面数据驱动测试数据

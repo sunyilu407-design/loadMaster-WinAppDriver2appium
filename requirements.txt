@@ -1,0 +1,42 @@
+# ========================================
+# 自动化测试框架 - Appium版本依赖
+# ========================================
+# 核心依赖 (Appium 2.x)
+appium==3.3.0
+appium-windows-driver==3.0.0
+appium-python-client==5.3.0
+
+# Web自动化 (保持兼容性)
+selenium==4.18.0
+
+# 测试框架
+pytest==8.3.3
+pytest-allure-adaptor==1.7.12
+allure-pytest==2.13.5
+pytest-xdist==3.6.1  # 并行测试支持
+
+# 页面对象和配置管理
+PyYAML==6.0.1
+configparser==7.2.0
+
+# 数据库支持
+SQLAlchemy==2.0.31
+PyMySQL==1.1.0
+
+# 日志和工具
+loguru==0.7.2
+colorama==0.4.6
+python-dotenv==1.0.1
+
+# 数据处理
+pandas==2.2.2
+numpy==1.26.4
+
+# Web框架 (可选)
+requests==2.32.3
+
+# 安装说明
+# pip install -r requirements.txt
+#
+# 或安装最新版本:
+# pip install appium>=2.0.0 appium-python-client>=4.0.0

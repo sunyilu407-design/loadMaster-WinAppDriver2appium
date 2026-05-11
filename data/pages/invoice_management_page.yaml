@@ -1,0 +1,741 @@
+# 装车开票管理配置文件
+# 装车开票管理窗口配置
+app_config:
+  #不同页面的main_window_name都是对应页面的窗体name
+  main_window_name: "装车开票"
+  head_keys : ["客户全称","提货单号","车牌号码","油品名称","发油货位","预装体积","预装重量","提单状态","开票时间"]
+
+# 装车开票页面元素定位
+elements:
+  # ==================== 主窗体按钮 ====================
+  add_invoice_button:
+    automation_id: "btnAddInfo"
+    name: "添加开票信息"
+  update_invoice_button:
+    automation_id: "btnUpdateInfo"
+    name: "修改开票信息"
+  delete_invoice_button:
+    automation_id: "btnDelete"
+    name: "删除开票信息"
+  update_state_button:
+    automation_id: "btnUpdateState"
+    name: "修改提单状态"
+  split_bill_button:
+    automation_id: "btnSplitBill"
+    name: "分单"
+  exception_button:
+    automation_id: "btnException"
+    name: "异常处理"
+  audit_button:
+    automation_id: "btnAudit"
+    name: "审核"
+  print_button:
+    automation_id: "btnPrint"
+    name: "打印交接单"
+  update_station_button:
+    automation_id: "btnUpdateStation"
+    name: "修改提单货位"
+
+  # 窗口控制按钮
+  minimize_button:
+    automation_id: "min"
+    name: "最小化"
+  close_button:
+    automation_id: "close"
+    name: "关闭"
+
+  # 查询条件区域
+  content_table:
+    automation_id: "dataGridView"
+    name: "DataGridView"
+    type: "Table"
+  query_panel:
+    name: "panel1"
+    type: "Panel"
+
+  # 查询条件 TextBox 控件
+  bill_num_query_text:
+    automation_id: "txtBillNumQuery"
+    name: "提货单号"
+  vehicle_no_query_text:
+    automation_id: "txtVehicleNo"
+    name: "车牌号码"
+  buyer_name_query_text:
+    automation_id: "txtBuyerName"
+    name: "客户名称"
+
+  # 查询条件 ComboBox 控件
+  station_no_query_combo:
+    automation_id: "cmbStationNoQuery"
+    name: "发油货位"
+  state_query_combo:
+    automation_id: "cmbStateQuery"
+    name: "状态"
+
+  # 查询条件 DateTimePicker 控件
+  start_date_picker:
+    automation_id: "dateStart"
+    name: "开始时间"
+  end_date_picker:
+    automation_id: "dateEnd"
+    name: "结束时间"
+
+  # DataGridView 列（可见列）
+  datagrid_columns:
+    buyerName:
+      automation_id: "buyerName"
+      header_text: "客户全称"
+    billNo:
+      automation_id: "billNo"
+      header_text: "提货单号"
+    ParentBillNo:
+      automation_id: "ParentBillNo"
+      header_text: "父单单号"
+    TDH:
+      automation_id: "TDH"
+      header_text: "ERP提单号"
+    stationNo:
+      automation_id: "stationNo"
+      header_text: "发油货位"
+    vehicleNo:
+      automation_id: "vehicleNo"
+      header_text: "车牌号码"
+    itemSpecName:
+      automation_id: "itemSpecName"
+      header_text: "油品名称"
+    weightDensity:
+      automation_id: "weightDensity"
+      header_text: "计重密度"
+    planVolume:
+      automation_id: "planVolume"
+      header_text: "预装体积"
+    planWeight:
+      automation_id: "planWeight"
+      header_text: "预装重量"
+    billStateName:
+      automation_id: "billStateName"
+      header_text: "提单状态"
+    billTime:
+      automation_id: "billTime"
+      header_text: "开票时间"
+    outOilModeName:
+      automation_id: "outOilModeName"
+      header_text: "发油方式"
+    itemSpecCert:
+      automation_id: "itemSpecCert"
+      header_text: "物料凭证"
+    startTime:
+      automation_id: "startTime"
+      header_text: "开始发油时间"
+    endTime:
+      automation_id: "endTime"
+      header_text: "结束发油时间"
+    outOilTypeName:
+      automation_id: "outOilTypeName"
+      header_text: "票据分类"
+    ERP_CW:
+      automation_id: "ERP_CW"
+      header_text: "仓位"
+    userName:
+      automation_id: "userName"
+      header_text: "操作人员"
+    remark:
+      automation_id: "remark"
+      header_text: "备注"
+
+  # ==================== 子窗体1：添加开票信息 ====================
+  add_invoice_window:
+    automation_id: "frmInvoiceAddOrUpdate"
+    name: "编辑装车开票信息"
+    type: "Window"
+    child_elements:
+      # TextBox 控件
+      item_spec_cert_text:
+        automation_id: "txtItemSpecCert"
+        name: "ERP物料凭证"
+      bill_num_text:
+        automation_id: "txtBillNum"
+        name: "提货单号"
+      erp_bill_num_text:
+        automation_id: "txtERPBillNum"
+        name: "ERP提货单号"
+      ic_card_no_text:
+        automation_id: "txtICCardNo"
+        name: "IC卡号"
+      vehicle_no_text:
+        automation_id: "txtVehicleNo"
+        name: "车牌号码"
+      cal_density_text:
+        automation_id: "lblCalDensity"
+        name: "计重密度"
+      volume_text:
+        automation_id: "txtVolume"
+        name: "预装体积"
+      weight_text:
+        automation_id: "txtWeight"
+        name: "预装重量"
+      special_job_volume_text:
+        automation_id: "txtspecialJobVolume"
+        name: "特殊作业体积"
+      special_job_weight_text:
+        automation_id: "txtspecialJobWeight"
+        name: "特殊作业重量"
+      remark_text:
+        automation_id: "txtRemark"
+        name: "备注摘要"
+      ic_card_print_code_text:
+        automation_id: "ICCardPrintCode"
+        name: "IC卡印刷号"
+      hidden_bill_id_text:
+        automation_id: "txtBillId"
+        name: "隐藏单号ID"
+      hidden_bill_year_text:
+        automation_id: "txtBillYear"
+        name: "隐藏单据年份"
+      # ComboBox 控件
+      sort_combo:
+        automation_id: "cmbSort"
+        name: "票据分类"
+      oil_name_combo:
+        automation_id: "cmbOilName"
+        name: "油品名称"
+      station_combo:
+        automation_id: "cmbStation"
+        name: "发油货位"
+      load_mode_combo:
+        automation_id: "cmbLoadMode"
+        name: "发油方式"
+      buyer_combo:
+        automation_id: "cmbBuyer"
+        name: "客户全称"
+      special_operation_combo:
+        automation_id: "cmbSpecialOperation"
+        name: "特殊作业方式"
+      erp_cw_combo:
+        automation_id: "cmbERP_CW"
+        name: "仓位"
+      # CheckBox 控件
+      use_ic_card_check:
+        automation_id: "cbIsUseICCard"
+        name: "使用IC卡"
+      additive_check:
+        automation_id: "checkIsAdditive"
+        name: "含添加剂"
+      # Button 控件
+      add_button:
+        automation_id: "btEnter"
+        name: "添加"
+      cancel_button:
+        automation_id: "btnExit"
+        name: "取消"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+
+  # ==================== 子窗体2：修改开票信息 ====================
+  edit_invoice_window:
+    automation_id: "frmInvoiceAddOrUpdate"
+    name: "编辑装车开票信息"
+    type: "Window"
+    child_elements:
+      # TextBox 控件
+      item_spec_cert_text:
+        automation_id: "txtItemSpecCert"
+        name: "ERP物料凭证"
+      bill_num_text:
+        automation_id: "txtBillNum"
+        name: "提货单号"
+      erp_bill_num_text:
+        automation_id: "txtERPBillNum"
+        name: "ERP提货单号"
+      ic_card_no_text:
+        automation_id: "txtICCardNo"
+        name: "IC卡号"
+      vehicle_no_text:
+        automation_id: "txtVehicleNo"
+        name: "车牌号码"
+      cal_density_text:
+        automation_id: "lblCalDensity"
+        name: "计重密度"
+      volume_text:
+        automation_id: "txtVolume"
+        name: "预装体积"
+      weight_text:
+        automation_id: "txtWeight"
+        name: "预装重量"
+      special_job_volume_text:
+        automation_id: "txtspecialJobVolume"
+        name: "特殊作业体积"
+      special_job_weight_text:
+        automation_id: "txtspecialJobWeight"
+        name: "特殊作业重量"
+      remark_text:
+        automation_id: "txtRemark"
+        name: "备注摘要"
+      ic_card_print_code_text:
+        automation_id: "ICCardPrintCode"
+        name: "IC卡印刷号"
+      hidden_bill_id_text:
+        automation_id: "txtBillId"
+        name: "隐藏单号ID"
+      hidden_bill_year_text:
+        automation_id: "txtBillYear"
+        name: "隐藏单据年份"
+      # ComboBox 控件
+      sort_combo:
+        automation_id: "cmbSort"
+        name: "票据分类"
+      oil_name_combo:
+        automation_id: "cmbOilName"
+        name: "油品名称"
+      station_combo:
+        automation_id: "cmbStation"
+        name: "发油货位"
+      load_mode_combo:
+        automation_id: "cmbLoadMode"
+        name: "发油方式"
+      buyer_combo:
+        automation_id: "cmbBuyer"
+        name: "客户全称"
+      special_operation_combo:
+        automation_id: "cmbSpecialOperation"
+        name: "特殊作业方式"
+      erp_cw_combo:
+        automation_id: "cmbERP_CW"
+        name: "仓位"
+      # CheckBox 控件
+      use_ic_card_check:
+        automation_id: "cbIsUseICCard"
+        name: "使用IC卡"
+      additive_check:
+        automation_id: "checkIsAdditive"
+        name: "含添加剂"
+      # Button 控件
+      save_button:
+        automation_id: "btEnter"
+        name: "保存"
+      cancel_button:
+        automation_id: "btnExit"
+        name: "取消"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+
+  # ==================== 子窗体3：删除确认 ====================
+  delete_confirm_window:
+    automation_id: "CustomMessageCheckBox"
+    name: "CustomMessageCheckBox"
+    type: "Window"
+    child_elements:
+      confirm_button:
+        automation_id: "btnMsg1"
+        name: "是"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnMsg2"
+        name: "否"
+        type: "Button"
+      quit_button:
+        automation_id: "msgBtn"
+        name: "关闭"
+        type: "Button"
+      prompt_text:
+        automation_id: "msgLabel2"
+        name: "提示文本"
+        type: "Text"
+
+  # ==================== 子窗体4：分单 ====================
+  split_bill_window:
+    automation_id: "frmInvoiceSplitBill"
+    name: "编辑装车开票信息"
+    type: "Window"
+    child_elements:
+      # GroupBox
+      total_info_group:
+        automation_id: "groupBox1"
+        name: "总单信息"
+      split_info_group:
+        automation_id: "groupBox2"
+        name: "分单信息"
+      # 只读 TextBox（总单信息）
+      total_bill_num_text:
+        automation_id: "txtBillNum"
+        name: "提货单号"
+      total_oil_name_text:
+        automation_id: "textBox1"
+        name: "油品名称"
+      total_volume_text:
+        automation_id: "txtVolume"
+        name: "预装体积"
+      total_weight_text:
+        automation_id: "txtWeight"
+        name: "预装重量"
+      total_density_text:
+        automation_id: "textBox2"
+        name: "计重密度"
+      total_vehicle_no_text:
+        automation_id: "textVehicleNo"
+        name: "车牌号"
+      # 可编辑 TextBox（分单信息）
+      volume1_text:
+        automation_id: "txtVolume1"
+        name: "一仓体积"
+      weight1_text:
+        automation_id: "txtWeight1"
+        name: "一仓重量"
+      volume2_text:
+        automation_id: "txtVolume2"
+        name: "二仓体积"
+      weight2_text:
+        automation_id: "txtWeight2"
+        name: "二仓重量"
+      volume3_text:
+        automation_id: "txtVolume3"
+        name: "三仓体积"
+      weight3_text:
+        automation_id: "txtWeight3"
+        name: "三仓重量"
+      # Button 控件
+      save_button:
+        automation_id: "btEnter"
+        name: "保存"
+      cancel_button:
+        automation_id: "btnExit"
+        name: "取消"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+
+  # ==================== 子窗体5：异常处理 ====================
+  exception_window:
+    automation_id: "frmExceptionHandling"
+    name: "异常处理"
+    type: "Window"
+    child_elements:
+      # TextBox 控件
+      bill_no_text:
+        automation_id: "txtBillNo"
+        name: "单号"
+      hidden_bill_id_text:
+        automation_id: "txtBillId"
+        name: "隐藏单号ID"
+      oil_volume_text:
+        automation_id: "oilVolume"
+        name: "组分体积"
+      oil_weight_text:
+        automation_id: "oilWeight"
+        name: "组分重量"
+      average_temp_text:
+        automation_id: "averageTemp"
+        name: "平均温度"
+      ethanol_volume_text:
+        automation_id: "ethanolVolume"
+        name: "乙醇体积"
+      ethanol_weight_text:
+        automation_id: "ethanolWeight"
+        name: "乙醇重量"
+      flowmeter_start_volume1_box:
+        automation_id: "flowmeterStartVolume1box"
+        name: "组分流量计体积起始读数"
+      flowmeter_start_weight1_box:
+        automation_id: "flowmeterStartWeight1box"
+        name: "组分流量计质量起始读数"
+      flowmeter_end_volume1_box:
+        automation_id: "flowmeterEndVolume1box"
+        name: "组分流量计体积终止读数"
+      flowmeter_end_weight1_box:
+        automation_id: "flowmeterEndWeight1box"
+        name: "组分流量计质量终止读数"
+      flowmeter_start_volume2_box:
+        automation_id: "flowmeterStartVolume2box"
+        name: "乙醇流量计体积起始读数"
+      flowmeter_start_weight2_box:
+        automation_id: "flowmeterStartWeight2box"
+        name: "乙醇流量计质量起始读数"
+      flowmeter_end_volume2_box:
+        automation_id: "flowmeterEndVolume2box"
+        name: "乙醇流量计体积终止读数"
+      flowmeter_end_weight2_box:
+        automation_id: "flowmeterEndWeight2box"
+        name: "乙醇流量计质量终止读数"
+      # DateTimePicker 控件
+      start_time_picker:
+        automation_id: "startTime"
+        name: "开始时间"
+      end_time_picker:
+        automation_id: "endTime"
+        name: "结束时间"
+      # Button 控件
+      save_button:
+        automation_id: "btnEnter"
+        name: "保存"
+      cancel_button:
+        automation_id: "btnCancel"
+        name: "取消"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+
+  # ==================== 子窗体6：修改提单货位 ====================
+  update_station_window:
+    automation_id: "frmUpdateStation"
+    name: "修改提单货位"
+    type: "Window"
+    child_elements:
+      bill_num_text:
+        automation_id: "txtBillNum"
+        name: "提货单号"
+      hidden_bill_id_text:
+        automation_id: "txtBillId"
+        name: "隐藏单号ID"
+      station_combo:
+        automation_id: "cmbStation"
+        name: "发油货位"
+      save_button:
+        automation_id: "btEnter"
+        name: "编辑"
+      cancel_button:
+        automation_id: "btCancel"
+        name: "取消"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+
+  # ==================== 子窗体7：审核确认 ====================
+  audit_confirm_window:
+    automation_id: "CustomMessageCheckBox"
+    name: "CustomMessageCheckBox"
+    type: "Window"
+    child_elements:
+      confirm_button:
+        automation_id: "btnMsg1"
+        name: "是"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnMsg2"
+        name: "否"
+        type: "Button"
+      quit_button:
+        automation_id: "msgBtn"
+        name: "关闭"
+        type: "Button"
+      prompt_text:
+        automation_id: "msgLabel2"
+        name: "提示文本"
+        type: "Text"
+
+  # ==================== 子窗体8：修改提单状态确认 ====================
+  update_state_confirm_window:
+    automation_id: "CustomMessageCheckBox"
+    name: "CustomMessageCheckBox"
+    type: "Window"
+    child_elements:
+      confirm_button:
+        automation_id: "btnMsg1"
+        name: "是"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnMsg2"
+        name: "否"
+        type: "Button"
+      quit_button:
+        automation_id: "msgBtn"
+        name: "关闭"
+        type: "Button"
+      prompt_text:
+        automation_id: "msgLabel2"
+        name: "提示文本"
+        type: "Text"
+
+  # 注意：以下弹窗使用公共配置 common_dialogs.yaml 中的定义：
+  # - operation_window: 操作提示窗口（是/否/退出）
+  # - prompt_window: 消息提示窗口（仅确认按钮）
+  # 无需在此处重复定义，ConfigManager 会自动合并公共配置
+
+# 装车开票页面数据驱动测试数据
+
+# ========================================
+# test_data - 测试数据模板（AI自动生成）
+# ========================================
+test_data:
+  # ==================== 查询测试 ====================
+  # 查询所有开票信息
+  query_invoice:
+    _description: "查询所有装车开票信息"
+    _method: "query_invoice"
+    timeout: 10.0
+
+  # ==================== 添加开票信息测试 ====================
+  # 添加开票信息成功（完整参数）
+  add_invoice_success_full:
+    _description: "添加开票信息成功（完整参数）"
+    _method: "add_invoice_and_verify"
+    bill_num: "26050801"
+    vehicle_no: "京A12345"
+    oil_name: "0号车用柴油(Ⅵ)"
+    station: "1"
+    load_mode: "按重量发油"
+    weight: "8500"
+    buyer: "test1"
+    remark: "测试开票"
+    sort: "销售"
+    special_operation: "正常发油"
+    use_ic_card: false
+    additive: false
+    confirm: false
+    timeout: 10.0
+
+  # 添加开票信息成功（最小参数）
+  add_invoice_success_minimal:
+    _description: "添加开票信息成功（最小参数）"
+    _method: "add_invoice_and_verify"
+    bill_num: "BILL20260002"
+    vehicle_no: "京B67890"
+    oil_name: "柴油"
+    station: "02"
+    volume: "8000"
+    weight: "7000"
+    confirm: true
+    timeout: 10.0
+
+  # 添加开票信息取消
+  add_invoice_cancel:
+    _description: "添加开票信息取消"
+    _method: "add_invoice_and_verify"
+    bill_num: "BILL20260003"
+    vehicle_no: "京C11111"
+    oil_name: "汽油"
+    station: "01"
+    volume: "9000"
+    weight: "7650"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 修改开票信息测试 ====================
+  # 修改开票信息成功
+  update_invoice_success:
+    _description: "修改开票信息成功"
+    _method: "update_invoice_and_verify"
+    search_key: "BILL20260001"
+    vehicle_no: "京D22222"
+    volume: "12000"
+    weight: "10200"
+    remark: "已修改"
+    confirm: true
+    timeout: 10.0
+
+  # 修改开票信息取消
+  update_invoice_cancel:
+    _description: "修改开票信息取消"
+    _method: "update_invoice_and_verify"
+    search_key: "BILL20260001"
+    volume: "13000"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 删除开票信息测试 ====================
+  # 删除开票信息成功
+  delete_invoice_success:
+    _description: "删除开票信息成功"
+    _method: "delete_invoice_and_verify"
+    search_key: "BILL20260004"
+    confirm: true
+    timeout: 10.0
+
+  # 删除开票信息取消
+  delete_invoice_cancel:
+    _description: "删除开票信息取消"
+    _method: "delete_invoice_and_verify"
+    search_key: "BILL20260001"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 分单测试 ====================
+  # 分单成功（两仓）
+  split_bill_two_compartment:
+    _description: "分单成功（两仓）"
+    _method: "split_bill_and_verify"
+    search_key: "BILL20260001"
+    volume1: "6000"
+    weight1: "5100"
+    volume2: "6000"
+    weight2: "5100"
+    confirm: true
+    timeout: 10.0
+
+  # 分单成功（三仓）
+  split_bill_three_compartment:
+    _description: "分单成功（三仓）"
+    _method: "split_bill_and_verify"
+    search_key: "BILL20260001"
+    volume1: "4000"
+    weight1: "3400"
+    volume2: "4000"
+    weight2: "3400"
+    volume3: "4000"
+    weight3: "3400"
+    confirm: true
+    timeout: 10.0
+
+  # 分单取消
+  split_bill_cancel:
+    _description: "分单取消"
+    _method: "split_bill_and_verify"
+    search_key: "BILL20260001"
+    volume1: "3000"
+    weight1: "2550"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 修改提单货位测试 ====================
+  # 修改提单货位成功
+  update_station_success:
+    _description: "修改提单货位成功"
+    _method: "update_station_and_verify"
+    search_key: "BILL20260001"
+    new_station: "03"
+    confirm: true
+    timeout: 10.0
+
+  # 修改提单货位取消
+  update_station_cancel:
+    _description: "修改提单货位取消"
+    _method: "update_station_and_verify"
+    search_key: "BILL20260001"
+    new_station: "04"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 审核测试 ====================
+  # 审核开票信息成功
+  audit_invoice_success:
+    _description: "审核开票信息成功"
+    _method: "audit_invoice"
+    search_key: "BILL20260001"
+    confirm: true
+    timeout: 10.0
+
+  # 审核开票信息取消
+  audit_invoice_cancel:
+    _description: "审核开票信息取消"
+    _method: "audit_invoice"
+    search_key: "BILL20260002"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 修改提单状态测试 ====================
+  # 修改提单状态成功
+  update_state_success:
+    _description: "修改提单状态成功"
+    _method: "update_state"
+    search_key: "BILL20260001"
+    confirm: true
+    timeout: 10.0
+
+  # 修改提单状态取消
+  update_state_cancel:
+    _description: "修改提单状态取消"
+    _method: "update_state"
+    search_key: "BILL20260002"
+    confirm: false
+    timeout: 10.0

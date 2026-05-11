@@ -1,0 +1,92 @@
+# 公共弹窗配置文件
+# 说明：此文件定义了系统中所有页面公用的弹窗元素
+# 使用方式：各页面YAML会自动加载并合并此配置，无需重复定义
+
+# 公共弹窗元素配置
+common_dialogs:
+  # 操作提示窗口（是/否/退出 三按钮）
+  # 用于各种操作确认，如添加、修改、删除等操作的确认
+  operation_window:
+    automation_id: "CustomMessageCheckBox"
+    name: "操作提示"
+    type: "Window"
+    description: "操作提示弹窗，包含确认、取消、退出三个按钮"
+    child_elements:
+      confirm_button:
+        automation_id: "btnMsg1"
+        type: "Button"
+        name: "是 (Y)"
+        description: "确认按钮"
+      cancel_button:
+        automation_id: "btnMsg2"
+        type: "Button"
+        name: "否 (N)"
+        description: "取消按钮"
+      prompt_text:
+        automation_id: "msgLabel2"
+        type: "Text"
+        description: "提示文本"
+      quit_button:
+        automation_id: "msgBtn"
+        type: "Button"
+        name: "退出"
+        description: "退出按钮"
+  
+  # 消息提示窗口（仅确认按钮）
+  # 用于操作结果提示，通常在点击operation_window确认后出现
+  prompt_window:
+    automation_id: "CustomMessageBox"
+    name: "操作提示"
+    type: "Window"
+    description: "消息提示弹窗，仅包含确认按钮，用于显示操作结果"
+    child_elements:
+      confirm_button:
+        automation_id: "btnMsg"
+        type: "Button"
+        name: "确定"
+        description: "确认按钮"
+      prompt_text:
+        automation_id: "msgLabel2"
+        type: "Text"
+        description: "提示文本（操作结果信息）"
+
+# 使用说明
+usage_guide: |
+  ## 如何在页面配置中使用公共弹窗：
+  
+  方式1：直接引用（ConfigManager会自动合并）
+  ====================================
+  无需在页面YAML中重复定义，ConfigManager会自动加载common_dialogs.yaml
+  并将其合并到页面配置的elements中。
+  
+  例如：user_management_page.yaml中无需再定义operation_window
+  
+  方式2：页面特殊化定义（覆盖）
+  ====================================
+  如果某个页面的弹窗定位信息与公共配置不同，可在页面YAML中重新定义：
+  
+  elements:
+    operation_window:  # 会覆盖common_dialogs中的定义
+      automation_id: "SpecialDialogId"
+      name: "特殊弹窗"
+  
+  ## PageObject中使用公共弹窗方法：
+  
+  class YourPage(BasePage):
+      def switch_to_operation_window(self):
+          """切换到操作提示窗口"""
+          window_config = self._get_element_config('operation_window')
+          return self.switch_to_window(title=window_config['name'])
+      
+      def get_operation_prompt_text(self):
+          """获取操作提示文本"""
+          self.switch_to_operation_window()
+          text_config = self._get_element_config('operation_window')['child_elements']['prompt_text']
+          return self.get_element_text(**text_config)
+      
+      def click_operation_confirm_button(self):
+          """点击操作确认按钮"""
+          self.switch_to_operation_window()
+          btn_config = self._get_element_config('operation_window')['child_elements']['confirm_button']
+          return self.click_element(**btn_config)
+

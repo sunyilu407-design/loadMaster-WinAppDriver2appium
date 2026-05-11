@@ -1,0 +1,236 @@
+# 用户信息管理配置文件
+# 用户信息管理窗口配置
+app_config:
+  #不同页面的main_window_name都是对应页面的窗体name
+  main_window_name: "用户信息管理"
+  head_keys : ["用户姓名","用户类型","注册时间","备注"]
+
+
+# 用户信息管理页面元素定位
+elements:
+  # 用户信息管理页面特征元素 - 可以根据实际应用情况添加具体元素
+  add_user_button: #添加用户按钮
+    automation_id: "btnAddUser"
+    name: "添加用户"
+#    type: "Button"
+  alter_user_button: #修改用户按钮
+    automation_id: "btnUpdateUser"
+#    type: "Button"
+  delete_user_button: #删除用户按钮
+    automation_id: "btnDeleteUser"
+#    type: "Button"
+  set_permission_button: #设置权限按钮
+    automation_id: "btnSetUserModule"
+#    type: "Button"
+  reset_password_button: #重置密码按钮
+    automation_id: "btnResetPwd"
+#    type: "Button"
+  content_table:  # 用户信息管理页面内容表格
+    automation_id: "dataGridView"
+    name: "DataGridView"
+    type: "Table"
+  add_user_window:
+    #添加用户信息窗口
+    automation_id: "frmUserAddOrUpdate"
+    name: "添加用户信息"
+    type: "Window"
+    child_elements:
+      user_name_edit:
+        automation_id: "txtUserName"
+#        type: "Edit"
+      user_type_combo:
+        automation_id: "cboUserType"
+#        type: "ComboBox"
+      remark_edit:
+        automation_id: "txtRemark"
+#        type: "Edit"
+      affiliated_system_tree:
+        automation_id: "tvwSystem"
+#        type: "Tree"
+      add_button:
+        automation_id: "btnAddUser"
+#        type: "Button"
+      cancel_button:
+        automation_id: "btnCancel"
+#        type: "Button"
+      quit_button:
+        automation_id: "button1"
+#        type: "Button"
+  alter_user_window:
+    automation_id: "frmUserAddOrUpdate"
+    name: "修改用户信息"
+    #type: "Window"
+    child_elements:
+        user_name_edit:
+          automation_id: "txtUserName"
+          #type: "Edit"
+        user_type_combo:
+          automation_id: "cboUserType"
+          #type: "ComboBox"
+        remark_edit:
+          automation_id: "txtRemark"
+          #type: "Edit"
+        affiliated_system_tree:
+          automation_id: "tvwSystem"
+          #type: "Tree"
+        alter_button:
+          automation_id: "btnAddUser"
+          #type: "Button"
+        cancel_button:
+          automation_id: "btnCancel"
+          #type: "Button"
+        quit_button:
+          automation_id: "button1"
+          #type: "Button"
+  set_permission_window:
+    automation_id: "frmUserModule"
+    name: "设置用户权限"
+    #type: "Window"
+    child_elements:
+      user_name_Edit:
+        automation_id: "txtUserName"
+        #type: "Edit"
+      permission_tree:
+        automation_id: "tvwModule"
+        #type: "Tree"
+      save_button:
+        automation_id: "btnAddUserModule"
+        #type: "Button"
+      cancel_button:
+        automation_id: "btnCancel"
+        #type: "Button"
+      quit_button:
+        automation_id: "button1"
+        #type: "Button"
+  delete_user_window:
+    automation_id: "CustomMessageCheckBox"
+    name: "CustomMessageCheckBox"
+    type: "Window"
+    child_elements:
+      confirm_button:
+        automation_id: "btnMsg1"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnMsg2"
+        type: "Button"
+      quit_button:
+        automation_id: "msgBtn"
+        type: "Button"
+      prompt_text:
+        automation_id: "msgLabel2"
+        type: "Text"
+  # 注意：以下弹窗使用公共配置 common_dialogs.yaml 中的定义：
+  # - operation_window: 操作提示窗口（是/否/退出）
+  # - prompt_window: 消息提示窗口（仅确认按钮）
+  # 无需在此处重复定义，ConfigManager 会自动合并公共配置
+  
+# 用户信息管理页面数据驱动测试数据
+test_data:
+  # ========== 添加用户测试数据 ==========
+  add_user_scenario:
+    _description: "添加用户并验证"
+    _method: "add_user_and_verify"
+    username: "test"
+    usertype: "操作员"
+    remark: "测试添加用户"
+    affiliated_system: ["发油系统", "排队系统", "门禁系统", "安规录入系统"]
+    confirm: true        # 是否点击添加窗口的确认按钮
+    confirm_operation: true # 是否点击operation_window的"是"按钮（True=是，False=否）
+    timeout: 5.0
+
+  # ========== 修改用户测试数据 ==========
+  alter_user_scenario_1:
+    _description: "修改用户类型和备注并验证"
+    _method: "alter_user_and_verify"
+    old_username: "test"
+    new_username: null  # 不修改用户名
+    new_usertype: "管理员"
+    new_remark: "修改后的备注信息"
+    new_affiliated_system: null  # 不修改所属系统
+    confirm: true        # 是否点击修改窗口的确认按钮
+    confirm_prompt: true # 是否点击prompt_window的"确认"按钮（True=确认，False=跳过）
+    timeout: 5.0
+
+  alter_user_scenario_2:
+    _description: "修改用户名并验证"
+    _method: "alter_user_and_verify"
+    old_username: "test"
+    new_username: "test_modified"
+    new_usertype: null  # 不修改用户类型
+    new_remark: null  # 不修改备注
+    new_affiliated_system: null  # 不修改所属系统
+    confirm: true        # 是否点击修改窗口的确认按钮
+    confirm_prompt: true # 是否点击prompt_window的"确认"按钮（True=确认，False=跳过）
+    timeout: 5.0
+
+  alter_user_scenario_3:
+    _description: "修改所属系统并验证"
+    _method: "alter_user_and_verify"
+    old_username: "test"
+    new_username: null
+    new_usertype: null
+    new_remark: null
+    new_affiliated_system: ["发油系统", "门禁系统"]  # 只选择部分系统
+    confirm: true        # 是否点击修改窗口的确认按钮
+    confirm_prompt: true # 是否点击prompt_window的"确认"按钮（True=确认，False=跳过）
+    timeout: 5.0
+
+  alter_user_scenario_cancel:
+    _description: "修改用户但取消操作"
+    _method: "alter_user_and_verify"
+    old_username: "test"
+    new_username: "test_cancel"
+    new_usertype: "司衡员"
+    new_remark: "取消修改的备注"
+    new_affiliated_system: ["发油系统"]
+    confirm: false  # 取消操作
+    confirm_prompt: false # 跳过点击prompt_window
+    timeout: 5.0
+
+  # ========== 设置权限测试数据 ==========
+  set_permission_scenario_1:
+    _description: "设置用户权限并验证"
+    _method: "set_permission_and_verify"
+    username: "test"
+    permissions: ["用户信息", "添加用户", "修改用户", "删除用户"]
+    confirm: true        # 是否点击设置权限窗口的保存按钮
+    confirm_prompt: true # 是否点击prompt_window的"确认"按钮（True=确认，False=跳过）
+    timeout: 5.0
+
+  set_permission_scenario_2:
+    _description: "设置更多权限节点"
+    _method: "set_permission_and_verify"
+    username: "test"
+    permissions: ["用户信息", "添加用户", "修改用户", "删除用户", "设置权限", "重置密码", "基础设置"]
+    confirm: true        # 是否点击设置权限窗口的保存按钮
+    confirm_prompt: true # 是否点击prompt_window的"确认"按钮（True=确认，False=跳过）
+    timeout: 5.0
+
+  # ========== 重置密码测试数据 ==========
+  reset_password_scenario_confirm:
+    _description: "重置用户密码并确认"
+    _method: "reset_password_and_verify"
+    username: "test"
+    confirm: true        # 是否点击重置密码确认窗口的"是"按钮
+    confirm_operation: true # 是否点击operation_window的"是"按钮（True=是，False=否）
+    confirm_prompt: true # 是否点击prompt_window的"确认"按钮（True=确认，False=跳过）
+    timeout: 5.0
+
+  reset_password_scenario_cancel:
+    _description: "重置用户密码但取消"
+    _method: "reset_password_and_verify"
+    username: "test"
+    confirm: false  # 取消操作
+    confirm_operation: false # 点击operation_window的"否"按钮
+    confirm_prompt: false # 跳过点击prompt_window
+    timeout: 5.0
+
+  # ========== 删除用户测试数据 ==========
+  delete_user_scenario:
+    _description: "删除用户并验证"
+    _method: "delete_user_and_verify"
+    username: "test"
+    confirm: true        # 是否点击删除确认窗口的"是"按钮
+    confirm_operation: true # 是否点击operation_window的"是"按钮（True=是，False=否）
+    confirm_prompt: true # 是否点击prompt_window的"确认"按钮（True=确认，False=跳过）
+    timeout: 5.0

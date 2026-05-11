@@ -1,0 +1,163 @@
+# 油品信息管理配置文件
+# 油品信息管理窗口配置
+app_config:
+  #不同页面的main_window_name都是对应页面的窗体name
+  main_window_name: "油品信息管理"
+  head_keys : ["油品名称","油品简称","油品编码","油品类型","对应颜色","曾用名"]
+
+
+# 油品信息管理页面元素定位
+elements:
+  # 油品信息管理页面特征元素 - 可以根据实际应用情况添加具体元素
+  add_oil_button: #添加油品按钮
+    automation_id: "btnAddItemSpec"
+    name: "添加油品"
+  alter_oil_button: #修改油品按钮
+    automation_id: "btnUpdateItemSpec"
+  delete_oil_button: #删除油品按钮
+    automation_id: "btnDeleteItemSpec"
+  content_table:  # 油品信息管理页面内容表格
+    automation_id: "dataGridView"
+    name: "DataGridView"
+    type: "Table"
+  add_oil_window:
+    #添加油品信息窗口
+    automation_id: "frmItemSpecAddOrUpdate"
+    name: "添加油品信息"
+    type: "Window"
+    child_elements:
+      oil_short_name_edit:
+        automation_id: "txtItemSpecShortName"
+      oil_name_edit:
+        automation_id: "txtItemSpecName"
+      oil_code_edit:
+        automation_id: "txtItemSpecCode"
+      oil_type_combo:
+        automation_id: "cboOilType"
+      oil_color_combo:
+        automation_id: "comboBox1"
+      oil_former_name_combo:
+        automation_id: "cboPreviousName"
+      add_button:
+        automation_id: "btnAddItemSpec"
+      cancel_button:
+        automation_id: "btnCancel"
+      quit_button:
+        automation_id: "cancleBtn"
+  alter_oil_window:
+    #修改油品信息窗口
+    automation_id: "frmItemSpecAddOrUpdate"
+    name: "修改油品信息"
+    type: "Window"
+    child_elements:
+      oil_short_name_edit:
+        automation_id: "txtItemSpecShortName"
+      oil_name_edit:
+        automation_id: "txtItemSpecName"
+      oil_code_edit:
+        automation_id: "txtItemSpecCode"
+      oil_type_combo:
+        automation_id: "cboOilType"
+      oil_color_combo:
+        automation_id: "comboBox1"
+      oil_former_name_combo:
+        automation_id: "cboPreviousName"
+      add_button:
+        automation_id: "btnAddItemSpec"
+      cancel_button:
+        automation_id: "btnCancel"
+      quit_button:
+        automation_id: "cancleBtn"
+  delete_oil_window:
+    automation_id: "CustomMessageCheckBox"
+    name: "  操作提示"
+    type: "Window"
+    child_elements:
+      yes_button:
+        automation_id: "btnMsg1"
+        type: "Button"
+      no_button:
+        automation_id: "btnMsg2"
+        type: "Button"
+      quit_button:
+        automation_id: "msgBtn"
+        type: "Button"
+      prompt_text:
+        automation_id: "msgLabel2"
+        type: "Text"
+      confirm_button:
+          automation_id: "btnMsg"
+          type: "Button"
+
+
+# 油品信息管理页面数据驱动测试数据
+test_data:
+  # 添加油品成功场景
+  add_oil_success:
+    _description: "添加油品成功"
+    _method: "add_oil_and_verify"
+    short_name: "汽油92"
+    name: "92号汽油"
+    code: "YL92"
+    oil_type: "汽油"
+    color: "蓝色"
+    confirm: true
+    timeout: 10.0
+
+  # 添加油品取消场景
+  add_oil_cancel:
+    _description: "添加油品取消"
+    _method: "add_oil_and_verify"
+    short_name: "柴油A"
+    name: "0号柴油"
+    code: "CY00"
+    confirm: false
+    timeout: 10.0
+
+  # 修改油品成功场景
+  alter_oil_success:
+    _description: "修改油品成功"
+    _method: "alter_oil_and_verify"
+    search_key: "原柴油"
+    new_short_name: "新柴油"
+    new_name: "新0号柴油"
+    new_code: "XCY00"
+    new_oil_type: "柴油"
+    new_color: "黑色"
+    confirm: true
+    timeout: 10.0
+
+  # 修改油品取消场景
+  alter_oil_cancel:
+    _description: "修改油品取消"
+    _method: "alter_oil_and_verify"
+    search_key: "原柴油"
+    new_short_name: "不应存在的油品"
+    confirm: false
+    timeout: 10.0
+
+  # 删除油品成功场景
+  delete_oil_success:
+    _description: "删除油品成功"
+    _method: "delete_oil_and_verify"
+    search_key: "待删除油品"
+    confirm: true
+    timeout: 10.0
+
+  # 删除油品取消场景
+  delete_oil_cancel:
+    _description: "删除油品取消"
+    _method: "delete_oil_and_verify"
+    search_key: "取消删除油品"
+    confirm: false
+    timeout: 10.0
+
+  # 查询油品场景
+  query_oil:
+    _description: "查询油品"
+    _method: "query_oil"
+    search_key: "油品"
+    timeout: 10.0
+  
+
+  

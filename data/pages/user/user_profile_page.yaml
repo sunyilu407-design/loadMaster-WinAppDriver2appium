@@ -1,0 +1,162 @@
+# 应用程序启动配置
+app_config:
+  main_window_title: "修改密码"
+  # 预期成功消息配置（从实际界面获取）
+  success_messages:
+    change_username: "用户名修改成功！"
+    change_password: "密码修改成功！"
+
+# 用户名/密码修改页元素定位
+elements:
+  # 用户名修改窗口
+  alter_username_window:
+    automation_id: "frmUserNameUpdate"
+    name: "修改用户名"
+    type: "Window"
+    child_elements:
+      title_label:
+        automation_id: "label4"
+      old_password_input:
+        automation_id: "txtUserPwd"
+      new_username_input:
+        automation_id: "txtNewUserName"
+      confirm_username_input:
+        automation_id: "txtEnterNewUserName"
+      save_button:
+        automation_id: "btnSaveUserPwd"
+      cancel_button:
+        automation_id: "btnCancel"
+      quit_button:
+        automation_id: "button1"
+
+
+  # 密码修改窗口
+  alter_password_window:
+    automation_id: "frmUserPwdUpdate"
+    name: "修改密码"
+    type: "Window"
+    child_elements:
+      title_label:
+        automation_id: "label4"
+      old_password_input:
+        automation_id: "txtUserPwd"
+      new_password_input:
+        automation_id: "txtNewUserPwd"
+      confirm_password_input:
+        automation_id: "txtEnterNewUserPwd"
+      save_button:
+          automation_id: "btnSaveUserPwd"
+      cancel_button:
+          automation_id: "btnCancel"
+      quit_button:
+          automation_id: "button1"
+
+
+
+
+# 数据驱动测试数据
+test_data:
+  # ========== 修改用户名测试数据 ==========
+  change_username_and_verify_scenario_1:
+    _description: "修改用户名并验证（正常场景）"
+    _method: "change_username_and_verify"
+    old_password: "123456"
+    new_username: "admin1"
+    confirm_username: "admin1"
+    confirm: true
+    timeout: 5.0
+
+  change_username_and_verify_scenario_2:
+    _description: "修改用户名但取消操作"
+    _method: "change_username_and_verify"
+    old_password: "123456"
+    new_username: "testuser_cancel"
+    confirm_username: "testuser_cancel"
+    confirm: false
+    timeout: 5.0
+
+  change_username_and_verify_scenario_3:
+    _description: "修改用户名时两次输入不一致（验证失败场景）"
+    _method: "change_username_and_verify"
+    old_password: "123456"
+    new_username: "new_testuser"
+    confirm_username: "different_testuser"  # 与新用户名不一致
+    confirm: true
+    timeout: 5.0
+
+  # ========== 修改密码测试数据 ==========
+  change_password_and_verify_scenario_1:
+    _description: "修改密码并验证（正常场景）"
+    _method: "change_password_and_verify"
+    old_password: "1"
+    new_password: "123456"
+    confirm_password: "123456"
+    confirm: true
+    timeout: 5.0
+
+  change_password_and_verify_scenario_2:
+    _description: "修改密码但取消操作"
+    _method: "change_password_and_verify"
+    old_password: "123456"
+    new_password: "newpassword"
+    confirm_password: "newpassword"
+    confirm: false
+    timeout: 5.0
+
+  # ========== 退出登录和切换用户测试数据 ==========
+  logout_scenario_1:
+    _description: "退出登录并确认操作"
+    _method: "handle_logout_prompt"
+    confirm_logout: true
+    timeout: 5.0
+
+  logout_scenario_2:
+    _description: "退出登录但取消操作"
+    _method: "handle_logout_prompt"
+    confirm_logout: false
+    timeout: 5.0
+
+  # ========== 切换用户测试数据 ==========
+  switch_user_scenario_1:
+    _description: "切换用户并确认操作"
+    _method: "handle_switch_user_prompt"
+    confirm_switch: true
+    timeout: 5.0
+
+  switch_user_scenario_2:
+    _description: "切换用户但取消操作"
+    _method: "handle_switch_user_prompt"
+    confirm_switch: false
+    timeout: 5.0
+
+  # ========== 退出登录后重新登录测试数据 ==========
+  logout_and_relogin_scenario_1:
+    _description: "退出登录后重新登录（成功）"
+    _method: "navigate_to_user_login_page"
+    username: "admin1"
+    password: "123456"
+    expected_result: "登录成功"
+    timeout: 5.0
+
+  logout_and_relogin_scenario_2:
+    _description: "退出登录后重新登录（失败）"
+    _method: "navigate_to_user_login_page"
+    username: "wrong_user"
+    password: "wrong_password"
+    expected_result: "登录失败"
+    timeout: 5.0
+
+  logout_and_relogin_scenario_3:
+    _description: "退出登录后只导航不登录"
+    _method: "navigate_to_user_login_page"
+    timeout: 5.0
+
+  # ========== 修改密码测试数据 ==========
+  change_password_and_verify_scenario_3:
+    _description: "修改密码时两次输入不一致（验证失败场景）"
+    _method: "change_password_and_verify"
+    old_password: "123456"
+    new_password: "newpassword"
+    confirm_password: "differentpassword"  # 与新密码不一致
+    confirm: true
+    timeout: 5.0

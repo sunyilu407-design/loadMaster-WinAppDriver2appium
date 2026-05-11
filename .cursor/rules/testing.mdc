@@ -1,0 +1,1692 @@
+---
+alwaysApply: true
+---
+# ========================================
+# LoadMaster Appium Automation Framework
+# Cursor AI Development Rules
+# ========================================
+
+## Project Overview
+
+This is a Windows desktop application automation testing framework based on **Appium 2.x** + **appium-windows-driver**, using Page Object Model design pattern and YAML configuration-driven approach.
+
+**Core Tech Stack**:
+- Automation Framework: Appium 2.x + appium-windows-driver + Selenium
+- Testing Framework: Pytest + Allure
+- Language: Python 3.8+
+- Configuration: YAML
+
+**Architecture Layers**:
+1. **data/pages/*.yaml** - Page element locators and test data configuration
+2. **pageObject/*.py** - Page Object classes (element operations, no business logic)
+3. **handlers/*.py** - Business logic handlers (combining page operations)
+4. **testCase/*.py** - Test cases (calling handlers to execute tests)
+5. **utils/** - Utility classes (config manager, logger, driver factory, etc.)
+
+---
+
+## 1. Naming Conventions
+
+### 1.1 File Naming
+
+```yaml
+Page YAML Config: {page_name}_page.yaml
+  Examples: login_page.yaml, user_management_page.yaml
+
+Page Object File: {page_name}_page.py
+  Examples: login_page.py, user_management_page.py
+
+Page Object Class: {PageName}Page (PascalCase)
+  Examples: LoginPage, UserManagementPage
+
+Handler File: {page_name}_handler.py
+  Examples: login_handler.py, user_management_handler.py
+
+Handler Class: {PageName}Handler (PascalCase)
+  Examples: LoginHandler, UserManagementHandler
+
+Test File: test_{page_name}_page.py
+  Examples: test_login_page.py, test_user_management_page.py
+
+Test Class: Test{PageName}Page
+  Examples: TestLoginPage, TestUserManagementPage
+
+### 1.3 SuperHandlerFactory Naming Conventions
+
+**IMPORTANT**: The SuperHandlerFactory uses intelligent naming inference. All files must follow these naming conventions for automatic discovery:
+
+#### Page Name to Handler Class Mapping
+```yaml
+Input Page Name: {module}_{submodule}_page
+  Examples:
+    - login_page → LoginHandler
+    - user_management_page → UserManagementHandler
+    - user_profile_page → UserProfileHandler
+
+Conversion Rule:
+  1. Remove '_page' suffix
+  2. Split by '_' → ['module', 'submodule']
+  3. Convert to PascalCase → 'ModuleSubmodule'
+  4. Add 'Handler' suffix → 'ModuleSubmoduleHandler'
+```
+
+#### Module Path Inference
+```yaml
+Single Module: login_page
+  → Module Path: handlers.login_handler
+  → File: handlers/login_handler.py
+
+Multi Module: user_management_page
+  → Base Name: user_management
+  → Split: ['user', 'management']
+  → Module Path: handlers.user.userManagement.user_management_handler
+  → File: handlers/user/userManagement/user_management_handler.py
+
+Multi Module: user_profile_page
+  → Base Name: user_profile
+  → Split: ['user', 'profile']
+  → Module Path: handlers.user.userProfile.user_profile_handler
+  → File: handlers/user/userProfile/user_profile_handler.py
+```
+
+#### Directory Structure Rules
+```yaml
+# For sub-modules (when page_name contains '_')
+handlers/{first_part}.{FirstPartTitle}{SecondPartTitle}/.../{base_name}_handler.py
+
+Examples:
+- user_management → handlers/user.userManagement/user_management_handler.py
+- system_config → handlers/system.systemConfig/system_config_handler.py
+- data_import → handlers/data.dataImport/data_import_handler.py
+
+# For root modules (single word)
+handlers/{module}_handler.py
+
+Examples:
+- login → handlers/login_handler.py
+- main → handlers/main_handler.py
+```
+
+#### Page Class Inference
+```yaml
+Page Name: {module}_{submodule}_page
+  → Page Class: {Module}{Submodule}Page
+  → Module Path: pageObject.{module}.{module}{Submodule}.{module}_{submodule}_page
+
+Examples:
+- user_management_page → UserManagementPage
+- login_page → LoginPage
+- main_page → MainPage
+```
+
+### 1.2 Method Naming
+
+```python
+# PageObject class method naming
+click_{element_name}_button()     # Click button
+set_{element_name}_input(text)     # Input text
+get_{element_name}_text()          # Get text
+switch_to_{window_name}_window()   # Switch window
+select_{element_name}_option()     # Select dropdown option
+get_{table_name}_table()           # Get table data
+
+# Handler class method naming
+{action}_and_verify()              # Execute action and verify
+handle_{dialog_name}_prompt()      # Handle dialog
+verify_{condition}_in_table()      # Verify table data
+navigate_to_{page_name}()          # Navigate to page (main_handler)
+```
+
+---
+
+## 2. YAML Configuration File Structure
+
+### 2.1 Standard Structure
+
+```yaml
+# app_config - Application configuration
+app_config:
+  main_window_name: "Window Title"        # Main window title (required)
+  head_keys: ["Column1", "Column2"]       # Table header keywords (required for table pages)
+
+# elements - Element locator configuration
+elements:
+  # Button element
+  button_name:
+    automation_id: "btnId"           # AutomationId (preferred, recommended)
+    name: "Button Text"              # Name property (alternative)
+    # type: "Button"                  # Optional, can be omitted
+  
+  # Input element
+  input_name:
+    automation_id: "txtInput"
+    # type: "Edit"                    # Optional
+  
+  # Window element (nested child elements)
+  dialog_window:
+    automation_id: "DialogId"
+    name: "Dialog Title"
+    type: "Window"
+    child_elements:                  # Child elements definition
+      confirm_button:
+        automation_id: "btnConfirm"
+      cancel_button:
+        automation_id: "btnCancel"
+  
+  # Table element
+  content_table:
+    name: "DataGridView"             # Tables usually use name locator
+    # automation_id: "dataGrid"      # Or use automation_id
+
+# test_data - Test data (AI auto-generated template)
+test_data:
+  # Test scenario name
+  scenario_name:
+    param1: "value1"
+    param2: "value2"
+```
+
+### 2.2 Common Dialogs Configuration
+
+**IMPORTANT**: Common dialogs are defined in `common_dialogs.yaml`, pages **DO NOT need to redefine them**.
+
+ConfigManager automatically loads and merges the following common dialogs:
+- `operation_window` - Operation prompt window (Yes/No/Exit buttons)
+- `prompt_window` - Message prompt window (Confirm button only)
+- `delete_confirm_window` - Delete confirmation window
+- `reset_password_window` - Reset password window
+- `error_message_window` - Error message window
+
+**Override Rule**: Pages can redefine same-named dialogs if special locators are needed.
+
+---
+
+## 3. PageObject Class Development Guidelines
+
+### 3.1 Class Structure Template
+
+```python
+from pageObject.base_page import BasePage
+
+class YourPage(BasePage):
+    """
+    Page description
+    Responsibility: Element locating and basic interactions only, no business logic
+    """
+    
+    def __init__(self, driver, config_manager):
+        super().__init__(driver, config_manager, "windows")
+        
+        # Load page config (auto-merges common dialogs)
+        self.config = self.config_manager.load_page_config('page_name')
+        
+        # Check config
+        if self.config is None:
+            self.log.error("Page config loading failed")
+            raise Exception("Page config loading failed")
+        
+        # Initialize config items
+        self.elements = self.config.get('elements', {})
+        self.test_data = self.config.get('test_data', {})
+        self.app_config = self.config.get('app_config', {})
+    
+    def _get_element_config(self, element_name):
+        """Get element config (supports nested child_elements)"""
+        def find_element(config, name):
+            if name in config:
+                return config[name]
+            for key, value in config.items():
+                if isinstance(value, dict):
+                    if key == 'child_elements' and name in value:
+                        return value[name]
+                    result = find_element(value, name)
+                    if result:
+                        return result
+            return None
+        
+        element_config = find_element(self.elements, element_name)
+        if element_config:
+            return element_config
+        self.log.error(f"Element config not found: {element_name}")
+        return None
+    
+    # ========== Window Switching Methods ==========
+    def switch_to_page_window(self):
+        """Switch to page main window"""
+        return self.switch_to_window(title=self.app_config['main_window_name'])
+    
+    # ========== Button Click Methods ==========
+    def click_example_button(self):
+        """Click example button"""
+        self.switch_to_page_window()  # Switch window first
+        element_config = self._get_element_config('example_button')
+        return self.click_element(**element_config)
+    
+    # ========== Input Methods ==========
+    def set_example_input(self, text):
+        """Input example text"""
+        element_config = self._get_element_config('example_input')
+        return self.send_keys_to_element(text, **element_config)
+    
+    # ========== Table Operation Methods ==========
+    def get_data_table(self):
+        """Get data table content"""
+        self.switch_to_page_window()
+        content_table = self._get_element_config('content_table')
+        head_keys = self.app_config.get('head_keys')
+        return self.get_table_data_as_json(content_table, head_keys)
+    
+    def click_table_one_row(self, search_criteria, match_mode='exact'):
+        """Click specified table row"""
+        self.switch_to_page_window()
+        content_table = self._get_element_config('content_table')
+        header_keywords = self.app_config.get('head_keys')
+        return self.click_table_row(content_table, search_criteria, header_keywords, match_mode)
+```
+
+### 3.2 Core Principles (MUST Follow)
+
+1. **Separation of Concerns**: PageObject only handles element operations, no business logic or assertions
+2. **Window Switching**: MUST switch to correct window before each operation (`switch_to_xxx_window()`)
+3. **Exception Handling**: All methods return boolean or data, do NOT throw exceptions
+4. **Logging**: Use `self.log.info/warning/error` to log key steps
+
+---
+
+## 4. Handler Class Development Guidelines
+
+### 4.0 SuperHandlerFactory Usage (RECOMMENDED)
+
+**IMPORTANT**: Always use SuperHandlerFactory for Handler creation. This provides automatic dependency management and navigation capabilities.
+
+#### Simple Usage
+```python
+from utils.super_handler_factory import create_handler
+
+# 1-line Handler creation (automatic dependency injection)
+handler = create_handler('your_page_name')
+
+# Use Handler with full navigation support
+result = handler.your_business_method()
+```
+
+#### Advanced Usage
+```python
+# With custom parameters
+handler = create_handler(
+    'your_page_name',
+    custom_driver=my_driver,
+    extra_params={'timeout': 30}
+)
+```
+
+#### Navigation Integration
+```python
+# Handlers automatically inherit NavigationMixin
+handler = create_handler('your_page_name')
+
+# Direct navigation to any page
+handler.navigate_to_user_management()
+handler.navigate_to_customer_management()
+handler.navigate_to_password_change()
+```
+
+### 4.1 Class Structure Template (SuperHandlerFactory Compatible)
+
+```python
+import logging
+from handlers.base_handler import BaseHandler
+from handlers.navigation_mixin import NavigationMixin
+
+class YourHandler(BaseHandler, NavigationMixin):
+    """
+    Page Handler - Business Logic Processing Class
+    Responsibility: Combine PageObject methods to implement complex business flows
+
+    Auto-created by SuperHandlerFactory - DO NOT manually instantiate
+    """
+
+    def __init__(self, page_instance=None, config_manager=None):
+        """
+        Initialize Handler
+
+        Args:
+            page_instance: Page object instance (auto-provided by SuperHandlerFactory)
+            config_manager: Configuration manager instance (auto-provided by SuperHandlerFactory)
+        """
+        # BaseHandler initialization (automatic dependency management)
+        super().__init__(page_instance, config_manager)
+
+        # NavigationMixin initialization (automatic navigation support)
+        NavigationMixin.__init__(self)
+
+        # Page object assignment (automatically created)
+        self.your_page = self.page_instance
+
+        logging.info("YourHandler initialized with SuperHandlerFactory")
+    
+    # ========== Business Flow Methods ==========
+    def action_and_verify(self, param1, param2, confirm=True, timeout=5.0):
+        """
+        Execute action and verify result
+        
+        Args:
+            param1: Parameter 1 description
+            param2: Parameter 2 description
+            confirm: Whether to confirm operation
+            timeout: Timeout duration
+        
+        Returns:
+            dict: {'success': bool, 'error': str, ...}
+        """
+        # 1. Navigate to page
+        if not self.main_handler.navigate_to_xxx():
+            return {'success': False, 'error': 'Navigation failed'}
+        
+        # 2. Execute page operations
+        self.page.click_xxx_button()
+        self.page.set_xxx_input(param1)
+        
+        # 3. Handle dialog
+        action = 'confirm' if confirm else 'cancel'
+        if not self.handle_operation_prompt(action=action, timeout=timeout):
+            return {'success': False, 'error': 'Dialog handling failed'}
+        
+        # 4. Verify result
+        return self.verify_xxx_in_table({'condition': param1}, expected_presence='present')
+    
+    # ========== Dialog Handling Methods (Standard Pattern) ==========
+    def wait_for_operation_window(self, timeout=5.0, poll_interval=0.5):
+        """Poll and wait for operation window to appear"""
+        import time
+        end_time = time.time() + timeout
+        while time.time() < end_time:
+            if self.page.switch_to_operation_window():
+                return True
+            time.sleep(poll_interval)
+        self.log.error("Wait for operation window timeout")
+        return False
+    
+    def handle_operation_prompt(self, action='confirm', timeout=5.0):
+        """
+        Generic dialog handling method
+        
+        Args:
+            action: 'confirm' / 'cancel' / 'quit'
+            timeout: Timeout duration
+        """
+        if not self.wait_for_operation_window(timeout):
+            return False
+        
+        if action == 'confirm':
+            return self.page.click_operation_window_confirm_button()
+        elif action == 'cancel':
+            return self.page.click_operation_window_cancel_button()
+        elif action == 'quit':
+            return self.page.click_operation_window_quit_button()
+        
+        self.log.error(f"Unknown action: {action}")
+        return False
+    
+    # ========== Table Verification Methods ==========
+    def verify_xxx_in_table(self, search_criteria, expected_presence='present', 
+                           match_mode='exact', timeout=5.0):
+        """
+        Verify if data exists in table
+        
+        Args:
+            search_criteria: Search criteria, e.g., {"用户姓名": "张三"}
+            expected_presence: 'present' (should exist) or 'absent' (should not exist)
+            match_mode: 'exact' (exact match) or 'partial' (contains match)
+            timeout: Timeout duration
+        
+        Returns:
+            dict: {
+                'success': bool,
+                'matched_rows': list,
+                'total_rows': int,
+                'count': int
+            }
+        """
+        self.page.switch_to_page_window()
+        
+        content_table = self.page._get_element_config('content_table')
+        header_keywords = self.page.app_config.get('head_keys')
+        
+        return self.page.query_table_after_operation(
+            content_table=content_table,
+            search_criteria=search_criteria,
+            header_keywords=header_keywords,
+            match_mode=match_mode,
+            expected_presence=expected_presence,
+            timeout=timeout
+        )
+```
+
+### 4.2 Core Principles (MUST Follow)
+
+1. **Navigation Dependency**: Navigate to target page via `main_handler.navigate_to_xxx()` before operations
+2. **Dialog Handling**: Use unified `handle_operation_prompt()` to handle dialogs
+3. **Result Verification**: Use `query_table_after_operation()` to verify table data
+4. **Return Format**: Return dictionary format, including `success`, `error` fields
+
+---
+
+## 5. BasePage Core Methods Reference
+
+### 5.1 Element Locating
+
+```python
+# Locate single element (Appium enhanced with caching)
+element = self.locate_element(automation_id="btnLogin")
+element = self.locate_element(automation_id="btnLogin", type="Button")
+element = self.locate_element(name="确认", control_type="Button")
+
+# Locate with timeout and cache control
+element = self.locate_element(timeout=10, use_cache=True, automation_id="btnLogin")
+
+# Locate multiple elements
+elements = self.locate_elements(xpath="//*[@Name='xxx']")
+```
+
+### 5.2 Element Interaction
+
+```python
+# Click
+self.click_element(automation_id="btnLogin")
+
+# Input
+self.send_keys_to_element("text content", automation_id="txtInput")
+
+# Get text
+text = self.get_element_text(automation_id="lblMessage")
+
+# Check if element exists
+exists = self.is_element_present(automation_id="btnLogin")
+
+# Clear input field
+self.clear_element(automation_id="txtInput")
+
+# Get element attribute
+attr = self.get_element_attribute(automation_id="btnLogin", attribute="Name")
+```
+
+### 5.3 Window Operations
+
+```python
+# Switch window
+self.switch_to_window(title="Window Title")
+
+# Wait for window to appear
+handle = self.wait_for_window(title="Window Title", timeout=30)
+
+# Get current window title
+title = self.driver.title
+
+# Close current window
+self.driver.close()
+```
+
+### 5.4 Table Operations (IMPORTANT)
+
+```python
+# Get table data
+table_data = self.get_table_data_as_json(
+    content_table={'name': 'DataGridView'},
+    header_keywords=['Column1', 'Column2', 'Column3']
+)
+# Returns: [{'Column1': 'value1', 'Column2': 'value2'}, ...]
+
+# Click table row
+success = self.click_table_row(
+    content_table={'name': 'DataGridView'},
+    search_criteria={'用户姓名': '张三'},
+    header_keywords=['用户姓名', '用户类型'],
+    match_mode='exact'  # or 'partial'
+)
+
+# Verify table data (query after operation)
+result = self.query_table_after_operation(
+    content_table={'name': 'DataGridView'},
+    search_criteria={'用户姓名': '张三'},
+    header_keywords=['用户姓名', '用户类型'],
+    expected_presence='present',  # or 'absent'
+    match_mode='exact',
+    timeout=5.0
+)
+# Returns: {'success': bool, 'matched_rows': list, 'total_rows': int, 'count': int}
+```
+
+### 5.5 Special Control Operations
+
+```python
+# ComboBox selection
+self.select_combobox_option("Option Text", automation_id="cboType")
+
+# Tree control checking
+self.check_tree_nodes_with_space_key(
+    tree_locator={'automation_id': 'tvwSystem'},
+    node_names=['Node1', 'Node2']
+)
+```
+
+---
+
+## 6. Element Locating Strategy Priority
+
+Based on the `_parse_locator_strategy` method in BasePage, the priority is:
+
+```python
+# Priority 1: AutomationId + ClassName combination
+element = self.locate_element(automation_id="btnLogin", type="Button")
+
+# Priority 2: AutomationId alone (recommended - most stable)
+element = self.locate_element(automation_id="txtUsername")
+
+# Priority 3: AutomationId shorthand (auto_id)
+element = self.locate_element(auto_id="btnLogin")
+
+# Priority 4: Name + ControlType combination (common for menu items)
+element = self.locate_element(name="用户管理", control_type="MenuItem")
+
+# Priority 5: Name alone
+element = self.locate_element(name="确认")
+
+# Priority 6: ClassName alone
+element = self.locate_element(class_name="Button")
+
+# Priority 7: ControlType alone
+element = self.locate_element(control_type="Button")
+
+# Priority 8: XPath (complex scenarios)
+element = self.locate_element(xpath="//*[@Name='xxx' and @ControlType='Button']")
+
+# Priority 9: TagName
+element = self.locate_element(tag_name="Button")
+```
+
+### Element Cache Feature (Appium Enhancement)
+
+The framework includes intelligent element caching:
+
+```python
+# Enable/disable cache globally
+BasePage.enable_cache(enabled=True, timeout=300)
+
+# Clear cache
+BasePage.clear_cache()
+
+# Locate with cache control
+element = self.locate_element(automation_id="btnLogin", use_cache=True, timeout=10)
+```
+
+---
+
+## 7. Development Workflow (SuperHandlerFactory Based)
+
+When user provides new page requirements, follow these steps:
+
+### Step 1: User Provides YAML Configuration
+
+User will provide YAML file with `app_config` and `elements`, for example:
+
+```yaml
+# File: data/pages/customer_management_page.yaml
+app_config:
+  main_window_name: "客户管理"
+  head_keys: ["客户名称", "联系人", "电话"]
+
+elements:
+  add_button:
+    automation_id: "btnAdd"
+  customer_table:
+    name: "DataGridView"
+  # ... other elements
+```
+
+**IMPORTANT**: YAML file must follow naming convention: `{page_name}_page.yaml`
+
+### Step 2: AI Generates PageObject Class
+
+Auto-generate based on YAML config following naming conventions:
+
+```python
+# File: pageObject/customer_management_page.py
+class CustomerManagementPage(BasePage):
+    """Auto-generated PageObject class"""
+
+    # Auto-generated element methods
+    def click_add_button(self): ...
+    def get_customer_table(self): ...
+    def switch_to_customer_management_window(self): ...
+```
+
+### Step 3: AI Generates Handler Class
+
+Generate Handler class with SuperHandlerFactory compatibility:
+
+```python
+# File: handlers/customer_management_handler.py
+from handlers.base_handler import BaseHandler
+from handlers.navigation_mixin import NavigationMixin
+
+class CustomerManagementHandler(BaseHandler, NavigationMixin):
+    """Auto-generated Handler with navigation support"""
+
+    def __init__(self, page_instance=None, config_manager=None):
+        super().__init__(page_instance, config_manager)
+        NavigationMixin.__init__(self)
+        self.customer_management_page = self.page_instance
+
+    # Auto-generated business methods
+    def add_customer_and_verify(self, name, contact, phone, confirm=True):
+        # 1. Navigate to customer management page
+        if not self.navigate_to_customer_management():
+            return {'success': False, 'error': 'Navigation failed'}
+
+        # 2. Execute business logic
+        # ... implementation
+
+        # 3. Verify results
+        return self.verify_customer_in_table({'客户名称': name})
+```
+
+### Step 4: AI Generates Test Case
+
+Generate test case using SuperHandlerFactory:
+
+```python
+# File: testCase/test_customer_management_page.py
+from utils.super_handler_factory import create_handler
+
+class TestCustomerManagementPage:
+    @pytest.fixture(autouse=True)
+    def setup_test_resources(self, page_test_factory):
+        # SuperHandlerFactory automatically creates handler
+        self.customer_handler = create_handler('customer_management_page')
+        # ... other setup
+
+    def test_add_customer_success(self):
+        result = self.customer_handler.add_customer_and_verify(
+            "张三", "13800138000", "北京市"
+        )
+        assert result['success']
+```
+
+### Step 5: AI Generates test_data Template
+
+SuperHandlerFactory automatically handles test data loading:
+
+```yaml
+# Auto-appended to customer_management_page.yaml
+test_data:
+  add_customer_success:
+    name: "张三"
+    contact: "13800138000"
+    phone: "北京市"
+  # ... more test scenarios
+```
+
+### Step 6: User Testing and Feedback
+
+```bash
+# Run tests
+pytest testCase/test_customer_management_page.py -v
+
+# User provides feedback for adjustments
+```
+
+---
+
+## 8. Special Scenario Handling Patterns
+
+### 8.1 Multi-Window Management
+
+```python
+def click_button_in_dialog(self):
+    """Click button in dialog"""
+    # 1. Switch to dialog window
+    self.switch_to_dialog_window()
+    
+    # 2. Execute operation
+    element_config = self._get_element_config('button_in_dialog')
+    return self.click_element(**element_config)
+```
+
+### 8.2 Table Scrolling and Clicking
+
+```python
+# Auto-handles scrolling, just call directly
+self.click_table_row(
+    content_table={'name': 'DataGridView'},
+    search_criteria={'姓名': '张三'},
+    header_keywords=['姓名', '年龄']
+)
+```
+
+### 8.3 Menu Navigation (main_handler Pattern)
+
+```python
+# Define navigation method in main_handler
+def navigate_to_user_management(self):
+    """Navigate to user management page"""
+    if not self.main_page.is_main_page_present():
+        raise Exception("Not on main page")
+    
+    # Click parent menu
+    self.main_page.click_user_management_parent_menu()
+    time.sleep(0.5)  # Wait for submenu to expand
+    
+    # Click child menu
+    self.main_page.click_user_management_child_menu()
+    
+    self.log.info("Successfully navigated to user management page")
+    return True
+
+# Call from other handlers
+self.main_handler.navigate_to_user_management()
+```
+
+### 8.4 Dialog Confirm/Cancel Pattern
+
+```python
+def delete_user_and_verify(self, username, confirm=True):
+    """Delete user and verify"""
+    # Click delete button
+    self.page.click_delete_button()
+    
+    # Handle confirmation dialog
+    action = 'confirm' if confirm else 'cancel'
+    self.handle_operation_prompt(action=action)
+    
+    # Verify result
+    expected = 'absent' if confirm else 'present'
+    return self.verify_user_in_table({'姓名': username}, expected_presence=expected)
+```
+
+---
+
+## 9. Code Quality Requirements
+
+### 9.1 Logging Standards
+
+```python
+# Log key steps with info
+self.log.info(f"Starting XXX operation")
+self.log.info(f"Successfully XXX")
+
+# Warning messages
+self.log.warning(f"XXX not found, using default value")
+
+# Error messages (include detailed params)
+self.log.error(f"XXX failed: params={params}, error={e}")
+```
+
+### 9.2 Exception Handling
+
+```python
+try:
+    # Operation
+    result = self.page.click_button()
+    if not result:
+        return {'success': False, 'error': 'Click button failed'}
+    return {'success': True}
+except Exception as e:
+    self.log.error(f"Operation exception: {e}")
+    return {'success': False, 'error': str(e)}
+```
+
+### 9.3 Documentation Comments
+
+```python
+def method_name(self, param1, param2, confirm=True):
+    """
+    Method description (one sentence)
+    
+    Args:
+        param1: Parameter 1 description
+        param2: Parameter 2 description
+        confirm: Whether to confirm
+    
+    Returns:
+        dict: {'success': bool, 'error': str}
+    
+    Example:
+        result = handler.method_name('value1', 'value2', confirm=True)
+    """
+```
+
+---
+
+## 10. Handler Factory Usage (No Manual Mapping Required)
+
+```python
+from handlers.handler_factory import HandlerFactory
+
+# Auto-create Handler (auto-infers class name)
+handler = HandlerFactory.create_handler(
+    'user_management_page',  # Page name
+    page_instance=page,      # Page instance (optional)
+    config_manager=config    # Config manager
+)
+
+# Supports subdirectory structure (auto-discovery)
+# handlers/user_management_handler.py
+# handlers/userManagement/user_management_handler.py
+```
+
+---
+
+## 11. Important Notes and Best Practices
+
+### ⚠️ Critical Notes
+
+1. **Window Switching Required**: MUST switch to correct window before each element operation
+2. **Table Locating Risk**: In multi-window scenarios, easy to locate wrong window's table, MUST switch first
+3. **Common Dialog Reuse**: Do NOT redefine, ConfigManager auto-merges them
+4. **Wait Mechanism**: Menu expansion needs 0.5-1s wait, dialogs need polling wait
+5. **Element Locating Priority**: Prefer `automation_id` (most stable)
+
+### ✅ Best Practices
+
+1. **Separation of Concerns**: PageObject for elements, Handler for business, TestCase for assertions
+2. **Configuration-Driven**: All locators in YAML, no hardcoding
+3. **Unified Navigation**: All page jumps through `main_handler`
+4. **Unified Returns**: Handler methods return dict format with `success` field
+5. **Complete Logging**: Log key steps, parameters, and errors
+
+---
+
+## 12. test_data Auto-Generation Tool Usage
+
+```bash
+# Generate test_data template
+python utils/generate_test_data_template.py handlers.userManagement.user_management_handler UserManagementHandler
+
+# Generate and save to file
+python utils/generate_test_data_template.py handlers.login_handler LoginHandler data/pages/login_test_data.yaml
+```
+
+Generated template includes:
+- All public methods of Handler
+- Method parameters and inferred sample values
+- Parameter descriptions and type annotations
+
+---
+
+## 13. Quick Reference
+
+### Complete Flow for Creating New Page (CRUD Style)
+
+```markdown
+1. User Provides: {page_name}_page.yaml (with app_config and elements)
+   - Use naming convention: {page_name}_page.yaml
+   - Include page-specific elements only
+   - Common dialogs are auto-merged from common_dialogs.yaml
+
+2. AI Generates: pageObject/{page_name}_page.py
+   - __init__ method (load config)
+   - _get_element_config method (supports nested child_elements)
+   - switch_to_page_window method
+   - Element operation methods (click, set, get, clear)
+   - Table operation methods (if needed)
+   - Dialog window methods (use base_page public methods)
+
+3. AI Generates: handlers/{page_name}_handler.py
+   - __init__ method (initialize page and main_handler)
+   - CRUD business methods: add_xxx_and_verify, alter_xxx_and_verify, delete_xxx_and_verify, query_xxx_in_table
+   - Dialog handling methods (handle_operation_prompt)
+   - Table verification methods (verify_xxx_in_table)
+   - Navigation methods (via NavigationMixin)
+
+4. AI Generates: test_data template appended to YAML
+   - Append test_data section to {page_name}_page.yaml
+   - Include all test scenarios: add, alter, delete, query
+   - Each scenario includes _description, _method, and parameters
+
+5. AI Generates: testCase/test_{page_name}_page.py
+   - File location: testCase/{module}/{SubModule}/test_{page_name}_page.py
+   - Naming: Test{PageName}Page class
+   - Use page_test_factory fixture for resources
+   - Use create_handler() to get handler instance
+   - Write test methods: test_add_xxx_success, test_alter_xxx_success, test_delete_xxx_success, test_query_xxx
+   - Use @allure.epic, @allure.feature, @allure.story, @allure.title decorators
+   - Call handler methods and use pytest assertions
+```
+
+### CRUD Page Structure Template
+
+For typical CRUD (Create, read_file, Update, Delete) pages like user management:
+
+```yaml
+# {page_name}_page.yaml
+app_config:
+  main_window_name: "窗口标题"
+  head_keys: ["列名1", "列名2", "列名3"]
+
+elements:
+  # Operation buttons
+  add_button:
+    automation_id: "btnAdd"
+  alter_button:
+    automation_id: "btnUpdate"
+  delete_button:
+    automation_id: "btnDelete"
+  query_button:
+    automation_id: "btnQuery"
+  
+  # Content table
+  content_table:
+    name: "DataGridView"
+  
+  # Add/Edit dialog window
+  add_window:
+    automation_id: "frmAdd"
+    name: "添加"
+    child_elements:
+      input_field1:
+        automation_id: "txtField1"
+      save_button:
+        automation_id: "btnSave"
+      cancel_button:
+        automation_id: "btnCancel"
+  
+  # Edit dialog window (reuse structure)
+  alter_window:
+    automation_id: "frmUpdate"
+    name: "修改"
+    child_elements:
+      # similar structure to add_window
+  
+  # Delete confirmation window
+  delete_confirm_window:
+    # Uses common_dialogs.yaml - no need to define
+
+test_data:
+  add_scenario:
+    _description: "添加记录"
+    _method: "add_xxx_and_verify"
+    field1_value: "值1"
+    confirm: true
+    confirm_operation: true
+    timeout: 5.0
+  
+  alter_scenario:
+    _description: "修改记录"
+    _method: "alter_xxx_and_verify"
+    search_key: "原值"
+    new_field1_value: "新值"
+    confirm: true
+    confirm_prompt: true
+    timeout: 5.0
+  
+  delete_scenario:
+    _description: "删除记录"
+    _method: "delete_xxx_and_verify"
+    search_key: "要删除的值"
+    confirm: true
+    confirm_operation: true
+    confirm_prompt: true
+    timeout: 5.0
+```
+
+---
+
+## 14. AI Response Pattern
+
+When user provides requirements:
+
+1. **Confirm Requirements**: Understand user's YAML and business requirements
+2. **Generate PageObject**: Generate complete PageObject class based on YAML elements
+3. **Generate Handler**: Generate Handler class based on business requirements (including navigation, dialog handling, verification)
+4. **Generate test_data Template**: Append test_data section to YAML
+5. **Generate Test Script**: Create testCase/test_{page_name}_page.py with page_test_factory and create_handler patterns
+6. **Provide Usage Instructions**: Explain how to run tests and fill in test_data
+
+### AI Response Example
+
+```
+I have generated the complete {PageName} page code for you:
+
+1. ✅ PageObject Class: pageObject/{page_name}_page.py
+   - Contains XX button operation methods
+   - Contains table query and click methods
+   - Auto-inherits common dialog methods
+
+2. ✅ Handler Class: handlers/{page_name}_handler.py
+   - add_and_verify method: Add and verify
+   - delete_and_verify method: Delete and verify
+   - Integrated main_handler navigation
+   - Unified dialog handling and table verification
+
+3. ✅ test_data template appended to YAML:
+   - add_and_verify_scenario
+   - alter_and_verify_scenario
+   - delete_and_verify_scenario
+   - query_and_verify_scenario
+
+4. ✅ Test Script: testCase/{module}/{SubModule}/test_{page_name}_page.py
+   - Test class with page_test_factory and create_handler
+   - Test methods: test_add_xxx_success, test_alter_xxx_success, test_delete_xxx_success, test_query_xxx
+   
+Please fill in specific test values in test_data, then run:
+pytest testCase/test_{page_name}_page.py -v
+```
+
+---
+
+## 15. Modification Record Mechanism
+
+### 15.1 Version Control Requirements
+Every code modification must record the following information:
+
+#### Code Modification Records
+**Location**: Each module's `CLAUDE.md` file
+**Format**:
+```markdown
+### YYYY-MM-DD HH:mm:ss (Modification Type Update)
+- ✅ New Feature: Feature description
+- ✅ Modify Feature: Modification content explanation
+- ✅ Fix Issue: Problem description and solution
+- ✅ Optimize Improvement: Optimization content explanation
+- ✅ Refactor Code: Refactoring content and reason
+```
+
+#### Project Overall Update Records
+**Location**: Root directory `CLAUDE.md` file
+**Format**: Add new entries in the "Change Log" section
+
+#### Development Specification Updates
+**Location**: Relevant development guide documents
+**Record Content**:
+- Newly added development specifications
+- Modified development processes
+- New best practices
+- Updated coding standards
+
+### 15.2 Modification Record Examples
+
+#### Code Modification Record Example
+```
+### 2025-12-30 14:30:00 (Function Extension Update)
+- ✅ Create PROJECT_STATUS_SUMMARY.md project status summary document
+- ✅ Add modification record mechanism in development rules
+- ✅ Perfect project architecture and function module status description
+- ✅ Add quick start guide and development workflow
+```
+
+#### Project Overall Update Record Example
+```
+### 2025-12-30 10:00:00 (Documentation Update)
+- ✅ Create comprehensive project status summary document
+- ✅ Update development rules to include modification tracking
+- ✅ Add complete project architecture and module status
+- ✅ Establish standardized modification record mechanism
+```
+
+### 15.3 Modification Categories
+
+#### ✅ Feature Addition
+- New page development
+- New function implementation
+- New test case addition
+- New tool development
+
+#### 🔧 Function Modification
+- Existing function enhancement
+- Logic optimization
+- Performance improvement
+- User experience optimization
+
+#### 🐛 Problem Fix
+- Bug fix
+- Error handling improvement
+- Compatibility fix
+- Stability enhancement
+
+#### 📈 Optimization Improvement
+- Code structure optimization
+- Algorithm improvement
+- Resource usage optimization
+- Development efficiency improvement
+
+#### 🔄 Code Refactoring
+- Architecture refactoring
+- Code structure adjustment
+- Naming convention unification
+- Duplicate code elimination
+
+### 15.4 Record Maintenance Guidelines
+
+#### Immediate Recording Principle
+- Record immediately after code modification
+- Record before submitting code changes
+- Ensure record completeness and accuracy
+
+#### Classification Recording Principle
+- Choose appropriate modification category
+- Clearly describe modification content
+- Explain modification reason when necessary
+
+#### Traceability Principle
+- Include modification date and time
+- Record modifier information
+- Maintain modification history continuity
+
+### 15.5 Quality Assurance
+
+#### Record Quality Standards
+- [ ] Description clear and concise
+- [ ] Category selection appropriate
+- [ ] Impact scope clear
+- [ ] Related documents updated synchronously
+
+#### Review Mechanism
+- [ ] Code review includes record review
+- [ ] Regular record quality inspection
+- [ ] Record completeness verification
+
+---
+
+## 16. SuperHandlerFactory Technical Specification
+
+### 16.1 Architecture Overview
+
+SuperHandlerFactory is the core component that enables **1-line Handler creation** with automatic dependency management.
+
+#### Key Components
+- **SuperHandlerFactory**: Main factory class for Handler creation
+- **create_handler()**: Convenience function for simple usage
+- **BaseHandler**: Provides common Handler functionality
+- **NavigationMixin**: Provides navigation capabilities
+- **GlobalManager**: Manages global resources (config, driver)
+
+### 16.2 Naming Convention Dependencies
+
+The factory relies on strict naming conventions for automatic discovery:
+
+#### Input → Output Mapping
+```python
+# Page Name Input
+"customer_management_page"
+
+# Processing Steps
+1. Remove suffix: "customer_management"
+2. Split by '_': ['customer', 'management']
+3. PascalCase: 'CustomerManagement'
+4. Add Handler: 'CustomerManagementHandler'
+
+# Final Outputs
+- Class Name: CustomerManagementHandler
+- Module Path: handlers.customer.customerManagement.customer_management_handler
+- Page Class: CustomerManagementPage
+- Page Module: pageObject.customer.customerManagement.customer_management_page
+```
+
+#### Directory Structure Requirements
+```
+handlers/
+├── login_handler.py                           # Root level
+├── main_handler.py                           # Root level
+└── customer/                                 # Sub-module
+    └── customerManagement/
+        └── customer_management_handler.py    # Nested structure
+
+pageObject/
+├── login_page.py
+├── main_page.py
+└── customer/
+    └── customerManagement/
+        └── customer_management_page.py
+```
+
+### 16.3 Intelligent Inference Algorithm
+
+#### Handler Class Inference
+```python
+def _infer_handler_info(self, page_name: str) -> Dict[str, str]:
+    # Input: "customer_management_page"
+    base_name = page_name.replace('_page', '')          # "customer_management"
+    parts = base_name.split('_')                         # ['customer', 'management']
+
+    # Build class name
+    class_prefix = ''.join(word.title() for word in parts)  # 'CustomerManagement'
+    class_name = f"{class_prefix}Handler"                   # 'CustomerManagementHandler'
+
+    # Build module path
+    if len(parts) >= 2:
+        # Sub-directory structure
+        sub_dir = f"{parts[0]}.{parts[0].title()}{''.join(word.title() for word in parts[1:])}"
+        module_path = f"handlers.{sub_dir}.{base_name}_handler"
+    else:
+        # Root structure
+        module_path = f"handlers.{base_name}_handler"
+
+    return {
+        'class_name': class_name,
+        'module_path': module_path,
+        'base_name': base_name
+    }
+```
+
+#### Module Path Patterns
+```python
+# Single module
+"login_page" → "handlers.login_handler"
+
+# Two modules
+"user_profile_page" → "handlers.user.userProfile.user_profile_handler"
+
+# Three modules (if needed)
+"system_config_page" → "handlers.system.systemConfig.system_config_handler"
+```
+
+### 16.4 Dynamic Loading Mechanism
+
+#### Runtime Module Import
+```python
+def _import_handler_module(self, module_path: str):
+    """Dynamic module loading with fallback"""
+    try:
+        return importlib.import_module(module_path)
+    except ImportError:
+        # Try alternative paths
+        alternatives = self._generate_alternative_paths(module_path)
+        for alt_path in alternatives:
+            try:
+                return importlib.import_module(alt_path)
+            except ImportError:
+                continue
+        raise ImportError(f"Cannot import: {module_path}")
+```
+
+#### Alternative Path Generation
+```python
+def _generate_alternative_paths(self, original_path: str) -> list:
+    """Generate fallback import paths"""
+    alternatives = []
+
+    # For sub-directory structures, try root level
+    if '.handler' in original_path:
+        parts = original_path.split('.')
+        if len(parts) >= 3:
+            # handlers.user.userProfile.user_profile_handler
+            # → handlers.user_profile_handler
+            alt_path = f"{parts[0]}.{parts[-1]}"
+            alternatives.append(alt_path)
+
+    return alternatives
+```
+
+### 16.5 Dependency Injection
+
+#### Automatic Dependency Creation
+```python
+def _create_dependencies(self, page_name: str, config_manager, kwargs: Dict):
+    """Create all required dependencies automatically"""
+    dependencies = {'config_manager': config_manager}
+
+    # Create driver (with custom override support)
+    custom_driver = kwargs.get('custom_driver')
+    dependencies['driver'] = custom_driver or DriverFactory.get_windows_driver()
+
+    # Create page instance
+    page_class = self._get_page_class(page_name)
+    dependencies['page_instance'] = page_class(
+        dependencies['driver'],
+        config_manager
+    )
+
+    return dependencies
+```
+
+#### Constructor Parameter Matching
+```python
+def _create_handler_instance(self, handler_class, dependencies: Dict, kwargs: Dict):
+    """Smart parameter injection based on constructor signature"""
+    # Inspect constructor parameters
+    sig = inspect.signature(handler_class.__init__)
+    params = list(sig.parameters.keys())[1:]  # Skip 'self'
+
+    # Build initialization arguments
+    init_kwargs = {}
+    for param_name, dep_obj in dependencies.items():
+        if param_name in params:  # Only inject if parameter exists
+            init_kwargs[param_name] = dep_obj
+
+    # Add extra parameters
+    for key, value in kwargs.items():
+        if key in params and key not in init_kwargs:
+            init_kwargs[key] = value
+
+    # Create instance
+    return handler_class(**init_kwargs)
+```
+
+### 16.6 Integration Points
+
+#### BaseHandler Integration
+```python
+class BaseHandler:
+    def __init__(self, page_instance=None, config_manager=None):
+        # Global resource management
+        global_manager = GlobalManager()
+        self.config_manager = config_manager or global_manager.get_config_manager()
+
+        # Page object management
+        self.page_instance = self._initialize_page(page_instance, config_manager)
+```
+
+#### NavigationMixin Integration
+```python
+class NavigationMixin:
+    def __init__(self):
+        # Lazy initialization of navigation resources
+        self._main_handler = None
+
+    def _get_main_handler(self):
+        """Lazy loading of MainHandler for navigation"""
+        if self._main_handler is None:
+            self._main_handler = create_handler('main_page')
+        return self._main_handler
+```
+
+### 16.7 Error Handling and Resilience
+
+#### Comprehensive Error Handling
+- **Module Import Failures**: Automatic fallback to alternative paths
+- **Class Loading Errors**: Clear error messages with path information
+- **Constructor Mismatches**: Parameter validation and intelligent injection
+- **Dependency Creation**: Isolated error handling for each component
+
+#### Logging Integration
+```python
+logger.info(f"✅ 超级Handler工厂成功创建: {handler_info['class_name']}")
+logger.error(f"❌ 超级Handler工厂创建失败: {e}")
+```
+
+### 16.8 Usage Patterns
+
+#### Basic Usage
+```python
+from utils.super_handler_factory import create_handler
+
+# Simple creation
+handler = create_handler('customer_management_page')
+
+# With custom parameters
+handler = create_handler(
+    'customer_management_page',
+    custom_driver=my_driver,
+    extra_params={'timeout': 30}
+)
+```
+
+#### Advanced Integration
+```python
+# In test cases
+@pytest.fixture
+def customer_handler():
+    return create_handler('customer_management_page')
+
+# In business logic
+def process_customer_data(customer_handler):
+    # Handler already has navigation capabilities
+    customer_handler.navigate_to_customer_management()
+    return customer_handler.add_customer_and_verify(customer_data)
+```
+
+### 16.9 Benefits and Advantages
+
+#### Developer Experience
+- **Zero Boilerplate**: 1-line Handler creation
+- **Automatic Dependencies**: No manual resource management
+- **Type Safety**: Parameter validation and injection
+- **Error Resilience**: Comprehensive error handling
+
+#### Maintainability
+- **Centralized Logic**: All creation logic in one place
+- **Consistent Patterns**: Uniform Handler creation across project
+- **Easy Extension**: Simple to add new Handler types
+- **Naming Convention Based**: Automatic discovery reduces manual configuration
+
+#### Performance
+- **Lazy Loading**: Resources created only when needed
+- **Caching**: Global resources shared across instances
+- **Efficient Imports**: Dynamic loading with fallbacks
+
+### 16.10 Best Practices
+
+#### For AI Code Generation
+1. **Strict Naming**: Always follow the naming conventions
+2. **YAML First**: Start with properly named YAML configuration
+3. **Handler Template**: Use the standard Handler template with NavigationMixin
+4. **Test Integration**: Use create_handler in test fixtures
+
+#### For Manual Development
+1. **Factory First**: Always use SuperHandlerFactory instead of manual instantiation
+2. **Navigation Aware**: Remember Handlers automatically have navigation capabilities
+3. **Parameter Validation**: Let the factory handle parameter injection
+4. **Error Handling**: Rely on factory's comprehensive error reporting
+
+---
+
+## 17. Public Dialog Configuration Rules (IMPORTANT)
+
+### 17.1 Overview
+
+The project uses a centralized **public dialog configuration** defined in `common_dialogs.yaml`. This ensures consistent dialog handling across all pages and eliminates duplicate configurations.
+
+### 17.2 Public Dialog Configurations
+
+The following dialog configurations are defined in `data/pages/common_dialogs.yaml`:
+
+| Dialog Name | Window Title | Buttons | Usage |
+|-------------|--------------|---------|-------|
+| `operation_window` | 操作提示 | 是(Y) / 否(N) / 退出 | Operation confirmations (add, modify, delete) |
+| `prompt_window` | 操作提示 | 确定 | Operation result prompts |
+
+### 17.3 YAML Configuration Rules
+
+#### 17.3.1 DO NOT Define These in Page YAML
+
+When user provides a YAML file, **DO NOT generate custom configurations** for:
+
+```yaml
+# ❌ WRONG - Do NOT include these in page YAML files
+elements:
+  operation_window:           # Will be loaded from common_dialogs.yaml
+    ...
+  prompt_window:              # Will be loaded from common_dialogs.yaml
+    ...
+  delete_confirm_window:      # Will be loaded from common_dialogs.yaml
+    ...
+  reset_password_window:      # Will be loaded from common_dialogs.yaml
+    ...
+```
+
+#### 17.3.2 What SHOULD Be Included
+
+Only include page-specific elements:
+
+```yaml
+# ✅ CORRECT - Only page-specific elements
+elements:
+  # Page-specific buttons
+  add_button:
+    automation_id: "btnAdd"
+  delete_button:
+    automation_id: "btnDelete"
+
+  # Page-specific windows
+  add_user_window:
+    automation_id: "frmUserAdd"
+    name: "添加用户"
+    child_elements:
+      username_input:
+        automation_id: "txtUserName"
+      save_button:
+        automation_id: "btnSave"
+
+  # Page-specific table
+  content_table:
+    name: "DataGridView"
+```
+
+### 17.4 PageObject Generation Rules
+
+#### 17.4.1 Dialog Methods - Use Public Methods from BasePage
+
+When generating PageObject methods for dialog operations, **always use the public methods from base_page.py**:
+
+```python
+# ✅ CORRECT - Delegate to base_page.py public methods
+class UserManagementPage(BasePage):
+
+    # Reset password window methods → delegate to operation_window
+    def switch_to_reset_password_window(self):
+        """Switch to reset password window (same as operation_window)"""
+        return self.switch_to_operation_window()
+
+    def click_reset_password_confirm_button(self):
+        """Click confirm button in reset password window"""
+        return self.click_operation_window_confirm_button()
+
+    def click_reset_password_cancel_button(self):
+        """Click cancel button in reset password window"""
+        return self.click_operation_window_cancel_button()
+
+    # Prompt window methods → directly inherit from base_page.py
+    # DO NOT override these methods:
+    # - switch_to_prompt_window()
+    # - get_prompt_window_text()
+    # - click_prompt_window_confirm_button()
+```
+
+#### 17.4.2 DO NOT Generate Custom Dialog Methods
+
+```python
+# ❌ WRONG - Do NOT generate these
+class UserManagementPage(BasePage):
+
+    def switch_to_operation_window(self):
+        """Switch to operation window"""
+        window_config = self._get_element_config('operation_window')  # Wrong!
+        ...
+
+    def click_operation_confirm_button(self):
+        """Click confirm button"""
+        element_config = self._get_element_config('confirm_button')  # Wrong!
+        ...
+
+# ✅ CORRECT - Just inherit from base_page.py
+# The methods are already implemented in base_page.py:
+# - switch_to_operation_window()
+# - click_operation_window_confirm_button()
+# - click_operation_window_cancel_button()
+# - click_operation_window_quit_button()
+# - get_operation_window_prompt_text()
+# - switch_to_prompt_window()
+# - click_prompt_window_confirm_button()
+```
+
+### 17.5 Handler Usage Pattern
+
+When Handler needs to handle dialogs, use the public methods:
+
+```python
+class UserManagementHandler(BaseHandler, NavigationMixin):
+
+    def delete_user_and_verify(self, username, confirm=True):
+        """Delete user and verify result"""
+
+        # 1. Click delete button
+        if not self.page.click_delete_user_button():
+            return {'success': False, 'error': 'Click delete button failed'}
+
+        # 2. Handle operation prompt (uses public method)
+        if not self.handle_operation_prompt(action='confirm' if confirm else 'cancel'):
+            return {'success': False, 'error': 'Handle dialog failed'}
+
+        # 3. Verify result (uses public method)
+        return self.verify_user_in_table(
+            {'用户姓名': username},
+            expected_presence='absent' if confirm else 'present'
+        )
+
+    def handle_operation_prompt(self, action='confirm', timeout=5.0):
+        """
+        Generic dialog handling method
+
+        Args:
+            action: 'confirm' / 'cancel' / 'quit'
+            timeout: Timeout duration
+
+        Returns:
+            bool: Whether successfully handled
+        """
+        if not self.page.switch_to_operation_window():
+            return False
+
+        if action == 'confirm':
+            return self.page.click_operation_window_confirm_button()
+        elif action == 'cancel':
+            return self.page.click_operation_window_cancel_button()
+        elif action == 'quit':
+            return self.page.click_operation_window_quit_button()
+
+        return False
+```
+
+### 17.6 Configuration Loading Mechanism
+
+The `ConfigManager` automatically loads and merges public dialogs:
+
+```python
+# In config_manager.py
+def load_page_config(self, page_name):
+    # 1. Load page-specific config from {page_name}_page.yaml
+    page_config = load_from_file(...)
+
+    # 2. Load common dialogs from common_dialogs.yaml
+    common_dialogs = load_common_dialogs()
+
+    # 3. Merge: page config takes precedence if same key exists
+    # But for dialogs, we should use common_dialogs.yaml
+    merged_config = merge_configs(page_config, common_dialogs)
+
+    return merged_config
+```
+
+### 17.7 AI Generation Prompt Template
+
+When user provides YAML with dialog configurations, respond with:
+
+```
+I notice your YAML includes dialog configurations (operation_window, prompt_window).
+These dialogs are already defined in the public configuration (common_dialogs.yaml)
+with the correct window titles and button locators.
+
+I will:
+1. Generate PageObject with page-specific elements only
+2. Use public methods from base_page.py for dialog operations
+3. NOT generate custom dialog handling methods
+
+This ensures consistent dialog handling across all pages.
+```
+
+### 17.8 Summary
+
+| Item | Rule |
+|------|------|
+| YAML | Do NOT include `operation_window`, `prompt_window`, etc. |
+| PageObject | Delegate to `base_page.py` public methods |
+| Handler | Use `page.switch_to_operation_window()`, `click_operation_window_confirm_button()`, etc. |
+| Source of Truth | `data/pages/common_dialogs.yaml` |
+
+---
+
+**Version**: v3.0 (Appium 2.x)
+**Last Updated**: March 2026
+**Modification Record Added**: 2026-03-10
+**Change Log**: Migrated from WinAppDriver to Appium 2.x framework

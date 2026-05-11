@@ -1,0 +1,181 @@
+# 客户信息管理配置文件
+# 客户信息管理窗口配置
+app_config:
+  #不同页面的main_window_name都是对应页面的窗体name
+  main_window_name: "客户信息管理"
+  head_keys : ["客户简称","客户全称","客户编码","联系人","联系电话","联系人","短信息号码","短信息备用号码","是否优先","备注"]
+
+
+# 客户信息管理页面元素定位
+elements:
+  # 客户信息管理页面特征元素 - 可以根据实际应用情况添加具体元素
+  add_customer_button: #添加客户按钮
+    automation_id: "btnAddBuyer"
+    name: "添加客户"
+  alter_customer_button: #修改客户按钮
+    automation_id: "btnUpdateBuyer"
+  delete_customer_button: #删除客户按钮
+    automation_id: "btnDeleteBuyer"
+  content_table:  # 客户信息管理页面内容表格
+    automation_id: "dataGridView"
+    name: "DataGridView"
+    type: "Table"
+  customer_name_search:
+    automation_id: "txtBuyerName"
+  add_customer_window:
+    #添加客户信息窗口
+    automation_id: "frmBuyerAddOrUpdate"
+    name: "添加客户信息"
+    type: "Window"
+    child_elements:
+      customer_short_name_edit:
+        automation_id: "txtBuyerShortName"
+      customer_name_edit:
+        automation_id: "txtBuyerName"
+      customer_code_edit:
+        automation_id: "textBuyerCode"
+      customer_link_man_edit:
+        automation_id: "txtLinkman"
+      customer_link_phone_edit:
+        automation_id: "txtLinkPhone"
+      customer_message_phone_edit:
+        automation_id: "txtMsgPhone"
+      customer_spare_message_phone_edit:
+        automation_id: "txtMsgPhone2"
+      is_priority_combo:
+        automation_id: "cboIsPriority"
+      customer_remark_edit:
+        automation_id: "txtRemark"
+      add_button:
+        automation_id: "btnAddBuyer"
+      cancel_button:
+        automation_id: "btnCancel"
+      quit_button:
+        automation_id: "button1"
+  alter_customer_window:
+    #修改客户信息窗口
+    automation_id: "frmBuyerAddOrUpdate"
+    name: "修改客户信息"
+    type: "Window"
+    child_elements:
+      customer_short_name_edit:
+        automation_id: "txtBuyerShortName"
+      customer_name_edit:
+        automation_id: "txtBuyerName"
+      customer_code_edit:
+        automation_id: "textBuyerCode"
+      customer_link_man_edit:
+        automation_id: "txtLinkman"
+      customer_link_phone_edit:
+        automation_id: "txtLinkPhone"
+      customer_message_phone_edit:
+        automation_id: "txtMsgPhone"
+      customer_spare_message_phone_edit:
+        automation_id: "txtMsgPhone2"
+      is_priority_combo:
+        automation_id: "cboIsPriority"
+      customer_remark_edit:
+        automation_id: "txtRemark"
+      add_button:
+        automation_id: "btnAddBuyer"
+      cancel_button:
+        automation_id: "btnCancel"
+      quit_button:
+        automation_id: "button1"
+  delete_customer_window:
+    automation_id: "CustomMessageCheckBox"
+    name: "  操作提示"
+    type: "Window"
+    child_elements:
+      yes_button:
+        automation_id: "btnMsg1"
+        type: "Button"
+      no_button:
+        automation_id: "btnMsg2"
+        type: "Button"
+      quit_button:
+        automation_id: "msgBtn"
+        type: "Button"
+      prompt_text:
+        automation_id: "msgLabel2"
+        type: "Text"
+      confirm_button:
+          automation_id: "btnMsg"
+          type: "Button"
+
+  
+# 客户信息管理页面数据驱动测试数据
+test_data:
+  # 添加客户成功场景
+  add_customer_success:
+    _description: "添加客户成功"
+    _method: "add_customer_and_verify"
+    short_name: "原始客户简称"
+    full_name: "原始客户名称"
+    code: "YS001"
+    link_man: "原始联系人"
+    link_phone: "17629873132"
+    msg_phone: "17629873132"
+    msg_phone2: "17629873132"
+    is_priority: "是"
+    remark: "原始测试备注"
+    confirm: true
+    timeout: 10.0
+
+  # 添加客户取消场景
+  add_customer_cancel:
+    _description: "添加客户取消"
+    _method: "add_customer_and_verify"
+    short_name: "测试客户B"
+    full_name: "测试客户有限公司B"
+    code: "KH002"
+    link_man: "李四"
+    link_phone: "13800138001"
+    confirm: false
+    timeout: 10.0
+
+  # 修改客户成功场景
+  alter_customer_success:
+    _description: "修改客户成功"
+    _method: "alter_customer_and_verify"
+    search_key: "原始客户"
+    new_short_name: "修改后客户简称"
+    new_full_name: "修改后客户名称"
+    new_link_man: "赵六"
+    new_link_phone: "17629873133"
+    new_is_priority: "否"
+    new_remark: "备注已修改"
+    confirm: true
+    timeout: 10.0
+
+  # 修改客户取消场景
+  alter_customer_cancel:
+    _description: "修改客户取消"
+    _method: "alter_customer_and_verify"
+    search_key: "原始客户"
+    new_short_name: "不应存在的客户"
+    confirm: false
+    timeout: 10.0
+
+  # 删除客户成功场景
+  delete_customer_success:
+    _description: "删除客户成功"
+    _method: "delete_customer_and_verify"
+    search_key: "原始客户"
+    confirm: true
+    timeout: 10.0
+
+  # 删除客户取消场景
+  delete_customer_cancel:
+    _description: "删除客户取消"
+    _method: "delete_customer_and_verify"
+    search_key: "取消删除客户"
+    confirm: false
+    timeout: 10.0
+
+  # 查询客户场景
+  query_customer:
+    _description: "查询客户"
+    _method: "query_customer"
+    search_key: "原始客户"
+    timeout: 10.0

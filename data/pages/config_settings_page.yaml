@@ -1,0 +1,553 @@
+# 配置设定管理配置文件
+# 配置设定窗口配置
+app_config:
+  # 不同页面的main_window_name都是对应页面的窗体name
+  main_window_name: "配置设定"
+  head_keys: ["货位号", "货位名称", "油品名称", "计重密度", "组分计密", "乙醇计密", "组分标密", "乙醇标密", "乙醇比例", "密度是否下发", "组分油品", "乙醇品名", "组分罐", "乙醇罐", "是否调和", "发油方式规则", "组分流量计类型", "乙醇流量计类型", "组分密度下发时间", "乙醇密度下发时间", "业务系统审核时间", "下载时间", "是否启用仓位", "是否启用钥匙管理器"]
+
+
+# 配置设定页面元素定位
+elements:
+  # ========== 配置设定主页面(frmConfig) ==========
+  config_page:
+    automation_id: "frmConfig"
+    name: "配置设定"
+    type: "Window"
+    child_elements:
+      station_filter_combo:
+        automation_id: "chkStation"
+        name: "货位"
+        type: "ComboBox"
+      oilname_filter_combo:
+        automation_id: "chkOilName"
+        name: "油品"
+        type: "ComboBox"
+      refresh_button:
+        automation_id: "btnReFresh"
+        name: "刷新"
+        type: "Button"
+      update_station_density_button:
+        automation_id: "btnUpdate"
+        name: "货位密度修改"
+        type: "Button"
+      set_flowmeter_type_button:
+        automation_id: "btnSetFlowmeterType"
+        name: "设置流量计类型"
+        type: "Button"
+      update_tank_density_button:
+        automation_id: "btnUpdate1"
+        name: "储罐密度修改"
+        type: "Button"
+      md_history_button:
+        automation_id: "btnMDHistory"
+        name: "密度历史记录"
+        type: "Button"
+      set_to_device_button:
+        automation_id: "btnSet"
+        name: "下发到装车仪器"
+        type: "Button"
+      same_oil_checkbox:
+        automation_id: "checkBoxFlag"
+        name: "同时修改相同油品的配置设定信息"
+        type: "CheckBox"
+      result_text:
+        automation_id: "txtResult"
+        name: "结果"
+        type: "Edit"
+      content_table:
+        automation_id: "dataGridView"
+        name: "DataGridView"
+        type: "Table"
+
+  # ========== 设置流量计类型窗口 ==========
+  set_flowmeter_window:
+    automation_id: "frmSetFlowmeterType"
+    name: "设置流量计类型"
+    type: "Window"
+    child_elements:
+      station_no_edit:
+        automation_id: "txtStationNo"
+        name: "货位号"
+        type: "Edit"
+      flowmeter_type1_combo:
+        automation_id: "cboFlowmeterType1"
+        name: "组分流量计类型"
+        type: "ComboBox"
+      flowmeter_type2_combo:
+        automation_id: "cboFlowmeterType2"
+        name: "乙醇流量计类型"
+        type: "ComboBox"
+      save_button:
+        automation_id: "btnUpdateFlowmeterType"
+        name: "保存"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnCancel"
+        name: "取消"
+        type: "Button"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+        type: "Button"
+
+  # ========== 货位密度修改窗口 ==========
+  station_density_window:
+    automation_id: "frmUpdateStationDensityConfig"
+    name: "配置设定密度修改"
+    type: "Window"
+    child_elements:
+      station_no_edit:
+        automation_id: "txtStationNo"
+        name: "货位号"
+        type: "Edit"
+      station_name_edit:
+        automation_id: "txtStationName"
+        name: "货位名称"
+        type: "Edit"
+      oil_name_combo:
+        automation_id: "cboOilName"
+        name: "油品名称"
+        type: "ComboBox"
+      tank_name1_combo:
+        automation_id: "cboTankName1"
+        name: "组分罐名"
+        type: "ComboBox"
+      tank_name2_combo:
+        automation_id: "cboTankName2"
+        name: "乙醇罐名"
+        type: "ComboBox"
+      weight_density_edit:
+        automation_id: "txtWeightDensity"
+        name: "计重密度"
+        type: "Edit"
+      standard_density1_edit:
+        automation_id: "txtStandardDensity1"
+        name: "组分标密"
+        type: "Edit"
+      standard_density2_edit:
+        automation_id: "txtStandardDensity2"
+        name: "乙醇标密"
+        type: "Edit"
+      weight_density1_edit:
+        automation_id: "txtWeightDensity1"
+        name: "组分计密"
+        type: "Edit"
+      weight_density2_edit:
+        automation_id: "txtWeightDensity2"
+        name: "乙醇计密"
+        type: "Edit"
+      vcf_edit:
+        automation_id: "textBox1"
+        name: "VCF"
+        type: "Edit"
+      compute_button:
+        automation_id: "butCompute"
+        name: "计算"
+        type: "Button"
+      compute_button1:
+        automation_id: "butCompute1"
+        name: "计算"
+        type: "Button"
+      compute_button2:
+        automation_id: "butCompute2"
+        name: "计算"
+        type: "Button"
+      save_button:
+        automation_id: "btnEnter"
+        name: "保存"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnExit"
+        name: "取消"
+        type: "Button"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+        type: "Button"
+
+  # ========== 储罐密度修改窗口 ==========
+  tank_density_window:
+    automation_id: "frmUpdateTankStationDensityConfig"
+    name: "储罐密度修改"
+    type: "Window"
+    child_elements:
+      oil_name_combo:
+        automation_id: "cboOilName"
+        name: "油品名称"
+        type: "ComboBox"
+      tank_name1_combo:
+        automation_id: "cboTankName1"
+        name: "组分罐名"
+        type: "ComboBox"
+      tank_name2_combo:
+        automation_id: "cboTankName2"
+        name: "乙醇罐名"
+        type: "ComboBox"
+      weight_density_edit:
+        automation_id: "txtWeightDensity"
+        name: "计重密度"
+        type: "Edit"
+      standard_density1_edit:
+        automation_id: "txtStandardDensity1"
+        name: "组分标密"
+        type: "Edit"
+      standard_density2_edit:
+        automation_id: "txtStandardDensity2"
+        name: "乙醇标密"
+        type: "Edit"
+      weight_density1_edit:
+        automation_id: "txtWeightDensity1"
+        name: "组分计密"
+        type: "Edit"
+      weight_density2_edit:
+        automation_id: "txtWeightDensity2"
+        name: "乙醇计密"
+        type: "Edit"
+      vcf_edit:
+        automation_id: "textBox1"
+        name: "VCF"
+        type: "Edit"
+      out_oil_type_edit:
+        automation_id: "textBox2"
+        name: "发油类型"
+        type: "Edit"
+      sync_station_label:
+        automation_id: "label11"
+        name: "勾选需同步修改的货位"
+        type: "Text"
+      sync_station_panel:
+        automation_id: "flowLayoutPanel"
+        name: "货位勾选面板"
+        type: "Panel"
+      compute_button:
+        automation_id: "butCompute"
+        name: "计算"
+        type: "Button"
+      compute_button1:
+        automation_id: "butCompute1"
+        name: "计算"
+        type: "Button"
+      compute_button2:
+        automation_id: "butCompute2"
+        name: "计算"
+        type: "Button"
+      content_table:
+        automation_id: "dataGridView"
+        name: "DataGridView"
+        type: "Table"
+      save_button:
+        automation_id: "btnEnter"
+        name: "保存"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnExit"
+        name: "取消"
+        type: "Button"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+        type: "Button"
+
+  # ========== 密度历史记录窗口 ==========
+  md_history_window:
+    automation_id: "frmConfigMDHistory"
+    name: "密度历史记录"
+    type: "Window"
+    child_elements:
+      title_label:
+        automation_id: "label3"
+        name: "密度历史记录"
+        type: "Text"
+      query_panel:
+        automation_id: "panel1"
+        name: "查询条件"
+        type: "Panel"
+      oil_name_combo:
+        automation_id: "cboItemSpec"
+        name: "油品名称"
+        type: "ComboBox"
+      start_time_picker:
+        automation_id: "dtpStart"
+        name: "开始时间"
+        type: "DateTimePicker"
+      end_time_picker:
+        automation_id: "dtpStop"
+        name: "截止时间"
+        type: "DateTimePicker"
+      query_button:
+        automation_id: "btnQuery"
+        name: "查询"
+        type: "Button"
+      content_table:
+        automation_id: "dataGridView"
+        name: "DataGridView"
+        type: "Table"
+      close_button:
+        automation_id: "close"
+        name: "关闭"
+        type: "Button"
+
+  # ========== 下发到装车仪器弹窗 ==========
+  # 注：下发到装车仪器功能(btnSet)使用CustomMessageBox进行消息提示
+  # 弹窗类型为CustomMessageBox，非独立窗口
+  # 常见提示消息：
+  #   - "请先关闭已打开的页面，在执行下发！" (操作提示)
+  #   - "存在未下发的密度，请及时处理。" (提示)
+  send_to_device_prompt:
+    type: "CustomMessageBox"
+    child_elements:
+      prompt_text:
+        automation_id: "msgLabel"
+        type: "Text"
+      confirm_button:
+        automation_id: "btnMsg1"
+        type: "Button"
+
+  # ========== 删除确认窗口 ==========
+  delete_confirm_window:
+    automation_id: "CustomMessageCheckBox"
+    name: "CustomMessageCheckBox"
+    type: "Window"
+    child_elements:
+      confirm_button:
+        automation_id: "btnMsg1"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnMsg2"
+        type: "Button"
+      quit_button:
+        automation_id: "msgBtn"
+        type: "Button"
+      prompt_text:
+        automation_id: "msgLabel2"
+        type: "Text"
+
+
+# 备注：
+# 1. 配置设定模块包含以下子功能：
+#    - 货位密度修改 (frmUpdateStationDensityConfig)
+#    - 储罐密度修改 (frmUpdateTankStationDensityConfig)
+#    - 设置流量计类型 (frmSetFlowmeterType)
+#    - 密度历史记录 (frmConfigMDHistory)
+#    - 下发到装车仪器 (btnSet -> CustomMessageBox弹窗)
+# 2. frmConfig：配置设定主页面，包含筛选条件和DataGridView
+# 3. DataGridView显示的列：货位号、货位名称、油品名称、计重密度、组分计密、乙醇计密、组分标密、乙醇标密、乙醇比例、密度是否下发、组分油品、乙醇品名、组分罐、乙醇罐、是否调和、发油方式规则、组分流量计类型、乙醇流量计类型、组分密度下发时间、乙醇密度下发时间、业务系统审核时间、下载时间、是否启用仓位、是否启用钥匙管理器
+# 4. 储罐密度修改窗口有一个flowLayoutPanel用于勾选需同步修改的货位，以及一个dataGridView显示当前配置的储罐密度
+# 5. 货位密度修改窗口中的VCF(textBox1)是只读字段，由计算按钮触发计算
+# 6. 密度历史记录窗口DataGridView列：油品名称、混合计重密度、组分计密、乙醇计密、组分标密、乙醇标密、影响货位、写入时间、数据来源
+# 7. 下发到装车仪器功能使用CustomMessageBox弹窗进行操作提示和结果反馈
+
+
+# ========================================
+# test_data - 测试数据模板（AI自动生成）
+# 使用方法：在 conftest.py 的 page_test_factory fixture 中使用
+# ========================================
+test_data:
+  # ==================== 刷新配置数据测试 ====================
+  # 刷新配置数据成功场景
+  refresh_config_success:
+    _description: "刷新配置设定数据成功"
+    _method: "refresh_config_data"
+    timeout: 10.0
+
+  # 按货位筛选刷新配置数据
+  refresh_with_station_filter:
+    _description: "按货位筛选刷新配置数据"
+    _method: "refresh_config_data"
+    station_filter: "货位1"
+    timeout: 10.0
+
+  # 按油品筛选刷新配置数据
+  refresh_with_oil_filter:
+    _description: "按油品筛选刷新配置数据"
+    _method: "refresh_config_data"
+    oil_filter: "汽油"
+    timeout: 10.0
+
+  # 按货位和油品筛选刷新配置数据
+  refresh_with_both_filter:
+    _description: "按货位和油品筛选刷新配置数据"
+    _method: "refresh_config_data"
+    station_filter: "货位1"
+    oil_filter: "汽油"
+    timeout: 10.0
+
+  # ==================== 设置流量计类型测试 ====================
+  # 设置流量计类型成功场景
+  set_flowmeter_success:
+    _description: "设置流量计类型成功"
+    _method: "set_flowmeter_type_and_verify"
+    search_key: "01"
+    flowmeter_type1: "质量流量计"
+    flowmeter_type2: "体积流量计"
+    confirm: true
+    timeout: 10.0
+
+  # 设置流量计类型（仅组分）
+  set_flowmeter_only_type1:
+    _description: "设置流量计类型（仅组分）"
+    _method: "set_flowmeter_type_and_verify"
+    search_key: "01"
+    flowmeter_type1: "质量流量计"
+    confirm: true
+    timeout: 10.0
+
+  # 设置流量计类型取消场景
+  set_flowmeter_cancel:
+    _description: "设置流量计类型取消"
+    _method: "set_flowmeter_type_and_verify"
+    search_key: "01"
+    flowmeter_type1: "质量流量计"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 货位密度修改测试 ====================
+  # 修改货位密度成功场景
+  update_station_density_success:
+    _description: "修改货位密度成功"
+    _method: "update_station_density_and_verify"
+    search_key: "01"
+    weight_density: "0.8500"
+    standard_density1: "0.8200"
+    standard_density2: "0.7900"
+    confirm: true
+    timeout: 10.0
+
+  # 修改货位密度（带计算）
+  update_station_density_with_compute:
+    _description: "修改货位密度并触发计算"
+    _method: "update_station_density_and_verify"
+    search_key: "01"
+    standard_density1: "0.8200"
+    standard_density2: "0.7900"
+    weight_density1: "0.8300"
+    weight_density2: "0.8000"
+    compute: true
+    confirm: true
+    timeout: 10.0
+
+  # 修改货位密度取消场景
+  update_station_density_cancel:
+    _description: "修改货位密度取消"
+    _method: "update_station_density_and_verify"
+    search_key: "01"
+    weight_density: "0.8500"
+    confirm: false
+    timeout: 10.0
+
+  # 修改货位密度（完整参数）
+  update_station_density_full:
+    _description: "修改货位密度（完整参数）"
+    _method: "update_station_density_and_verify"
+    search_key: "01"
+    oil_name: "汽油"
+    tank_name1: "组分罐1"
+    tank_name2: "乙醇罐1"
+    weight_density: "0.8500"
+    standard_density1: "0.8200"
+    standard_density2: "0.7900"
+    weight_density1: "0.8300"
+    weight_density2: "0.8000"
+    confirm: true
+    timeout: 10.0
+
+  # ==================== 储罐密度修改测试 ====================
+  # 修改储罐密度成功场景
+  update_tank_density_success:
+    _description: "修改储罐密度成功"
+    _method: "update_tank_density_and_verify"
+    oil_name: "汽油"
+    tank_name1: "组分罐1"
+    tank_name2: "乙醇罐1"
+    weight_density: "0.8500"
+    standard_density1: "0.8200"
+    standard_density2: "0.7900"
+    confirm: true
+    timeout: 10.0
+
+  # 修改储罐密度（仅组分）
+  update_tank_density_type1_only:
+    _description: "修改储罐密度（仅组分）"
+    _method: "update_tank_density_and_verify"
+    oil_name: "汽油"
+    tank_name1: "组分罐1"
+    weight_density: "0.8500"
+    standard_density1: "0.8200"
+    confirm: true
+    timeout: 10.0
+
+  # 修改储罐密度取消场景
+  update_tank_density_cancel:
+    _description: "修改储罐密度取消"
+    _method: "update_tank_density_and_verify"
+    oil_name: "汽油"
+    tank_name1: "组分罐1"
+    weight_density: "0.8500"
+    confirm: false
+    timeout: 10.0
+
+  # 修改储罐密度（带发油类型）
+  update_tank_density_with_oil_type:
+    _description: "修改储罐密度并设置发油类型"
+    _method: "update_tank_density_and_verify"
+    oil_name: "汽油"
+    tank_name1: "组分罐1"
+    tank_name2: "乙醇罐1"
+    weight_density: "0.8500"
+    standard_density1: "0.8200"
+    standard_density2: "0.7900"
+    out_oil_type: "正常发油"
+    confirm: true
+    timeout: 10.0
+
+  # ==================== 密度历史记录查询测试 ====================
+  # 查询密度历史记录
+  query_md_history:
+    _description: "查询密度历史记录"
+    _method: "query_md_history"
+    timeout: 10.0
+
+  # 按油品查询密度历史记录
+  query_md_history_by_oil:
+    _description: "按油品查询密度历史记录"
+    _method: "query_md_history"
+    oil_name: "汽油"
+    timeout: 10.0
+
+  # 按时间范围查询密度历史记录
+  query_md_history_by_time:
+    _description: "按时间范围查询密度历史记录"
+    _method: "query_md_history"
+    start_time: "2026-01-01"
+    end_time: "2026-04-10"
+    timeout: 10.0
+
+  # 按油品和时间范围查询密度历史记录
+  query_md_history_by_oil_and_time:
+    _description: "按油品和时间范围查询密度历史记录"
+    _method: "query_md_history"
+    oil_name: "汽油"
+    start_time: "2026-01-01"
+    end_time: "2026-04-10"
+    timeout: 10.0
+
+  # ==================== 下发到装车仪器测试 ====================
+  # 下发到装车仪器
+  send_to_device:
+    _description: "下发配置到装车仪器"
+    _method: "send_to_device"
+    timeout: 10.0
+
+  # 下发到装车仪器（预期成功）
+  send_to_device_expect_success:
+    _description: "下发配置到装车仪器（预期成功）"
+    _method: "send_to_device"
+    expect_contains: "成功"
+    timeout: 10.0
+
+  # 下发到装车仪器（预期提示）
+  send_to_device_expect_warning:
+    _description: "下发配置到装车仪器（预期有提示信息）"
+    _method: "send_to_device"
+    expect_contains: "请先关闭"
+    timeout: 10.0

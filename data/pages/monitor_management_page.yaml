@@ -1,0 +1,428 @@
+# 监控页面配置文件
+# 监控页面和远程设定窗口配置
+
+app_config:
+  main_window_name: "监控页面"
+  head_keys: ["billTime", "billNo", "ParentBillNo", "vehicleNo", "TDH", "stationNo", "itemSpecName", "weightDensity", "planVolume", "planWeight", "outOilModeName", "buyerName"]
+
+
+# 监控页面元素定位
+elements:
+  # 监控页面特征元素
+  monitor_page:
+    automation_id: "frmMonitorView"
+    name: "监控页面"
+    type: "Window"
+    child_elements:
+      tab_control:
+        automation_id: "tabControlPlusKJ"
+        name: "TabControl"
+        type: "TabControl"
+      data_grid_view:
+        # 待发单列表
+        automation_id: "dataGridView"
+        name: "DataGridView"
+        type: "Table"
+      timer_1:
+        automation_id: "timer1"
+        type: "Timer"
+      timer_2:
+        automation_id: "timer2"
+        type: "Timer"
+
+  # 科技版货位控件 (CtrLoadMasterKJ) - 动态创建，货位数量取决于系统配置
+  # 控件数组: accuControl2[KJ版本]
+  station_control_kj:
+    automation_id: "CtrLoadMasterKJ"
+    name: "科技版货位控件"
+    type: "CustomControl"
+    child_elements:
+      label_ycl:
+        # 已充量
+        automation_id: "lblYCL"
+        type: "Label"
+      label_szl:
+        # 剩余量
+        automation_id: "lblSZL"
+        type: "Label"
+      label_zfl:
+        # 总发量
+        automation_id: "lblZFL"
+        type: "Label"
+      label_ls1:
+        # 流速1
+        automation_id: "lblLS1"
+        type: "Label"
+      label_ls2:
+        # 流速2
+        automation_id: "lblLS2"
+        type: "Label"
+      label_wd1:
+        # 温度1
+        automation_id: "lblWD1"
+        type: "Label"
+      label_wd2:
+        # 温度2
+        automation_id: "lblWD2"
+        type: "Label"
+      label_bzmd1:
+        # 标准密度1
+        automation_id: "lblBZMD1"
+        type: "Label"
+      label_bzmd2:
+        # 标准密度2
+        automation_id: "lblBZMD2"
+        type: "Label"
+      label_tdh:
+        # 提单号
+        automation_id: "lblTDH"
+        type: "Label"
+      label_yzl:
+        # 预装量
+        automation_id: "lblYZL"
+        type: "Label"
+      label_jindu:
+        # 进度
+        automation_id: "lblJinDu"
+        type: "Label"
+      label_zt:
+        # 状态
+        automation_id: "lblZT"
+        type: "Label"
+      label_cp:
+        # 车牌
+        automation_id: "lblCP"
+        type: "Label"
+      label_ypm:
+        # 油品名
+        automation_id: "lblYPM"
+        type: "Label"
+      label_hw:
+        # 货位号
+        automation_id: "label4"
+        type: "Label"
+      label_ltj:
+        # 联机状态
+        automation_id: "lblLTJ"
+        type: "Label"
+      label_surplus:
+        # 剩余
+        automation_id: "labelSurplus"
+        type: "Label"
+      panel_remote:
+        # 双击打开远程控制
+        automation_id: "panel3"
+        type: "Panel"
+      panel_ex_remote:
+        # 双击打开远程控制
+        automation_id: "panelEx1"
+        type: "Panel"
+      annulus_progress:
+        # 环形进度条
+        automation_id: "annulusProgress1"
+        type: "CustomControl"
+
+  # 经典版货位控件 (CtrLoadMasterJD) - 动态创建，货位数量取决于系统配置
+  # 控件数组: accuControl[JD版本]
+  station_control_jd:
+    automation_id: "CtrLoadMasterJD"
+    name: "经典版货位控件"
+    type: "CustomControl"
+    child_elements:
+      label_ycl:
+        # 已充量
+        automation_id: "lblYCL"
+        type: "Label"
+      label_szl:
+        # 剩余量
+        automation_id: "lblSZL"
+        type: "Label"
+      label_zfl:
+        # 总发量
+        automation_id: "lblZFL"
+        type: "Label"
+      label_ls1:
+        # 流速1
+        automation_id: "lblLS1"
+        type: "Label"
+      label_ls2:
+        # 流速2
+        automation_id: "lblLS2"
+        type: "Label"
+      label_wd1:
+        # 温度1
+        automation_id: "lblWD1"
+        type: "Label"
+      label_wd2:
+        # 温度2
+        automation_id: "lblWD2"
+        type: "Label"
+      label_bzmd1:
+        # 标准密度1
+        automation_id: "lblBZMD1"
+        type: "Label"
+      label_bzmd2:
+        # 标准密度2
+        automation_id: "lblBZMD2"
+        type: "Label"
+      label_tdh:
+        # 提单号
+        automation_id: "lblTDH"
+        type: "Label"
+      label_yzl:
+        # 预装量
+        automation_id: "lblYZL"
+        type: "Label"
+      label_jindu:
+        # 进度
+        automation_id: "lblJinDu"
+        type: "Label"
+      label_zt:
+        # 状态
+        automation_id: "lblZT"
+        type: "Label"
+      label_cp:
+        # 车牌
+        automation_id: "lblCP"
+        type: "Label"
+      label_ypm:
+        # 油品名
+        automation_id: "lblYPM"
+        type: "Label"
+      label_hw:
+        # 货位号
+        automation_id: "label4"
+        type: "Label"
+      label_ltj:
+        # 联机状态
+        automation_id: "lblLTJ"
+        type: "Label"
+      panel_remote:
+        # 双击打开远程控制
+        automation_id: "panel1"
+        type: "Panel"
+      panel_ex_remote:
+        # 双击打开远程控制
+        automation_id: "panelEx1"
+        type: "Panel"
+      progress:
+        # 进度条
+        automation_id: "ucProcessLine1"
+        type: "CustomControl"
+
+  # 远程设定子窗口 - 在监控页面双击货位打开
+  remote_control_window:
+    automation_id: "frmRemoteControl"
+    name: "远程设定"
+    type: "Window"
+    child_elements:
+      # 实时装车面板
+      real_time_panel:
+        automation_id: "panel1"
+        name: "实时装车"
+        type: "Panel"
+        child_elements:
+          bill_num_text:
+            # 提单号
+            automation_id: "txtBillNum"
+            type: "TextBox"
+          plan_out_oil_text:
+            # 计划发油量
+            automation_id: "txtPlanOutOil"
+            type: "TextBox"
+          load_mode_combo:
+            # 发油模式
+            automation_id: "cmbLoadMode"
+            type: "ComboBox"
+          start_button:
+            # 启动按钮
+            automation_id: "btStart"
+            type: "Button"
+          pause_button:
+            # 暂停按钮
+            automation_id: "btPause"
+            type: "Button"
+          end_button:
+            # 结束按钮
+            automation_id: "btEnd"
+            type: "Button"
+          set_button:
+            # 设定按钮
+            automation_id: "btSet"
+            type: "Button"
+          percent_label:
+            # 百分比显示
+            automation_id: "lbPercent"
+            type: "Label"
+          status_label:
+            # 状态提示标签
+            automation_id: "lblXX"
+            type: "Label"
+          start_end_label:
+            # 启动或结束提示
+            automation_id: "lbxx1"
+            type: "Label"
+          process_line:
+            # 进度条
+            automation_id: "ucProcessLine1"
+            type: "CustomControl"
+          progress_bar:
+            # 进度条
+            automation_id: "progressBar1"
+            type: "ProgressBar"
+      # 远程下发提单面板
+      remote下发_panel:
+        automation_id: "panel2"
+        name: "远程下发提单"
+        type: "Panel"
+        child_elements:
+          data_grid:
+            # 提单数据网格
+            automation_id: "dataGridView1"
+            type: "Table"
+      close_button:
+        # 关闭按钮
+        automation_id: "close"
+        type: "Button"
+
+
+# 监控页面数据驱动测试数据
+
+# ========================================
+# test_data - 测试数据模板（AI自动生成）
+# ========================================
+test_data:
+  # ==================== 打开远程设定测试 ====================
+  # 双击货位打开远程设定窗口
+  open_remote_control_01:
+    _description: "双击货位01打开远程设定窗口"
+    _method: "open_remote_control"
+    station_no: "01"
+    timeout: 10.0
+
+  open_remote_control_02:
+    _description: "双击货位02打开远程设定窗口"
+    _method: "open_remote_control"
+    station_no: "02"
+    timeout: 10.0
+
+  # ==================== 远程启动发油测试 ====================
+  # 远程启动发油成功
+  remote_start_oil_success:
+    _description: "远程启动发油成功"
+    _method: "remote_start_oil"
+    station_no: "01"
+    confirm: true
+    timeout: 10.0
+
+  # 远程启动发油取消
+  remote_start_oil_cancel:
+    _description: "远程启动发油取消"
+    _method: "remote_start_oil"
+    station_no: "01"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 远程暂停发油测试 ====================
+  # 远程暂停发油成功
+  remote_pause_oil_success:
+    _description: "远程暂停发油成功"
+    _method: "remote_pause_oil"
+    station_no: "01"
+    confirm: true
+    timeout: 10.0
+
+  # 远程暂停发油取消
+  remote_pause_oil_cancel:
+    _description: "远程暂停发油取消"
+    _method: "remote_pause_oil"
+    station_no: "01"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 远程结束发油测试 ====================
+  # 远程结束发油成功
+  remote_end_oil_success:
+    _description: "远程结束发油成功"
+    _method: "remote_end_oil"
+    station_no: "01"
+    confirm: true
+    timeout: 10.0
+
+  # 远程结束发油取消
+  remote_end_oil_cancel:
+    _description: "远程结束发油取消"
+    _method: "remote_end_oil"
+    station_no: "01"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 设置发油模式测试 ====================
+  # 设置发油模式成功（质量流量计）
+  set_load_mode_quality:
+    _description: "设置发油模式为质量流量计"
+    _method: "set_load_mode_and_verify"
+    station_no: "01"
+    load_mode: "质量流量计"
+    confirm: true
+    timeout: 10.0
+
+  # 设置发油模式成功（体积流量计）
+  set_load_mode_volume:
+    _description: "设置发油模式为体积流量计"
+    _method: "set_load_mode_and_verify"
+    station_no: "01"
+    load_mode: "体积流量计"
+    confirm: true
+    timeout: 10.0
+
+  # 设置发油模式取消
+  set_load_mode_cancel:
+    _description: "设置发油模式取消"
+    _method: "set_load_mode_and_verify"
+    station_no: "01"
+    load_mode: "质量流量计"
+    confirm: false
+    timeout: 10.0
+
+  # ==================== 获取货位状态测试 ====================
+  # 获取货位01状态信息
+  get_station_status_01:
+    _description: "获取货位01状态信息"
+    _method: "get_station_status"
+    station_no: "01"
+    timeout: 10.0
+
+  # 获取货位02状态信息
+  get_station_status_02:
+    _description: "获取货位02状态信息"
+    _method: "get_station_status"
+    station_no: "02"
+    timeout: 10.0
+
+  # ==================== 关闭远程设定窗口测试 ====================
+  # 关闭远程设定窗口
+  close_remote_window:
+    _description: "关闭远程设定窗口"
+    _method: "close_remote_window"
+    timeout: 5.0
+
+  # ==================== 完整发油流程测试 ====================
+  # 执行完整发油流程（质量流量计）
+  execute_oil_process_quality:
+    _description: "执行完整发油流程（质量流量计）"
+    _method: "execute_oil_process"
+    station_no: "01"
+    load_mode: "质量流量计"
+    confirm: true
+    timeout: 30.0
+
+  # 执行完整发油流程（体积流量计）
+  execute_oil_process_volume:
+    _description: "执行完整发油流程（体积流量计）"
+    _method: "execute_oil_process"
+    station_no: "01"
+    load_mode: "体积流量计"
+    confirm: true
+    timeout: 30.0
+

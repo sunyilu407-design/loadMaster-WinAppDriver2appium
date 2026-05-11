@@ -1,0 +1,36 @@
+# 登录页面配置文件
+
+# 应用程序启动配置
+app_config:
+  app_path: "D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe"
+  main_window_title: "欢迎使用微分科技装车管理系统"
+
+# 登录页元素定位
+elements:
+  username_input:
+    automation_id: "1001"  # 用户名输入框的automationID
+
+  password_input:
+    automation_id: "txtUserPwd"
+  login_button:
+    automation_id: "btnLogin"
+  error_message_window:
+    automation_id: "CustomMessageBox"
+    name: "消息提示"
+  error_message:
+    automation_id: "msgLabel2"
+  confirm_button:
+    automation_id: "btnMsg"
+    name: "确认"
+  main_window:
+      automation_id: "frmMain"
+      name: "欢迎使用微分科技装车管理系统"
+  
+
+
+# 登录页数据驱动测试数据
+test_data:
+  valid_login:
+    username: "admin"
+    password: "1"
+    expected_result: "登录成功，跳转至首页"

@@ -1,0 +1,376 @@
+# 货位信息管理配置文件
+# 货位信息管理窗口配置
+app_config:
+  # 不同页面的main_window_name都是对应页面的窗体name
+  main_window_name: "货位信息管理"
+  head_keys: ["货位号", "货位名称", "作业位编号", "阻车器AI启用状态", "仓位识别AI启用状态", "通讯协议版本号", "所属串口", "是否启用", "实发量计算方式", "标密设定方式", "指定货位号", "乙醇标密指定方式", "乙醇指定货位号"]
+
+
+# 货位信息管理页面元素定位
+elements:
+  # ========== 货位信息管理主页面(frmStationManage) ==========
+  station_manage_page:
+    automation_id: "frmStationManage"
+    name: "货位信息管理"
+    type: "Window"
+    child_elements:
+      add_station_button:
+        automation_id: "btnAddStation"
+        name: "添加货位"
+        type: "Button"
+      alter_station_button:
+        automation_id: "btnUpdateStation"
+        name: "修改货位"
+        type: "Button"
+      delete_station_button:
+        automation_id: "btnDeleteStation"
+        name: "删除货位"
+        type: "Button"
+      alter_base_param_button:
+        automation_id: "button1"
+        name: "修改基础参数"
+        type: "Button"
+      content_table:
+        automation_id: "dataGridView"
+        name: "DataGridView"
+        type: "Table"
+
+  # ========== 添加货位窗口 ==========
+  add_station_window:
+    automation_id: "frmStationAddOrUpdate"
+    name: "添加货位信息"
+    type: "Window"
+    child_elements:
+      station_no_edit:
+        automation_id: "txtStationNo"
+        name: "货位号"
+        type: "Edit"
+      station_name_edit:
+        automation_id: "txtStationName"
+        name: "货位名称"
+        type: "Edit"
+      work_station_combo:
+        automation_id: "cmbWorkStationNo"
+        name: "所属作业位"
+        type: "ComboBox"
+      accu_version_combo:
+        automation_id: "cboAccuVersion"
+        name: "通讯协议版本号"
+        type: "ComboBox"
+      port_combo:
+        automation_id: "cboPort"
+        name: "所属串口"
+        type: "ComboBox"
+      use_state_combo:
+        automation_id: "cboUseState"
+        name: "货位状态"
+        type: "ComboBox"
+      real_calc_mode_combo:
+        automation_id: "cmbRealCalcMode"
+        name: "实发量计算公式"
+        type: "ComboBox"
+      density_mode_combo:
+        automation_id: "cboDensityMode"
+        name: "标密设定方式"
+        type: "ComboBox"
+      station_no_combo:
+        automation_id: "cboStationNo"
+        name: "指定货位"
+        type: "ComboBox"
+      density_mode2_combo:
+        automation_id: "cboDensityMode2"
+        name: "乙醇标密设定方式"
+        type: "ComboBox"
+      station_no2_combo:
+        automation_id: "cboStationNo2"
+        name: "乙醇指定货位"
+        type: "ComboBox"
+      restrict_out_oil_type_combo:
+        automation_id: "restrictOutOilType"
+        name: "限制发油类型"
+        type: "ComboBox"
+      zcq_ai_status_combo:
+        automation_id: "zcqAIStatus"
+        name: "阻车器AI启用"
+        type: "ComboBox"
+      cwsb_ai_status_combo:
+        automation_id: "cwsbAIStatus"
+        name: "仓位识别AI启用"
+        type: "ComboBox"
+      formula_edit:
+        automation_id: "textBox1"
+        name: "公式"
+        type: "Edit"
+      add_button:
+        automation_id: "btnAddStation"
+        name: "添加"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnCancel"
+        name: "取消"
+        type: "Button"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+        type: "Button"
+
+  # ========== 修改货位窗口 ==========
+  alter_station_window:
+    automation_id: "frmStationAddOrUpdate"
+    name: "修改货位信息"
+    type: "Window"
+    child_elements:
+      station_id_edit:
+        automation_id: "textstationNoId"
+        name: "货位ID"
+        type: "Edit"
+      station_no_edit:
+        automation_id: "txtStationNo"
+        name: "货位号"
+        type: "Edit"
+      station_name_edit:
+        automation_id: "txtStationName"
+        name: "货位名称"
+        type: "Edit"
+      work_station_combo:
+        automation_id: "cmbWorkStationNo"
+        name: "所属作业位"
+        type: "ComboBox"
+      accu_version_combo:
+        automation_id: "cboAccuVersion"
+        name: "通讯协议版本号"
+        type: "ComboBox"
+      port_combo:
+        automation_id: "cboPort"
+        name: "所属串口"
+        type: "ComboBox"
+      use_state_combo:
+        automation_id: "cboUseState"
+        name: "货位状态"
+        type: "ComboBox"
+      real_calc_mode_combo:
+        automation_id: "cmbRealCalcMode"
+        name: "实发量计算公式"
+        type: "ComboBox"
+      density_mode_combo:
+        automation_id: "cboDensityMode"
+        name: "标密设定方式"
+        type: "ComboBox"
+      station_no_combo:
+        automation_id: "cboStationNo"
+        name: "指定货位"
+        type: "ComboBox"
+      density_mode2_combo:
+        automation_id: "cboDensityMode2"
+        name: "乙醇标密设定方式"
+        type: "ComboBox"
+      station_no2_combo:
+        automation_id: "cboStationNo2"
+        name: "乙醇指定货位"
+        type: "ComboBox"
+      restrict_out_oil_type_combo:
+        automation_id: "restrictOutOilType"
+        name: "限制发油类型"
+        type: "ComboBox"
+      zcq_ai_status_combo:
+        automation_id: "zcqAIStatus"
+        name: "阻车器AI启用"
+        type: "ComboBox"
+      cwsb_ai_status_combo:
+        automation_id: "cwsbAIStatus"
+        name: "仓位识别AI启用"
+        type: "ComboBox"
+      formula_edit:
+        automation_id: "textBox1"
+        name: "公式"
+        type: "Edit"
+      alter_button:
+        automation_id: "btnAddStation"
+        name: "修改"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnCancel"
+        name: "取消"
+        type: "Button"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+        type: "Button"
+
+  # ========== 修改基础参数窗口 ==========
+  alter_base_param_window:
+    automation_id: "frmUpdateStationConfig"
+    name: "修改货位基础参数"
+    type: "Window"
+    child_elements:
+      station_no_edit:
+        automation_id: "txtStationNo"
+        name: "货位号"
+        type: "Edit"
+      oil_name_combo:
+        automation_id: "cboOilName"
+        name: "油品名称"
+        type: "ComboBox"
+      station_name_edit:
+        automation_id: "txtStationName"
+        name: "货位名称"
+        type: "Edit"
+      out_oil_mode_combo:
+        automation_id: "cboOutOilMode"
+        name: "发油方式"
+        type: "ComboBox"
+      is_blend_combo:
+        automation_id: "cboIsBelend"
+        name: "是否调和"
+        type: "ComboBox"
+      is_enable_key_ic_card_combo:
+        automation_id: "cobIsEnableKeyICCard"
+        name: "是否启用钥匙卡"
+        type: "ComboBox"
+      is_enable_cw_combo:
+        automation_id: "cboIsEnableCW"
+        name: "是否启用仓位识别"
+        type: "ComboBox"
+      restrict_out_oil_type_combo:
+        automation_id: "restrictOutOilType"
+        name: "限制发油类型"
+        type: "ComboBox"
+      save_button:
+        automation_id: "btnEnter"
+        name: "保存"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnExit"
+        name: "取消"
+        type: "Button"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+        type: "Button"
+
+  # ========== 删除确认窗口 ==========
+  delete_confirm_window:
+    automation_id: "CustomMessageCheckBox"
+    name: "CustomMessageCheckBox"
+    type: "Window"
+    child_elements:
+      confirm_button:
+        automation_id: "btnMsg1"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnMsg2"
+        type: "Button"
+      quit_button:
+        automation_id: "msgBtn"
+        type: "Button"
+      prompt_text:
+        automation_id: "msgLabel2"
+        type: "Text"
+
+
+# 备注：
+# 1. 货位信息管理模块包含4个功能：添加货位、修改货位、删除货位、修改基础参数
+# 2. frmStationManage：货位信息管理主页面
+# 3. frmStationAddOrUpdate：添加/编辑货位窗口（共用同一窗体）
+# 4. frmUpdateStationConfig：修改货位基础参数窗口
+# 5. DataGridView显示的列：货位号、货位名称、作业位编号、阻车器AI启用状态、仓位识别AI启用状态、通讯协议版本号、所属串口、是否启用、实发量计算方式、标密设定方式、指定货位号、乙醇标密指定方式、乙醇指定货位号
+# 6. 修改基础参数窗口用于修改：油品名称、发油方式、是否调和、是否启用钥匙卡、是否启用仓位识别、限制发油类型
+
+# ========================================
+# test_data - 测试数据模板（AI自动生成）
+# 使用方法：在 conftest.py 的 page_test_factory fixture 中使用
+# ========================================
+test_data:
+  # 添加货位成功场景
+  add_station_success:
+    _description: "添加货位成功"
+    _method: "add_station_and_verify"
+    station_no: "HW001"
+    station_name: "测试货位1"
+    work_station: "作业位1"
+    accu_version: "V1.0"
+    port: "COM1"
+    use_state: "启用"
+    real_calc_mode: "体积模式"
+    density_mode: "手动输入"
+    confirm: true
+    timeout: 10.0
+
+  # 添加货位成功（最小参数）
+  add_station_minimal:
+    _description: "添加货位成功（最小参数）"
+    _method: "add_station_and_verify"
+    station_no: "HW002"
+    station_name: "测试货位2"
+    confirm: true
+    timeout: 10.0
+
+  # 添加货位取消场景
+  add_station_cancel:
+    _description: "添加货位取消"
+    _method: "add_station_and_verify"
+    station_no: "HW003"
+    station_name: "取消货位"
+    confirm: false
+    timeout: 10.0
+
+  # 修改货位成功场景
+  alter_station_success:
+    _description: "修改货位成功"
+    _method: "alter_station_and_verify"
+    search_key: "HW001"
+    new_station_name: "已修改货位"
+    new_use_state: "启用"
+    confirm: true
+    timeout: 10.0
+
+  # 修改货位取消场景
+  alter_station_cancel:
+    _description: "修改货位取消"
+    _method: "alter_station_and_verify"
+    search_key: "HW001"
+    new_station_name: "不应存在的修改"
+    confirm: false
+    timeout: 10.0
+
+  # 删除货位成功场景
+  delete_station_success:
+    _description: "删除货位成功"
+    _method: "delete_station_and_verify"
+    search_key: "HW003"
+    confirm: true
+    timeout: 10.0
+
+  # 删除货位取消场景
+  delete_station_cancel:
+    _description: "删除货位取消"
+    _method: "delete_station_and_verify"
+    search_key: "HW002"
+    confirm: false
+    timeout: 10.0
+
+  # 修改货位基础参数成功场景
+  alter_station_base_param_success:
+    _description: "修��货位基础参数成功"
+    _method: "alter_station_base_param_and_verify"
+    search_key: "HW001"
+    new_oil_name: "柴油"
+    new_out_oil_mode: "自动发油"
+    new_is_blend: "否"
+    confirm: true
+    timeout: 10.0
+
+  # 修改货位基础参数取消场景
+  alter_station_base_param_cancel:
+    _description: "修改货位基础参数取消"
+    _method: "alter_station_base_param_and_verify"
+    search_key: "HW001"
+    new_oil_name: "汽油"
+    confirm: false
+    timeout: 10.0
+
+  # 查询货位场景
+  query_station:
+    _description: "查询所有货位"
+    _method: "query_station"
+    timeout: 10.0

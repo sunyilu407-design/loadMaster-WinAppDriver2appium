@@ -1,0 +1,201 @@
+# 串口信息管理配置文件
+# 串口信息管理窗口配置
+app_config:
+  # 不同页面的main_window_name都是对应页面的窗体name
+  main_window_name: "串口信息管理"
+  head_keys: ["串口名称", "波特率", "串口用途", "备注"]
+
+
+# 串口信息管理页面元素定位
+elements:
+  # ========== 串口信息管理主页面 ==========
+  add_port_button:
+    automation_id: "btnAddPort"
+    name: "添加串口"
+  alter_port_button:
+    automation_id: "btnUpdatePort"
+    name: "修改串口"
+  delete_port_button:
+    automation_id: "btnDeletePort"
+    name: "删除串口"
+  content_table:
+    automation_id: "dataGridView"
+    name: "DataGridView"
+    type: "Table"
+
+  # ========== 添加串口窗口 ==========
+  add_port_window:
+    automation_id: "frmPortAddOrUpdate"
+    name: "添加串口信息"
+    type: "Window"
+    child_elements:
+      portname_combo:
+        automation_id: "cboPortName"
+        name: "串口名称"
+        type: "ComboBox"
+      baudrate_combo:
+        automation_id: "cboBaudRate"
+        name: "波特率"
+        type: "ComboBox"
+      porttype_combo:
+        automation_id: "cboPortType"
+        name: "串口类型"
+        type: "ComboBox"
+      remark_edit:
+        automation_id: "rtxtRemark"
+        name: "备注"
+        type: "Edit"
+      add_button:
+        automation_id: "btnAddPort"
+        name: "添加"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnCancel"
+        name: "取消"
+        type: "Button"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+        type: "Button"
+
+  # ========== 修改串口窗口 ==========
+  alter_port_window:
+    automation_id: "frmPortAddOrUpdate"
+    name: "修改串口信息"
+    type: "Window"
+    child_elements:
+      port_id_edit:
+        automation_id: "txtPortId"
+        name: "串口ID"
+        type: "Edit"
+      portname_combo:
+        automation_id: "cboPortName"
+        name: "串口名称"
+        type: "ComboBox"
+      baudrate_combo:
+        automation_id: "cboBaudRate"
+        name: "波特率"
+        type: "ComboBox"
+      porttype_combo:
+        automation_id: "cboPortType"
+        name: "串口类型"
+        type: "ComboBox"
+      remark_edit:
+        automation_id: "rtxtRemark"
+        name: "备注"
+        type: "Edit"
+      alter_button:
+        automation_id: "btnAddPort"
+        name: "修改"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnCancel"
+        name: "取消"
+        type: "Button"
+      close_button:
+        automation_id: "button1"
+        name: "关闭"
+        type: "Button"
+
+  # ========== 删除确认窗口 ==========
+  delete_confirm_window:
+    automation_id: "CustomMessageCheckBox"
+    name: "CustomMessageCheckBox"
+    type: "Window"
+    child_elements:
+      confirm_button:
+        automation_id: "btnMsg1"
+        type: "Button"
+      cancel_button:
+        automation_id: "btnMsg2"
+        type: "Button"
+      quit_button:
+        automation_id: "msgBtn"
+        type: "Button"
+      prompt_text:
+        automation_id: "msgLabel2"
+        type: "Text"
+
+
+
+# 备注：
+# 1. 波特率可选值：2400, 4800, 9600, 19200（在cboBaudRate的Items中定义）
+# 2. 串口类型由系统动态加载，常见值包括：地磅串口、读卡器串口、红外串口等
+# 3. txtPortId在修改模式下用于传递要编辑的串口ID，但设置为隐藏
+# 4. button1是窗口右上角的关闭按钮(X)
+
+# ========================================
+# test_data - 测试数据模板（AI自动生成）
+# 使用方法：在 conftest.py 的 page_test_factory fixture 中使用
+# ========================================
+test_data:
+  # 添加串口成功场景
+  add_port_success:
+    _description: "添加串口成功"
+    _method: "add_port_and_verify"
+    port_name: "COM1"
+    baudrate: "9600"
+    port_type: "地磅串口"
+    remark: "测试串口"
+    confirm: true
+    timeout: 10.0
+
+  # 添加串口成功（最小参数）
+  add_port_minimal:
+    _description: "添加串口成功（最小参数）"
+    _method: "add_port_and_verify"
+    port_name: "COM2"
+    baudrate: "9600"
+    confirm: true
+    timeout: 10.0
+
+  # 添加串口取消场景
+  add_port_cancel:
+    _description: "添加串口取消"
+    _method: "add_port_and_verify"
+    port_name: "COM3"
+    baudrate: "19200"
+    port_type: "读卡器串口"
+    confirm: false
+    timeout: 10.0
+
+  # 修改串口成功场景
+  alter_port_success:
+    _description: "修改串口成功"
+    _method: "alter_port_and_verify"
+    search_key: "COM1"
+    new_baudrate: "19200"
+    new_remark: "已修改"
+    confirm: true
+    timeout: 10.0
+
+  # 修改串口取消场景
+  alter_port_cancel:
+    _description: "修改串口取消"
+    _method: "alter_port_and_verify"
+    search_key: "COM1"
+    new_remark: "不应存在的修改"
+    confirm: false
+    timeout: 10.0
+
+  # 删除串口成功场景
+  delete_port_success:
+    _description: "删除串口成功"
+    _method: "delete_port_and_verify"
+    search_key: "COM3"
+    confirm: true
+    timeout: 10.0
+
+  # 删除串口取消场景
+  delete_port_cancel:
+    _description: "删除串口取消"
+    _method: "delete_port_and_verify"
+    search_key: "COM2"
+    confirm: false
+    timeout: 10.0
+
+  # 查询串口场景
+  query_port:
+    _description: "查询所有串口"
+    _method: "query_port"
+    timeout: 10.0
