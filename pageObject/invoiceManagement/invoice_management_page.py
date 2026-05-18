@@ -1,4 +1,5 @@
 """装车开票管理页面对象类"""
+import time
 import allure
 from pageObject.base_page import BasePage
 
@@ -114,17 +115,25 @@ class InvoiceManagementPage(BasePage):
         head_keys = self.app_config.get('head_keys')
         return self.get_table_data_as_json(content_table, head_keys)
 
-    @allure.step("点击表格中的开票行")
-    def click_invoice_table_row(self, search_criteria, match_mode='exact'):
-        """点击表格中的开票行（先选择状态为"全部"）"""
-        self.switch_to_invoice_window()
-
-        # 先选择状态为"全部"，确保能看到所有待审批开票信息
-        self.select_state_query("全部")
-
-        content_table = self._get_element_config('content_table')
-        header_keywords = self.app_config.get('head_keys')
-        return self.click_table_row(content_table, search_criteria, header_keywords, match_mode)
+    def _get_state_combo_current_text(self):
+        """获取状态查询下拉框当前选中的文本"""
+        try:
+            element_config = self._get_element_config('state_query_combo')
+            if not element_config:
+                return None
+            combobox = self.locate_element(**element_config)
+            if not combobox:
+                return None
+            from selenium.webdriver.common.by import By
+            edit = combobox.find_element(By.XPATH, ".//Edit")
+            if edit:
+                text = (edit.text or "").strip()
+                self.log.debug(f"状态查询下拉框当前选中: {text}")
+                return text
+            return None
+        except Exception as e:
+            self.log.debug(f"获取状态查询下拉框当前选中文本失败: {e}")
+            return None
 
     @allure.step("选择状态查询条件")
     def select_state_query(self, option_text):
@@ -134,6 +143,19 @@ class InvoiceManagementPage(BasePage):
             return self.select_combobox_option(option_text, **element_config)
         self.log.warning("未找到状态查询下拉框配置")
         return False
+
+    @allure.step("点击表格中的开票行")
+    def click_invoice_table_row(self, search_criteria, match_mode='exact'):
+        """点击表格中的开票行（先选择状态为"全部"）"""
+        self.switch_to_invoice_window()
+
+        # # 只在不是"全部"时才切换，避免重复操作
+        if self._get_state_combo_current_text() != "全部":
+            self.select_state_query("全部")
+
+        content_table = self._get_element_config('content_table')
+        header_keywords = self.app_config.get('head_keys')
+        return self.click_table_row(content_table, search_criteria, header_keywords, match_mode)
 
     # ==================== 添加开票信息窗口方法 ====================
     @allure.step("切换到添加开票信息窗口")
@@ -622,6 +644,45 @@ class InvoiceManagementPage(BasePage):
     @allure.step("关闭装车开票页面")
     def close_invoice_window(self):
         """关闭装车开票页面"""
-        # 使用 app_config 中的 main_window_name 来关闭
-        window_name = self.app_config.get('main_window_name', '装车开票')
-        return self.close_window(title=window_name)
+        try:
+            # 使用 app_config 中的 main_window_name 来关闭
+            window_name = self.app_config.get('main_window_name', '装车开票')
+            
+            # 切换到要关闭的窗口
+            if not self.switch_to_window(title=window_name, timeout=2):
+                self.log.warning(f"未找到要关闭的窗口: {window_name}")
+                return False
+            
+            # 查找并点击关闭按钮
+            close_button = None
+            for aid in ['close', 'btnClose', 'button1', 'btnCloseWindow']:
+                try:
+                    close_button = self.locate_element(timeout=1, automation_id=aid)
+                    if close_button:
+                        break
+                except Exception:
+                    continue
+            
+            if close_button:
+                close_button.click()
+                self.log.info("通过关闭按钮关闭窗口成功")
+            else:
+                # 如果没有找到关闭按钮，使用 Alt+F4
+                from selenium.webdriver.common.keys import Keys
+                self.driver.switch_to.active_element.send_keys(Keys.ALT + Keys.F4)
+                self.log.info("通过快捷键关闭窗口成功")
+            
+            # 关闭窗口后，等待关闭操作完成
+            time.sleep(1)
+            
+            # 切换回主窗口
+            main_window_title = "装车管理系统"
+            if self.switch_to_window(title=main_window_title, timeout=3):
+                self.log.info(f"已切换回主窗口: {main_window_title}")
+            else:
+                self.log.warning(f"切换回主窗口失败: {main_window_title}")
+            
+            return True
+        except Exception as e:
+            self.log.error(f"关闭窗口失败: {e}")
+            return False

@@ -70,14 +70,20 @@ class BasePage:
                 if time.time() - data['timestamp'] < self._cache_timeout:
                     try:
                         # 验证元素是否仍然有效
-                        if data['element'].is_displayed():
+                        # 对于Windows UI：is_displayed()不足以验证StaleElementReference
+                        # Appium element的代理对象在WinAppDriver端元素销毁后会404
+                        # 因此通过re-find确认元素仍可访问
+                        element = data['element']
+                        # 尝试重新获取元素确保代理通道有效
+                        _ = element.get_attribute("ControlType")
+                        if element.is_displayed():
                             self.log.debug(f"从缓存获取元素: {key}")
-                            return data['element'], True
+                            return element, True
                         else:
                             # 元素不可见，移除缓存
                             del self._element_cache[key]
                     except Exception:
-                        # 元素已失效，移除缓存
+                        # 元素已失效（StaleElementReference或代理通道失效），移除缓存
                         del self._element_cache[key]
         
         return None, False
@@ -476,7 +482,17 @@ class BasePage:
         while time.time() < end_time:
             try:
                 window_handles = self.driver.window_handles
+
+                # 在 appTopLevelWindow 模式下，window_handles 始终为 []，
+                # 但 driver.title 已经是目标窗口的标题，直接验证即可
                 if not window_handles:
+                    if title:
+                        current_title = self.driver.title
+                        if title in current_title:
+                            self.log.info(f"切换到窗口成功（appTopLevelWindow模式）: {current_title}")
+                            return True
+                        # 目标窗口未激活，尝试激活
+                        self._activate_window_by_title(title)
                     time.sleep(0.5)
                     continue
 
@@ -524,19 +540,78 @@ class BasePage:
         # 最后一次尝试：列出所有可用窗口并报告
         if title:
             try:
-                available_titles = []
-                for handle in self.driver.window_handles:
-                    try:
-                        self.driver.switch_to.window(handle)
-                        available_titles.append(self.driver.title)
-                    except Exception:
-                        pass
-                self.log.warning(f"未找到目标窗口: title='{title}', 可用窗口: {available_titles}")
+                window_handles = self.driver.window_handles
+                if not window_handles:
+                    # appTopLevelWindow 模式下直接检查 driver.title
+                    current_title = self.driver.title
+                    if title in current_title:
+                        self.log.info(f"切换到窗口成功（最终检查）: {current_title}")
+                        return True
+                    self.log.warning(f"未找到目标窗口: title='{title}', 当前窗口: '{current_title}', window_handles=[]")
+                else:
+                    available_titles = []
+                    for handle in window_handles:
+                        try:
+                            self.driver.switch_to.window(handle)
+                            available_titles.append(self.driver.title)
+                        except Exception:
+                            pass
+                    self.log.warning(f"未找到目标窗口: title='{title}', 可用窗口: {available_titles}")
             except Exception:
                 pass
 
         self.log.warning(f"切换窗口超时: title='{title}', automation_id='{automation_id}'")
         return False
+
+    def _activate_window_by_title(self, window_title: str) -> bool:
+        """
+        使用 Windows API 激活指定标题的窗口
+
+        Args:
+            window_title: 窗口标题（部分匹配）
+
+        Returns:
+            bool: 是否成功激活
+        """
+        try:
+            import ctypes
+            from ctypes import wintypes
+
+            user32 = ctypes.windll.user32
+
+            found_hwnd = None
+
+            def enum_callback(hwnd, lparam):
+                nonlocal found_hwnd
+                length = user32.GetWindowTextLengthW(hwnd)
+                if length > 0:
+                    buff = ctypes.create_unicode_buffer(length + 1)
+                    user32.GetWindowTextW(hwnd, buff, length + 1)
+                    if window_title in buff.value:
+                        if user32.IsWindowVisible(hwnd):
+                            found_hwnd = hwnd
+                            return False
+                return True
+
+            EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, wintypes.LPARAM)
+            user32.EnumWindows(EnumWindowsProc(enum_callback), 0)
+
+            if found_hwnd:
+                if user32.IsIconic(found_hwnd):
+                    user32.ShowWindow(found_hwnd, 9)
+                    time.sleep(0.1)
+                user32.BringWindowToTop(found_hwnd)
+                time.sleep(0.05)
+                user32.ShowWindow(found_hwnd, 5)
+                time.sleep(0.05)
+                user32.SetForegroundWindow(found_hwnd)
+                time.sleep(0.1)
+                self.log.debug(f"已通过Windows API激活窗口: {window_title}")
+                return True
+            return False
+        except Exception as e:
+            self.log.debug(f"窗口激活失败: {e}")
+            return False
 
     def close_window(self, title=None, automation_id=None):
         """
@@ -553,9 +628,9 @@ class BasePage:
 
             # 查找并点击关闭按钮
             close_button = None
-            for aid in ['btnClose', 'button1', 'btnCloseWindow', 'Close']:
+            for aid in ['close','btnClose', 'button1', 'btnCloseWindow',]:
                 try:
-                    close_button = self.locate_element(timeout=1, automation_id=aid, type="Button")
+                    close_button = self.locate_element(timeout=1, automation_id=aid)
                     if close_button:
                         break
                 except Exception:

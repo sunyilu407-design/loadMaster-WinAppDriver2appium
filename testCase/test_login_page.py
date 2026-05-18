@@ -232,14 +232,8 @@ class TestLoginPage:
             self.log.error(f"✗ 审核失败: {audit_result.get('error')}")
 
         # =====================================================
-        # 步骤4：关闭装车开票页面
-        # =====================================================
-        self.log.info("关闭装车开票页面")
-        self.invoice_handler.invoice_page.close_invoice_window()
-        self.log.info("✓ 装车开票页面已关闭")
-
-        # =====================================================
-        # 步骤5：点击左侧"监控"菜单栏，切换到监控页面
+        # 步骤4：点击左侧"监控"菜单栏，切换到监控页面
+        # 注意：审核成功后已在 audit_invoice_and_verify 中关闭装车开票页面
         # =====================================================
         self.log.info("导航到监控页面")
         if self.invoice_handler.navigate_to_monitoring_page():
@@ -272,7 +266,7 @@ class TestLoginPage:
         plan_out_oil = self.monitor_handler.monitor_page.get_remote_plan_out_oil()
         self.log.info(f"计划发油量显示: {plan_out_oil}")
 
-        # weight 就是预装体积（预装量），plan_out_oil 应该等于它
+        # weight 就是预装重量（预装量），plan_out_oil 应该等于它
         if plan_out_oil and str(plan_out_oil).strip() == str(weight).strip():
             self.log.info(f"✓ 预装量显示正确: {plan_out_oil} == {weight}")
         else:

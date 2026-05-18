@@ -422,6 +422,9 @@ class MainPage(BasePage):
                 self.log.error("驱动未初始化，无法执行菜单点击操作")
                 return False
 
+            # 激活主窗口（确保窗口在前台）
+            self._ensure_window_active()
+
             # 从self.elements中获取菜单定位器
             menu_config = self.elements.get(menu_category, {})
             if sub_menu_path:
@@ -441,7 +444,46 @@ class MainPage(BasePage):
             element = self.locate_element(**menu_locator)
             if element:
                 self.log.info(f"成功定位到菜单元素")
-                element.click()
+                
+                # 方法1：使用 Selenium 的 click
+                try:
+                    element.click()
+                    self.log.info(f"使用 click() 点击菜单成功")
+                except Exception as e:
+                    self.log.warning(f"click() 失败，尝试 click_input(): {e}")
+                    # 方法2：使用 Appium 的 click_input（更底层）
+                    try:
+                        element.click_input()
+                        self.log.info(f"使用 click_input() 点击菜单成功")
+                    except Exception as e2:
+                        self.log.warning(f"click_input() 也失败: {e2}")
+                        # 方法3：使用鼠标点击坐标
+                        try:
+                            from selenium.webdriver.common.actions.interaction import POINTER_TABS
+                            from selenium.webdriver.common.actions.pointer_input import PointerInput
+                            from selenium.webdriver.common.action_chains import ActionChains
+                            
+                            actions = ActionChains(self.driver)
+                            actions.w3c_actions = ActionChains(self.driver).w3c_actions
+                            actions.w3c_actions.pointer_action.move_to(element)
+                            actions.w3c_actions.pointer_action.click()
+                            actions.perform()
+                            self.log.info(f"使用 ActionChains 点击菜单成功")
+                        except Exception as e3:
+                            self.log.warning(f"ActionChains 也失败: {e3}")
+                            # 最后尝试 send_keys
+                            try:
+                                element.send_keys('')
+                                self.log.info(f"使用 send_keys 点击菜单成功")
+                            except:
+                                self.log.error(f"所有点击方法都失败了")
+                                return False
+                
+                # 点击后等待并再次激活窗口（确保 UI 更新）
+                import time
+                time.sleep(0.5)
+                self._ensure_window_active()
+                
                 self.log.info(f"点击菜单成功: {menu_category} -> {menu_name}")
                 return True
             else:
@@ -451,6 +493,14 @@ class MainPage(BasePage):
         except Exception as e:
             self.log.error(f"菜单点击操作发生异常: {str(e)}")
             return False
+    
+    def _ensure_window_active(self):
+        """确保主窗口处于激活状态"""
+        try:
+            from utils.driver_factory import _activate_window
+            _activate_window("装车管理系统")
+        except Exception as e:
+            self.log.debug(f"窗口激活失败: {e}")
 
 
     def is_main_page_present(self):

@@ -43,8 +43,10 @@ class MonitorManagementPage(BasePage):
 
     # ==================== 窗口切换方法 ====================
     def switch_to_monitor_window(self):
-        """切换到监控页面窗口"""
-        return self.switch_to_window(title=self.app_config['main_window_name'])
+        """切换到监控页面（右侧 panel 区域，在主窗口内）"""
+        # 监控页面不是独立窗口，而是主窗口右侧的 panel 区域
+        # 直接切换回主窗口即可
+        return self.switch_to_window(title="装车管理系统", timeout=3)
 
     def switch_to_page_window(self):
         """切换到监控页面窗口（兼容别名）"""
@@ -76,41 +78,142 @@ class MonitorManagementPage(BasePage):
         return False
 
     # ==================== 货位控件操作（动态控件） ====================
+    def _find_label13_by_station(self, station_no):
+        """
+        根据货位号，从 YAML 配置中读取 label_hw 的 automation_id，
+        用 locate_elements 找到所有 label13，逐一对比 Name 找到匹配的货位。
+
+        Args:
+            station_no: 货位号
+
+        Returns:
+            WebElement: 匹配的 label13 元素，未找到返回 None
+        """
+        label_hw_cfg = self._get_element_config('label_hw')
+        if not label_hw_cfg:
+            self.log.error("未找到 label_hw 配置")
+            return None
+
+        label_hw_id = label_hw_cfg.get('automation_id', 'label13')
+        elements = self.locate_elements(automation_id=label_hw_id, type='Text')
+        self.log.debug(f"共找到 {len(elements)} 个 label13 元素")
+
+        for el in elements:
+            try:
+                name = el.get_attribute('Name')
+                if name == station_no:
+                    self.log.info(f"找到货位号 {station_no} 对应的 label13")
+                    return el
+            except Exception:
+                continue
+
+        self.log.error(f"未找到货位号 {station_no} 对应的 label13")
+        return None
+
+    def _get_click_offset(self, element):
+        """
+        获取元素的中心点坐标，向下偏移一定像素。
+
+        Returns:
+            tuple: (x, y) 目标点击坐标
+        """
+        panel_cfg = self._get_element_config('panel_ex_remote')
+        offset_y = (panel_cfg or {}).get('click_offset_y', 30)
+
+        rect = element.rect
+        center_x = rect['x'] + rect['width'] // 2
+        target_y = rect['y'] + rect['height'] + offset_y
+        self.log.debug(f"label13 rect: {rect}, 偏移后点击坐标: ({center_x}, {target_y})")
+        return center_x, target_y
+
     @allure.step("双击货位控件打开远程设定")
     def double_click_station_control(self, station_no):
         """
         双击指定货位号的货位控件，打开远程设定窗口
 
+        策略：
+        1. 找到货位号对应的 label13，用其坐标筛选同组的 panelEx1
+        2. 方式1（优先）：windows: click 坐标双击（appium-windows-driver 原生支持）
+        3. 方式2：两次 WebElement.click()
+        4. 方式3：click + ENTER
+
         Args:
-            station_no: 货位号（如 '01', '02'）
+            station_no: 货位号（如 '1', '2'）
 
         Returns:
             bool: 是否成功打开远程设定窗口
         """
-        self.switch_to_monitor_window()
         try:
-            # 查找货位控件（通过货位号标签定位）
-            station_xpath = "//*[@AutomationId='CtrLoadMasterKJ']//*[@AutomationId='label4' and contains(@Name, '{station_no}')]/..".replace('{station_no}', station_no)
-            station_xpath_jd = "//*[@AutomationId='CtrLoadMasterJD']//*[@AutomationId='label4' and contains(@Name, '{station_no}')]/..".replace('{station_no}', station_no)
-
-            element = None
-            try:
-                element = self.driver.find_element('xpath', station_xpath)
-            except Exception:
-                try:
-                    element = self.driver.find_element('xpath', station_xpath_jd)
-                except Exception:
-                    pass
-
-            if element:
-                # 双击打开远程设定
-                from selenium.webdriver.common.action_chains import ActionChains
-                ActionChains(self.driver).double_click(element).perform()
-                self.log.info(f"双击货位 {station_no} 成功")
-                return True
-            else:
-                self.log.error(f"未找到货位控件: {station_no}")
+            # 1. 找到货位号对应的 label13，用于确定货位坐标
+            label_el = self._find_label13_by_station(station_no)
+            if not label_el:
                 return False
+
+            label_bottom = label_el.rect['y'] + label_el.rect['height']
+            label_center_x = label_el.rect['x'] + label_el.rect['width'] // 2
+
+            # 2. 在 label13 下方区域内找 panelEx1（同组兄弟控件）
+            panel_cfg = self._get_element_config('panel_ex_remote')
+            panel_id = (panel_cfg or {}).get('automation_id', 'panelEx1')
+            all_panels = self.locate_elements(automation_id=panel_id)
+            self.log.debug(f"共找到 {len(all_panels)} 个 panelEx1")
+
+            target_panel = None
+            for panel in all_panels:
+                p_rect = panel.rect
+                self.log.debug(f"panelEx1 rect: {p_rect}, label13.bottom={label_bottom}")
+                if p_rect['y'] >= label_bottom - 5:
+                    target_panel = panel
+                    self.log.info(f"找到货位 {station_no} 对应的 panelEx1: {p_rect}")
+                    break
+
+            if not target_panel:
+                self.log.error(f"未找到货位 {station_no} 对应的 panelEx1")
+                return False
+
+            # 3. 方式1：windows: click（appium-windows-driver原生命令，支持坐标双击）
+            try:
+                x = p_rect['x'] + p_rect['width'] // 2
+                y = p_rect['y'] + p_rect['height'] // 2
+                # 用windows:click发两次点击，间隔50ms使系统识别为双击
+                self.driver.execute_script(
+                    "mobile: click",
+                    {"x": x, "y": y}
+                )
+                import time as _time
+                _time.sleep(0.05)
+                self.driver.execute_script(
+                    "mobile: click",
+                    {"x": x, "y": y}
+                )
+                self.log.info(f"windows:click×2 双击货位 {station_no} 成功 (坐标: {x},{y})")
+                return True
+            except Exception as e1:
+                self.log.warning(f"windows:click×2 失败: {e1}")
+
+            # 4. 方式2：两次 click（Selenium WebElement API）
+            try:
+                target_panel.click()
+                import time as _time
+                _time.sleep(0.05)
+                target_panel.click()
+                self.log.info(f"click×2 货位 {station_no} 完成")
+                return True
+            except Exception as e2:
+                self.log.warning(f"click×2 失败: {e2}")
+
+            # 5. 方式3：先 click 再 send_keys ENTER
+            try:
+                target_panel.click()
+                from selenium.webdriver.common.keys import Keys
+                target_panel.send_keys(Keys.ENTER)
+                self.log.info(f"click+ENTER 货位 {station_no} 完成")
+                return True
+            except Exception as e3:
+                self.log.warning(f"click+ENTER 失败: {e3}")
+
+            self.log.error(f"所有双击策略均失败，货位 {station_no}")
+            return False
 
         except Exception as e:
             self.log.error(f"双击货位控件失败: {e}")
@@ -130,24 +233,45 @@ class MonitorManagementPage(BasePage):
         self.switch_to_monitor_window()
         status = {}
         try:
-            station_xpath = "//*[@AutomationId='CtrLoadMasterKJ']//*[@AutomationId='label4' and contains(@Name, '{station_no}')]/ancestor::*[@AutomationId='CtrLoadMasterKJ']".replace('{station_no}', station_no)
-            station_xpath_jd = "//*[@AutomationId='CtrLoadMasterJD']//*[@AutomationId='label4' and contains(@Name, '{station_no}')]/ancestor::*[@AutomationId='CtrLoadMasterJD']".replace('{station_no}', station_no)
+            # 找到 label13，再以其 rect 为基准，向下偏移定位 panelEx1 容器
+            label_el = self._find_label13_by_station(station_no)
+            if not label_el:
+                return status
 
-            container = None
+            x, y = self._get_click_offset(label_el)
+            # 向下偏移区域内找 panelEx1
+            panel_cfg = self._get_element_config('panel_ex_remote')
+            panel_id = (panel_cfg or {}).get('automation_id', 'panelEx1')
+
+            # 在 label13 下方区域内查找 panelEx1
+            panel_xpath = (
+                f"//*[@AutomationId='{panel_id}']"
+                f"[@BoundingBox[. > {label_el.rect['y']}]]"
+            )
+            self.log.debug(f"panelEx1 查找 XPath: {panel_xpath}")
+
+            # 尝试用相对定位：在 label13 附近找 panelEx1
             try:
-                container = self.driver.find_element('xpath', station_xpath)
+                # 先找所有 panelEx1，再筛选 y 坐标大于 label13.bottom 的
+                all_panels = self.locate_elements(automation_id=panel_id, type='Custom')
+                label_bottom = label_el.rect['y'] + label_el.rect['height']
+                for panel in all_panels:
+                    p_rect = panel.rect
+                    if p_rect['y'] >= label_bottom - 10:  # 允许少量误差
+                        container = panel
+                        self.log.debug(f"找到 panelEx1 container: {p_rect}")
+                        break
+                else:
+                    container = None
             except Exception:
-                try:
-                    container = self.driver.find_element('xpath', station_xpath_jd)
-                except Exception:
-                    pass
+                container = None
 
             if container:
-                labels = ['lblYCL', 'lblSZL', 'lblZFL', 'lblLS1', 'lblLS2', 'lblWD1', 'lblWD2',
-                         'lblBZMD1', 'lblBZMD2', 'lblTDH', 'lblYZL', 'lblJinDu', 'lblZT', 'lblCP', 'lblYPM']
-                for label_id in labels:
+                label_ids = ['lblYCL', 'lblSZL', 'lblZFL', 'lblLS1', 'lblLS2', 'lblWD1', 'lblWD2',
+                             'lblBZMD1', 'lblBZMD2', 'lblTDH', 'lblYZL', 'lblJinDu', 'lblZT', 'lblCP', 'lblYPM']
+                for label_id in label_ids:
                     try:
-                        label = container.find_element('xpath', ".//*[@AutomationId='{label_id}']".replace('{label_id}', label_id))
+                        label = container.find_element('xpath', f".//*[@AutomationId='{label_id}']")
                         status[label_id] = label.text if label else ''
                     except Exception:
                         status[label_id] = ''
@@ -177,6 +301,43 @@ class MonitorManagementPage(BasePage):
                 if child:
                     return self.get_element_text(**child)
         return ""
+
+    @allure.step("输入提单号")
+    def set_remote_bill_num(self, bill_num):
+        """向远程设定窗口的提单号输入框写入文本"""
+        element_config = self._get_element_config('remote_control_window')
+        if element_config and 'child_elements' in element_config:
+            panel_config = element_config['child_elements'].get('real_time_panel')
+            if panel_config and 'child_elements' in panel_config:
+                child = panel_config['child_elements'].get('bill_num_text')
+                if child:
+                    element = self.locate_element(**child)
+                    if element:
+                        from selenium.webdriver.common.action_chains import ActionChains
+                        from selenium.webdriver.common.keys import Keys
+                        # 点击聚焦 → Ctrl+A 全选 → 输入覆盖
+                        ActionChains(self.driver).click(element).key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL).send_keys(bill_num).perform()
+                        self.log.info(f"已输入提单号: {bill_num}")
+                        return True
+        return False
+
+    @allure.step("输入计划发油量")
+    def set_remote_plan_out_oil(self, amount):
+        """向远程设定窗口的计划发油量输入框写入文本"""
+        element_config = self._get_element_config('remote_control_window')
+        if element_config and 'child_elements' in element_config:
+            panel_config = element_config['child_elements'].get('real_time_panel')
+            if panel_config and 'child_elements' in panel_config:
+                child = panel_config['child_elements'].get('plan_out_oil_text')
+                if child:
+                    element = self.locate_element(**child)
+                    if element:
+                        from selenium.webdriver.common.action_chains import ActionChains
+                        from selenium.webdriver.common.keys import Keys
+                        ActionChains(self.driver).click(element).key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL).send_keys(amount).perform()
+                        self.log.info(f"已输入计划发油量: {amount}")
+                        return True
+        return False
 
     @allure.step("获取远程设定窗口的计划发油量")
     def get_remote_plan_out_oil(self):

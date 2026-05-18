@@ -25,6 +25,10 @@ class Environment:
     def get_app_path(self):
         return cf.get('windows_app', 'location')
 
+    def get_auto_launch(self):
+        """获取是否自动启动程序配置"""
+        return cf.getboolean('windows_app', 'auto_launch', fallback=True)
+
     def get_app_top_level_window(self):
         return cf.get('windows_app', 'app_name')
 

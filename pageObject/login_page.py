@@ -43,13 +43,13 @@ class LoginPage(BasePage):
         """
         输入用户名
         :param username: 用户名
-
         """
         try:
             if not self.driver:
                 self.log.error("驱动未初始化，无法执行输入用户名操作")
                 return False
-            #切换到登录窗口
+            
+            # 切换到登录窗口
             status = self.switch_to_window(self.app_config.get('main_window_title', ''))
             if not status:
                 self.log.error("切换到登录窗口失败")
@@ -59,13 +59,28 @@ class LoginPage(BasePage):
             self.log.info(f"尝试输入用户名: {username}")
             element = self.locate_element(**username_locator)
             if element:
+                # 确保元素可操作
                 element.click()
-                time.sleep(0.15)
-                element.send_keys(Keys.CONTROL, 'a')
-                time.sleep(0.05)
-                element.send_keys(Keys.DELETE)
+                time.sleep(0.2)
+                
+                # 清空输入框 - 使用多次清空确保干净
+                for _ in range(3):
+                    element.send_keys(Keys.CONTROL, 'a')
+                    time.sleep(0.05)
+                    element.send_keys(Keys.DELETE)
+                    time.sleep(0.05)
+                
                 time.sleep(0.1)
+                
+                # 输入新用户名
                 element.send_keys(username)
+                time.sleep(0.1)
+                
+                # 验证输入结果
+                actual_value = element.text if hasattr(element, 'text') else ''
+                if not actual_value and hasattr(element, 'get_attribute'):
+                    actual_value = element.get_attribute('Value') or ''
+                
                 self.log.info(f"输入用户名成功: {username}")
                 return True
             else:
@@ -73,7 +88,6 @@ class LoginPage(BasePage):
                 return False
         except Exception as e:
             self.log.error(f"输入用户名失败: {e}")
-
             return False
     
     def input_password(self, password):
@@ -85,6 +99,7 @@ class LoginPage(BasePage):
             if not self.driver:
                 self.log.error("驱动未初始化，无法执行输入密码操作")
                 return False
+            
             # 切换到登录窗口
             status = self.switch_to_window(self.app_config.get('main_window_title', ''))
             if not status:
@@ -95,13 +110,23 @@ class LoginPage(BasePage):
             self.log.info("尝试输入密码")
             element = self.locate_element(**password_locator)
             if element:
+                # 确保元素可操作
                 element.click()
-                time.sleep(0.15)
-                element.send_keys(Keys.CONTROL, 'a')
-                time.sleep(0.05)
-                element.send_keys(Keys.DELETE)
+                time.sleep(0.2)
+                
+                # 清空输入框 - 使用多次清空确保干净
+                for _ in range(3):
+                    element.send_keys(Keys.CONTROL, 'a')
+                    time.sleep(0.05)
+                    element.send_keys(Keys.DELETE)
+                    time.sleep(0.05)
+                
                 time.sleep(0.1)
+                
+                # 输入密码
                 element.send_keys(password)
+                time.sleep(0.1)
+                
                 self.log.info("输入密码成功")
                 return True
             else:
@@ -109,7 +134,6 @@ class LoginPage(BasePage):
                 return False
         except Exception as e:
             self.log.error(f"输入密码失败: {e}")
-
             return False
     
     def click_login_button(self):
@@ -242,34 +266,44 @@ class LoginPage(BasePage):
     def clear_input_fields(self):
         """
         清空输入框 - Windows桌面应用优化版
-        使用 Ctrl+A 全选后删除，避免 clear() 在WinForms上失效的问题
+        使用多次 Ctrl+A 全选后删除，确保干净清空
         """
         try:
             if not self.driver:
                 self.log.error("驱动未初始化，无法清空输入框")
                 return False
 
+            # 切换到登录窗口
+            status = self.switch_to_window(self.app_config.get('main_window_title', ''))
+            if not status:
+                self.log.warning("切换到登录窗口失败，跳过清空输入框")
+                return False
+
             username_locator = self.elements.get('username_input', {})
             password_locator = self.elements.get('password_input', {})
 
-            # 清空用户名输入框
+            # 清空用户名输入框 - 使用多次清空确保干净
             username_element = self.locate_element(**username_locator)
             if username_element:
                 username_element.click()
-                time.sleep(0.05)
-                username_element.send_keys(Keys.CONTROL, 'a')
-                time.sleep(0.05)
-                username_element.send_keys(Keys.DELETE)
+                time.sleep(0.1)
+                for _ in range(3):
+                    username_element.send_keys(Keys.CONTROL, 'a')
+                    time.sleep(0.05)
+                    username_element.send_keys(Keys.DELETE)
+                    time.sleep(0.05)
                 self.log.debug("已清空用户名输入框")
 
-            # 清空密码输入框
+            # 清空密码输入框 - 使用多次清空确保干净
             password_element = self.locate_element(**password_locator)
             if password_element:
                 password_element.click()
-                time.sleep(0.05)
-                password_element.send_keys(Keys.CONTROL, 'a')
-                time.sleep(0.05)
-                password_element.send_keys(Keys.DELETE)
+                time.sleep(0.1)
+                for _ in range(3):
+                    password_element.send_keys(Keys.CONTROL, 'a')
+                    time.sleep(0.05)
+                    password_element.send_keys(Keys.DELETE)
+                    time.sleep(0.05)
                 self.log.debug("已清空密码输入框")
 
             self.log.info("清空输入框完成")
@@ -440,19 +474,13 @@ class LoginPage(BasePage):
                         self.log.info("等待主窗口加载...")
                         time.sleep(3)
 
-                        # 调试：打印当前所有窗口
+                        # 调试：打印当前窗口信息（在 appTopLevelWindow 模式下 window_handles=[]）
                         try:
-                            all_windows = self.driver.window_handles
-                            self.log.warning(f"当前所有窗口句柄: {all_windows}")
-                            for i, handle in enumerate(all_windows):
-                                try:
-                                    self.driver.switch_to.window(handle)
-                                    title = self.driver.title
-                                    self.log.warning(f"窗口 {i}: 句柄={handle}, 标题='{title}'")
-                                except Exception as e:
-                                    self.log.error(f"切换到窗口 {i} 失败: {e}")
+                            current_title = self.driver.title
+                            all_handles = self.driver.window_handles
+                            self.log.info(f"当前窗口标题: '{current_title}', window_handles: {all_handles}")
                         except Exception as e:
-                            self.log.error(f"获取窗口列表失败: {e}")
+                            self.log.error(f"获取窗口信息失败: {e}")
                     else:
                         self.log.warning("未发现启动提示窗口或处理失败，继续登录流程")
 

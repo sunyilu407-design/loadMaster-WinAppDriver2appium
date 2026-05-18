@@ -1681,40 +1681,78 @@ class MainHandler(BaseHandler):
     def navigate_to_monitoring_page(self):
         """
         导航到监控页面 - 业务逻辑
+        监控页面是右侧 panel，不是新窗口
         """
+        import time
         self.log.info("执行导航到监控页面的业务逻辑")
         
         # 验证当前页面是主页面
         if not self.main_page.is_main_page_present():
             raise Exception("当前不在主页面，无法导航到监控页面")
         
+        # 激活主窗口（确保窗口在前台，否则可能导致内容不渲染）
+        self._activate_main_window()
+        
         # 点击监控页面菜单
         self.main_page.click_monitoring_page_menu()
         
-        self.log.info("成功导航到监控页面页面")
+        # 等待监控页面 panel 出现（右侧区域，不会弹出新窗口）
+        self.log.info("等待监控页面 panel 加载...")
+        time.sleep(2)  # 增加等待时间，确保窗口切换完成
+        
+        # 再次激活窗口（点击菜单后窗口可能失去焦点）
+        self._activate_main_window()
+        
+        # 切换到主窗口
+        self.main_page.switch_to_window(title="装车管理系统", timeout=3)
+        
+        # 等待 panel1 元素出现（监控页面的特征元素）
+        monitor_panel = self.main_page.wait_for_element(
+            timeout=5,
+            automation_id="panel1"
+        )
+        
+        if monitor_panel:
+            self.log.info("监控页面已加载（panel1 已出现）")
+        else:
+            self.log.warning("未检测到 panel1，但继续执行")
+        
+        self.log.info("成功导航到监控页面")
+        return True
+    
+    def _activate_main_window(self):
+        """激活主窗口，确保在前台"""
+        try:
+            from utils.driver_factory import _activate_window
+            _activate_window("装车管理系统")
+        except Exception as e:
+            self.log.warning(f"窗口激活失败: {e}")
     
     def navigate_to_loading_and_invoicing(self):
         """
         导航到装车开票 - 业务逻辑
+        如果当前已在装车开票窗口，直接切换并返回，避免重复点击菜单
         """
         import time
         self.log.info("执行导航到装车开票的业务逻辑")
 
-        # 验证当前页面是主页面
+        # 快速检查：是否已经在装车开票窗口
+        from pageObject.invoiceManagement.invoice_management_page import InvoiceManagementPage
+        quick_check_page = InvoiceManagementPage(self.main_page.driver, self.config_manager)
+        if quick_check_page.switch_to_invoice_window():
+            self.log.info("已在装车开票窗口，跳过菜单导航")
+            return True
+
+        # 不在目标窗口，执行完整导航流程
         if not self.main_page.is_main_page_present():
             raise Exception("当前不在主页面，无法导航到装车开票")
 
-        # 点击装车开票菜单
         self.main_page.click_loading_and_invoicing_menu()
 
-        # 等待新窗口加载完成
         time.sleep(2)
 
-        # 尝试切换到装车开票窗口
-        from pageObject.invoiceManagement.invoice_management_page import InvoiceManagementPage
         invoice_page = InvoiceManagementPage(self.main_page.driver, self.config_manager)
 
-        # 使用重试机制等待窗口出现
         for attempt in range(5):
             if invoice_page.switch_to_invoice_window():
                 self.log.info("成功切换到装车开票窗口")

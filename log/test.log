@@ -1,365 +1,115 @@
-2026-03-04 15:26:46,162 - user_management_page_test - INFO - === UserManagementPage 测试类开始 ===
-2026-03-04 15:26:46,198 - user_management_page_test - WARNING - 当前WebDriver会话: <appium.webdriver.webdriver.WebDriver (session="e8a7f485-4498-4fe3-a7e4-79751b98ca6d")>
-2026-03-04 15:26:46,215 - user_management_page_test - WARNING - 当前页面标题: 提示
-2026-03-04 15:26:46,215 - user_management_page_test - INFO - 开始测试用户管理基本流程，登录用户: admin
-2026-03-04 15:27:12,941 - user_management_page_test - ERROR - 登录失败，无法继续用户管理测试
-2026-03-04 15:27:13,760 - user_management_page_test - INFO - === UserManagementPage 测试类结束 ===
-2026-03-04 15:27:29,997 - user_management_page_test - INFO - === UserManagementPage 测试类开始 ===
-2026-03-04 15:27:30,033 - user_management_page_test - WARNING - 当前WebDriver会话: <appium.webdriver.webdriver.WebDriver (session="33d86e47-1fd4-4257-94f1-df68cb9d9845")>
-2026-03-04 15:27:30,041 - user_management_page_test - WARNING - 当前页面标题: 欢迎使用微分科技装车管理系统
-2026-03-04 15:27:30,041 - user_management_page_test - INFO - 开始测试用户管理基本流程，登录用户: admin
-2026-03-04 15:27:51,131 - user_management_page_test - INFO - ✓ 登录成功，开始用户管理操作
-2026-03-04 15:28:35,875 - user_management_page_test - ERROR - ✗ 新增用户失败
-2026-03-04 15:28:40,421 - user_management_page_test - ERROR - ✗ 修改用户失败
-2026-03-04 15:28:44,259 - user_management_page_test - ERROR - ✗ 修改用户权限失败
-2026-03-04 15:28:47,644 - user_management_page_test - ERROR - ✗ 重置密码失败
-2026-03-04 15:29:02,620 - user_management_page_test - INFO - === UserManagementPage 测试类结束 ===
-2026-03-04 15:40:54,955 - user_management_page_test - INFO - === UserManagementPage 测试类开始 ===
-2026-03-04 15:40:54,989 - user_management_page_test - WARNING - 当前WebDriver会话: <appium.webdriver.webdriver.WebDriver (session="a55e21b4-1100-446d-b9bc-ee7ac0a27979")>
-2026-03-04 15:40:55,000 - user_management_page_test - WARNING - 当前页面标题: 欢迎使用微分科技装车管理系统
-2026-03-04 15:40:55,001 - user_management_page_test - INFO - 开始测试用户管理基本流程，登录用户: admin
-2026-03-04 15:41:15,187 - user_management_page_test - INFO - ✓ 登录成功，开始用户管理操作
-2026-03-04 15:42:03,169 - user_management_page_test - ERROR - ✗ 新增用户失败
-2026-03-04 15:42:07,675 - user_management_page_test - ERROR - ✗ 修改用户失败
-2026-03-04 15:42:11,863 - user_management_page_test - ERROR - ✗ 修改用户权限失败
-2026-03-04 15:42:16,121 - user_management_page_test - ERROR - ✗ 重置密码失败
-2026-03-04 15:42:24,474 - user_management_page_test - INFO - === UserManagementPage 测试类结束 ===
-2026-03-04 15:43:24,185 - user_management_page_test - INFO - === UserManagementPage 测试类开始 ===
-2026-03-04 15:43:24,211 - user_management_page_test - WARNING - 当前WebDriver会话: <appium.webdriver.webdriver.WebDriver (session="90994b94-076a-4579-8d7e-83653dd56108")>
-2026-03-04 15:43:24,217 - user_management_page_test - WARNING - 当前页面标题: 欢迎使用微分科技装车管理系统
-2026-03-04 15:43:24,218 - user_management_page_test - INFO - 开始测试用户管理基本流程，登录用户: admin
-2026-03-04 15:43:44,217 - user_management_page_test - INFO - ✓ 登录成功，开始用户管理操作
-2026-03-04 15:44:40,128 - user_management_page_test - INFO - === UserManagementPage 测试类结束 ===
-2026-03-04 15:52:46,694 - user_management_page_test - INFO - === UserManagementPage 测试类开始 ===
-2026-03-04 15:52:46,713 - user_management_page_test - WARNING - 当前WebDriver会话: <appium.webdriver.webdriver.WebDriver (session="97bbef7f-59cd-4c2a-af74-2d8b6984619e")>
-2026-03-04 15:52:46,720 - user_management_page_test - WARNING - 当前页面标题: 欢迎使用微分科技装车管理系统
-2026-03-04 15:52:46,721 - user_management_page_test - INFO - 开始测试用户管理基本流程，登录用户: admin
-2026-03-04 15:53:06,951 - user_management_page_test - INFO - ✓ 登录成功，开始用户管理操作
-2026-03-04 15:53:46,287 - user_management_page_test - INFO - ✓ 新增用户成功
-2026-03-04 15:53:49,437 - user_management_page_test - ERROR - ✗ 修改用户失败
-2026-03-04 15:53:53,152 - user_management_page_test - ERROR - ✗ 修改用户权限失败
-2026-03-04 15:53:56,903 - user_management_page_test - ERROR - ✗ 重置密码失败
-2026-03-04 15:54:08,756 - user_management_page_test - INFO - ✓ 删除用户成功
-2026-03-04 15:54:08,757 - user_management_page_test - INFO - 用户管理基本流程测试完成（新增、修改、删除用户功能）
-2026-03-04 15:54:08,757 - user_management_page_test - WARNING - 当前WebDriver会话: <appium.webdriver.webdriver.WebDriver (session="97bbef7f-59cd-4c2a-af74-2d8b6984619e")>
-2026-03-04 15:54:08,763 - user_management_page_test - WARNING - 当前页面标题: 用户信息管理
-2026-03-04 15:54:08,764 - user_management_page_test - INFO - 开始测试用户管理基本流程，登录用户: admin
-2026-03-04 15:54:36,780 - user_management_page_test - ERROR - 登录失败，无法继续用户管理测试
-2026-03-04 15:54:38,174 - user_management_page_test - INFO - === UserManagementPage 测试类结束 ===
-2026-04-14 10:17:24,261 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-04-14 10:17:26,358 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-04-14 10:20:37,700 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-04-14 10:20:39,421 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-04-14 10:20:39,421 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-04-14 10:20:39,421 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-04-14 10:20:39,422 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-04-14 10:20:58,966 - login_page_test - INFO - login_result 为 True，登录成功
-2026-04-14 10:21:21,067 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-04-14 10:29:04,465 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-04-14 10:29:06,202 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-04-14 10:29:06,202 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-04-14 10:29:06,202 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-04-14 10:29:06,202 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-04-14 10:29:44,385 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-04-14 11:38:03,782 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-04-14 11:38:05,555 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-04-14 11:38:05,556 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-04-14 11:38:05,556 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-04-14 11:38:05,556 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-04-14 11:38:26,456 - login_page_test - INFO - login_result 为 True，登录成功
-2026-04-14 11:38:48,126 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 14:25:35,975 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 14:25:35,996 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 14:25:35,996 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 14:25:35,996 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 14:25:35,996 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 14:25:50,264 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 14:25:52,831 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 14:29:21,424 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 14:29:21,439 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 14:29:21,439 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 14:29:21,439 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 14:29:21,439 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 14:29:43,127 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 14:30:04,323 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 14:38:25,953 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 14:38:25,965 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 14:38:25,965 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 14:38:25,965 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 14:38:25,965 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 14:38:47,091 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 14:38:47,287 - login_page_test - INFO - 开始添加开票，提货单号: BILL20260001
-2026-05-09 14:38:52,990 - login_page_test - ERROR - ✗ 开票添加失败: 导航到装车开票页面失败
-2026-05-09 14:38:52,990 - login_page_test - INFO - 在表格中选择开票信息: BILL20260001
-2026-05-09 14:39:05,567 - login_page_test - ERROR - ✗ 选中提货单号失败: BILL20260001
-2026-05-09 14:39:05,568 - login_page_test - INFO - 审核提货单号: BILL20260001
-2026-05-09 14:39:06,287 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 14:47:51,107 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 14:47:51,122 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 14:47:51,122 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 14:47:51,122 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 14:47:51,122 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 14:48:12,152 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 14:48:12,278 - login_page_test - INFO - 开始添加开票，提货单号: 26050801
-2026-05-09 14:48:17,628 - login_page_test - ERROR - ✗ 开票添加失败: 导航到装车开票页面失败
-2026-05-09 14:48:17,629 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 14:48:30,631 - login_page_test - ERROR - ✗ 选中提货单号失败: 26050801
-2026-05-09 14:48:30,632 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 14:48:31,582 - login_page_test - ERROR - ✗ 审核失败: 导航到装车开票页面失败
-2026-05-09 14:48:31,583 - login_page_test - INFO - 关闭装车开票页面
-2026-05-09 14:48:32,201 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 14:59:01,077 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 14:59:01,092 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 14:59:01,092 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 14:59:01,092 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 14:59:01,092 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 14:59:22,059 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 14:59:22,154 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 15:01:05,787 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 15:07:34,535 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 15:07:34,550 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 15:07:34,550 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 15:07:34,550 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 15:07:34,550 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 15:07:52,043 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 15:07:52,078 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 15:08:13,595 - login_page_test - INFO - 添加开票结果: {'success': False, 'error': '当前不在主页面，无法导航到装车开票'}
-2026-05-09 15:08:13,595 - login_page_test - ERROR - ✗ 开票添加失败: 当前不在主页面，无法导航到装车开票
-2026-05-09 15:08:13,595 - login_page_test - WARNING - 添加失败，继续执行后续步骤...
-2026-05-09 15:08:13,595 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 15:08:34,184 - login_page_test - ERROR - ✗ 选中提货单号失败: 26050801
-2026-05-09 15:08:34,184 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 15:08:38,161 - login_page_test - ERROR - ✗ 审核失败: 当前不在主页面，无法导航到装车开票
-2026-05-09 15:08:38,161 - login_page_test - INFO - 关闭装车开票页面
-2026-05-09 15:08:38,446 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 15:08:44,631 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 15:08:44,643 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 15:08:44,643 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 15:08:44,643 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 15:08:44,643 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 15:09:06,399 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 15:09:06,482 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 15:10:22,005 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 15:10:22,005 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 15:10:22,006 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 15:10:35,489 - login_page_test - ERROR - ✗ 选中提货单号失败: 26050801
-2026-05-09 15:10:35,489 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 15:10:47,800 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 15:39:57,924 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 15:39:57,937 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 15:39:57,937 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 15:39:57,937 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 15:39:57,937 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 15:40:19,990 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 15:40:20,176 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 15:41:34,379 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 15:41:34,379 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 15:41:34,379 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 15:42:27,721 - login_page_test - ERROR - ✗ 选中提货单号失败: 26050801
-2026-05-09 15:42:27,722 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 15:42:38,916 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 15:50:41,293 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 15:50:41,304 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 15:50:41,304 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 15:50:41,304 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 15:50:41,304 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 15:51:03,164 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 15:51:03,288 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 15:52:28,932 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 15:52:28,933 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 15:52:28,933 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 15:53:19,718 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 16:19:50,461 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 16:19:50,475 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 16:19:50,475 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 16:19:50,475 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 16:19:50,475 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 16:20:12,447 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 16:20:12,561 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 16:21:06,739 - login_page_test - INFO - 添加开票结果: {'success': False, 'error': '点击添加按钮失败'}
-2026-05-09 16:21:06,739 - login_page_test - ERROR - ✗ 开票添加失败: 点击添加按钮失败
-2026-05-09 16:21:06,739 - login_page_test - WARNING - 添加失败，继续执行后续步骤...
-2026-05-09 16:21:06,739 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 16:21:10,818 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 16:22:09,643 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 16:22:09,654 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 16:22:09,654 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 16:22:09,654 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 16:22:09,654 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 16:22:27,176 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 16:22:27,217 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 16:22:36,449 - login_page_test - INFO - 添加开票结果: {'success': False, 'error': '当前不在主页面，无法导航到装车开票'}
-2026-05-09 16:22:36,449 - login_page_test - ERROR - ✗ 开票添加失败: 当前不在主页面，无法导航到装车开票
-2026-05-09 16:22:36,449 - login_page_test - WARNING - 添加失败，继续执行后续步骤...
-2026-05-09 16:22:36,449 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 16:22:37,155 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 16:22:41,063 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 16:22:41,074 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 16:22:41,074 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 16:22:41,074 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 16:22:41,074 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 16:22:58,872 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 16:22:58,908 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 16:23:05,467 - login_page_test - INFO - 添加开票结果: {'success': False, 'error': '当前不在主页面，无法导航到装车开票'}
-2026-05-09 16:23:05,468 - login_page_test - ERROR - ✗ 开票添加失败: 当前不在主页面，无法导航到装车开票
-2026-05-09 16:23:05,468 - login_page_test - WARNING - 添加失败，继续执行后续步骤...
-2026-05-09 16:23:05,468 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 16:23:20,530 - login_page_test - ERROR - ✗ 选中提货单号失败: 26050801
-2026-05-09 16:23:20,530 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 16:23:37,067 - login_page_test - ERROR - ✗ 审核失败: 当前不在主页面，无法导航到装车开票
-2026-05-09 16:23:37,067 - login_page_test - INFO - 关闭装车开票页面
-2026-05-09 16:23:37,259 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 16:23:56,998 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 16:23:57,012 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 16:23:57,012 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 16:23:57,012 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 16:23:57,012 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 16:24:14,112 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 16:29:19,534 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 16:29:19,545 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 16:29:19,545 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 16:29:19,545 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 16:29:19,545 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 16:29:38,424 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 16:30:50,198 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 16:30:50,213 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 16:30:50,213 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 16:30:50,213 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 16:30:50,213 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 16:31:12,107 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 16:31:12,187 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 16:32:38,585 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 16:32:38,585 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 16:32:38,585 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 16:33:35,920 - login_page_test - ERROR - ✗ 选中提货单号失败: 26050801
-2026-05-09 16:33:35,921 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 16:34:37,934 - login_page_test - ERROR - ✗ 审核失败: 选择开票行失败: 26050801
-2026-05-09 16:34:37,934 - login_page_test - INFO - 关闭装车开票页面
-2026-05-09 16:34:38,659 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 16:39:49,790 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 16:39:49,802 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 16:39:49,802 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 16:39:49,802 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 16:39:49,802 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 16:40:11,508 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 16:40:11,611 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 16:41:29,414 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 16:41:29,414 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 16:41:29,414 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 16:41:50,412 - login_page_test - ERROR - ✗ 选中提货单号失败: 26050801
-2026-05-09 16:41:50,412 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 16:42:12,382 - login_page_test - ERROR - ✗ 审核失败: 选择开票行失败: 26050801
-2026-05-09 16:42:12,382 - login_page_test - INFO - 关闭装车开票页面
-2026-05-09 16:42:13,310 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 16:46:54,350 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 16:46:54,364 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 16:46:54,364 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 16:46:54,364 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 16:46:54,364 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 16:46:57,113 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 16:47:04,575 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 16:47:04,587 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 16:47:04,587 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 16:47:04,587 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 16:47:04,587 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 16:47:26,357 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 16:47:26,444 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 16:48:43,961 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 16:48:43,961 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 16:48:43,961 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 16:48:59,372 - login_page_test - INFO - ✓ 选中提货单号: 26050801
-2026-05-09 16:48:59,372 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 16:49:21,971 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 16:58:25,717 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 16:58:25,732 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 16:58:25,732 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 16:58:25,732 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 16:58:25,732 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 16:58:47,608 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 16:58:47,687 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 17:00:19,937 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 17:00:19,937 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 17:00:19,937 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 17:00:34,779 - login_page_test - INFO - ✓ 选中提货单号: 26050801
-2026-05-09 17:00:34,779 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 17:01:13,118 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 17:18:11,113 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 17:18:11,128 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 17:18:11,128 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 17:18:11,128 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 17:18:11,128 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 17:18:33,188 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 17:18:33,282 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 17:20:02,887 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 17:20:02,887 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 17:20:02,887 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 17:20:18,115 - login_page_test - INFO - ✓ 选中提货单号: 26050801
-2026-05-09 17:20:18,115 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 17:20:55,531 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 17:24:53,335 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 17:24:53,349 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 17:24:53,350 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 17:24:53,350 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 17:24:53,350 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 17:25:15,057 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 17:25:15,185 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 17:26:44,112 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 17:26:44,112 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 17:26:44,113 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 17:26:58,708 - login_page_test - INFO - ✓ 选中提货单号: 26050801
-2026-05-09 17:26:58,709 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 17:27:25,686 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 17:35:58,956 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 17:35:58,972 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 17:35:58,972 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 17:35:58,972 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 17:35:58,972 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 17:36:20,748 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 17:36:20,889 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 17:37:49,374 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 17:37:49,374 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 17:37:49,374 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 17:38:04,094 - login_page_test - INFO - ✓ 选中提货单号: 26050801
-2026-05-09 17:38:04,094 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 17:38:40,453 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 17:42:22,233 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 17:42:22,244 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 17:42:22,244 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 17:42:22,244 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 17:42:22,244 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 17:42:44,270 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 17:42:44,388 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 17:43:44,769 - login_page_test - INFO - 添加开票结果: {'success': False, 'error': '处理操作确认弹窗失败'}
-2026-05-09 17:43:44,770 - login_page_test - ERROR - ✗ 开票添加失败: 处理操作确认弹窗失败
-2026-05-09 17:43:44,770 - login_page_test - WARNING - 添加失败，继续执行后续步骤...
-2026-05-09 17:43:44,770 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 17:44:08,387 - login_page_test - ERROR - ✗ 选中提货单号失败: 26050801
-2026-05-09 17:44:08,387 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 17:44:36,273 - login_page_test - ERROR - ✗ 审核失败: 选择开票行失败: 26050801
-2026-05-09 17:44:36,273 - login_page_test - INFO - 关闭装车开票页面
-2026-05-09 17:44:36,275 - login_page_test - INFO - ✓ 装车开票页面已关闭
-2026-05-09 17:44:36,275 - login_page_test - INFO - 导航到监控页面
-2026-05-09 17:44:46,852 - login_page_test - ERROR - ✗ 导航到监控页面失败
-2026-05-09 17:44:46,853 - login_page_test - INFO - 双击货位 1 打开远程控制
-2026-05-09 17:45:03,857 - login_page_test - ERROR - ✗ 打开远程控制失败: 双击货位 1 失败
-2026-05-09 17:45:04,621 - login_page_test - INFO - === LoginPage 测试类结束 ===
-2026-05-09 17:45:27,254 - login_page_test - INFO - === LoginPage 测试类开始 ===
-2026-05-09 17:45:27,267 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
-2026-05-09 17:45:27,267 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
-2026-05-09 17:45:27,268 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
-2026-05-09 17:45:27,268 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
-2026-05-09 17:45:49,088 - login_page_test - INFO - login_result 为 True，登录成功
-2026-05-09 17:45:49,180 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
-2026-05-09 17:46:37,656 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
-2026-05-09 17:46:37,656 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
-2026-05-09 17:46:37,657 - login_page_test - INFO - 在表格中选择开票信息: 26050801
-2026-05-09 17:46:52,298 - login_page_test - INFO - ✓ 选中提货单号: 26050801
-2026-05-09 17:46:52,298 - login_page_test - INFO - 审核提货单号: 26050801
-2026-05-09 17:47:26,759 - login_page_test - INFO - ✓ 审核成功: 26050801
-2026-05-09 17:47:26,759 - login_page_test - INFO - 关闭装车开票页面
-2026-05-09 17:47:26,760 - login_page_test - INFO - ✓ 装车开票页面已关闭
-2026-05-09 17:47:26,760 - login_page_test - INFO - 导航到监控页面
-2026-05-09 17:47:37,778 - login_page_test - ERROR - ✗ 导航到监控页面失败
-2026-05-09 17:47:37,778 - login_page_test - INFO - 双击货位 1 打开远程控制
-2026-05-09 17:47:55,102 - login_page_test - ERROR - ✗ 打开远程控制失败: 双击货位 1 失败
-2026-05-09 17:47:55,828 - login_page_test - INFO - === LoginPage 测试类结束 ===
+2026-05-12 10:55:38,825 - login_page_test - INFO - === LoginPage 测试类开始 ===
+2026-05-12 10:55:38,838 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
+2026-05-12 10:55:38,838 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
+2026-05-12 10:55:38,838 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
+2026-05-12 10:55:38,838 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
+2026-05-12 10:56:06,288 - login_page_test - INFO - login_result 为 True，登录成功
+2026-05-12 10:56:06,384 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
+2026-05-12 10:56:57,624 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
+2026-05-12 10:56:57,625 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
+2026-05-12 10:56:57,625 - login_page_test - INFO - 在表格中选择开票信息: 26050801
+2026-05-12 10:57:13,330 - login_page_test - INFO - ✓ 选中提货单号: 26050801
+2026-05-12 10:57:13,331 - login_page_test - INFO - 审核提货单号: 26050801
+2026-05-12 10:57:45,577 - login_page_test - INFO - ✓ 审核成功: 26050801
+2026-05-12 10:57:45,577 - login_page_test - INFO - 导航到监控页面
+2026-05-12 10:57:55,381 - login_page_test - INFO - ✓ 监控页面已打开
+2026-05-12 10:57:55,381 - login_page_test - INFO - 双击货位 1 打开远程控制
+2026-05-12 10:58:04,214 - login_page_test - ERROR - ✗ 打开远程控制失败: 双击货位 1 失败
+2026-05-12 10:58:04,952 - login_page_test - INFO - === LoginPage 测试类结束 ===
+2026-05-12 14:50:33,378 - login_page_test - INFO - === LoginPage 测试类开始 ===
+2026-05-12 14:50:33,396 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
+2026-05-12 14:50:33,396 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
+2026-05-12 14:50:33,396 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
+2026-05-12 14:50:33,396 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
+2026-05-12 14:50:53,592 - login_page_test - ERROR - login_result 为 False，登录失败，跳过后续测试
+2026-05-12 14:50:53,781 - login_page_test - INFO - === LoginPage 测试类结束 ===
+2026-05-12 15:03:59,142 - login_page_test - INFO - === LoginPage 测试类开始 ===
+2026-05-12 15:03:59,156 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
+2026-05-12 15:03:59,157 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
+2026-05-12 15:03:59,157 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
+2026-05-12 15:03:59,157 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
+2026-05-12 15:04:27,435 - login_page_test - INFO - login_result 为 True，登录成功
+2026-05-12 15:04:27,549 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
+2026-05-12 15:05:16,764 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
+2026-05-12 15:05:16,765 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
+2026-05-12 15:05:16,765 - login_page_test - INFO - 在表格中选择开票信息: 26050801
+2026-05-12 15:05:32,424 - login_page_test - INFO - ✓ 选中提货单号: 26050801
+2026-05-12 15:05:32,424 - login_page_test - INFO - 审核提货单号: 26050801
+2026-05-12 15:06:04,220 - login_page_test - INFO - ✓ 审核成功: 26050801
+2026-05-12 15:06:04,221 - login_page_test - INFO - 导航到监控页面
+2026-05-12 15:06:14,177 - login_page_test - INFO - ✓ 监控页面已打开
+2026-05-12 15:06:14,177 - login_page_test - INFO - 双击货位 1 打开远程控制
+2026-05-12 15:06:33,892 - login_page_test - ERROR - ✗ 打开远程控制失败: 双击货位 1 失败
+2026-05-12 15:06:34,483 - login_page_test - INFO - === LoginPage 测试类结束 ===
+2026-05-12 15:42:08,421 - login_page_test - INFO - === LoginPage 测试类开始 ===
+2026-05-12 15:42:08,431 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
+2026-05-12 15:42:08,432 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
+2026-05-12 15:42:08,432 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
+2026-05-12 15:42:08,432 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
+2026-05-12 15:42:36,741 - login_page_test - INFO - login_result 为 True，登录成功
+2026-05-12 15:42:36,864 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
+2026-05-12 15:43:25,503 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
+2026-05-12 15:43:25,504 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
+2026-05-12 15:43:25,504 - login_page_test - INFO - 在表格中选择开票信息: 26050801
+2026-05-12 15:43:39,936 - login_page_test - INFO - ✓ 选中提货单号: 26050801
+2026-05-12 15:43:39,936 - login_page_test - INFO - 审核提货单号: 26050801
+2026-05-12 15:44:11,653 - login_page_test - INFO - ✓ 审核成功: 26050801
+2026-05-12 15:44:11,653 - login_page_test - INFO - 导航到监控页面
+2026-05-12 15:44:21,719 - login_page_test - INFO - ✓ 监控页面已打开
+2026-05-12 15:44:21,719 - login_page_test - INFO - 双击货位 1 打开远程控制
+2026-05-12 15:44:26,358 - login_page_test - ERROR - ✗ 打开远程控制失败: 双击货位 1 失败
+2026-05-12 15:44:26,911 - login_page_test - INFO - === LoginPage 测试类结束 ===
+2026-05-12 16:09:53,995 - login_page_test - INFO - === LoginPage 测试类开始 ===
+2026-05-12 16:09:54,011 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
+2026-05-12 16:09:54,012 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
+2026-05-12 16:09:54,012 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
+2026-05-12 16:09:54,012 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
+2026-05-12 16:10:22,369 - login_page_test - INFO - login_result 为 True，登录成功
+2026-05-12 16:10:22,509 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
+2026-05-12 16:11:22,825 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
+2026-05-12 16:11:22,825 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
+2026-05-12 16:11:22,825 - login_page_test - INFO - 在表格中选择开票信息: 26050801
+2026-05-12 16:11:37,750 - login_page_test - INFO - ✓ 选中提货单号: 26050801
+2026-05-12 16:11:37,750 - login_page_test - INFO - 审核提货单号: 26050801
+2026-05-12 16:12:06,673 - login_page_test - INFO - ✓ 审核成功: 26050801
+2026-05-12 16:12:06,674 - login_page_test - INFO - 导航到监控页面
+2026-05-12 16:12:16,979 - login_page_test - INFO - ✓ 监控页面已打开
+2026-05-12 16:12:16,980 - login_page_test - INFO - 双击货位 1 打开远程控制
+2026-05-12 16:12:38,923 - login_page_test - ERROR - ✗ 打开远程控制失败: 等待远程设定窗口超时
+2026-05-12 16:12:39,643 - login_page_test - INFO - === LoginPage 测试类结束 ===
+2026-05-12 16:37:06,157 - login_page_test - INFO - === LoginPage 测试类开始 ===
+2026-05-12 16:37:06,170 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
+2026-05-12 16:37:06,170 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
+2026-05-12 16:37:06,170 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
+2026-05-12 16:37:06,171 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
+2026-05-12 16:37:32,911 - login_page_test - INFO - login_result 为 True，登录成功
+2026-05-12 16:37:33,052 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
+2026-05-12 16:38:32,596 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
+2026-05-12 16:38:32,596 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
+2026-05-12 16:38:32,596 - login_page_test - INFO - 在表格中选择开票信息: 26050801
+2026-05-12 16:38:47,329 - login_page_test - INFO - ✓ 选中提货单号: 26050801
+2026-05-12 16:38:47,330 - login_page_test - INFO - 审核提货单号: 26050801
+2026-05-12 16:39:15,588 - login_page_test - INFO - ✓ 审核成功: 26050801
+2026-05-12 16:39:15,589 - login_page_test - INFO - 导航到监控页面
+2026-05-12 16:39:25,020 - login_page_test - INFO - ✓ 监控页面已打开
+2026-05-12 16:39:25,020 - login_page_test - INFO - 双击货位 1 打开远程控制
+2026-05-12 16:39:49,761 - login_page_test - ERROR - ✗ 打开远程控制失败: 等待远程设定窗口超时
+2026-05-12 16:39:50,575 - login_page_test - INFO - === LoginPage 测试类结束 ===
+2026-05-12 17:05:27,906 - login_page_test - INFO - === LoginPage 测试类开始 ===
+2026-05-12 17:05:27,925 - login_page_test - INFO - valid_credentials value: {'app_config': {'app_path': 'D:\\Program Files (x86)\\微分科技\\Load Studio\\发油系统\\LoadMaster.exe', 'main_window_title': '欢迎使用微分科技装车管理系统'}, 'elements': {'username_input': {'automation_id': '1001'}, 'password_input': {'automation_id': 'txtUserPwd'}, 'login_button': {'automation_id': 'btnLogin'}, 'error_message_window': {'automation_id': 'CustomMessageBox', 'name': '消息提示'}, 'error_message': {'automation_id': 'msgLabel2'}, 'confirm_button': {'automation_id': 'btnMsg', 'name': '确认'}, 'main_window': {'automation_id': 'frmMain', 'name': '欢迎使用微分科技装车管理系统'}, 'operation_window': {'automation_id': 'CustomMessageCheckBox', 'name': '操作提示', 'type': 'Window', 'description': '操作提示弹窗，包含确认、取消、退出三个按钮', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg1', 'type': 'Button', 'name': '是 (Y)', 'description': '确认按钮'}, 'cancel_button': {'automation_id': 'btnMsg2', 'type': 'Button', 'name': '否 (N)', 'description': '取消按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本'}, 'quit_button': {'automation_id': 'msgBtn', 'type': 'Button', 'name': '退出', 'description': '退出按钮'}}}, 'prompt_window': {'automation_id': 'CustomMessageBox', 'name': '操作提示', 'type': 'Window', 'description': '消息提示弹窗，仅包含确认按钮，用于显示操作结果', 'child_elements': {'confirm_button': {'automation_id': 'btnMsg', 'type': 'Button', 'name': '确定', 'description': '确认按钮'}, 'prompt_text': {'automation_id': 'msgLabel2', 'type': 'Text', 'description': '提示文本（操作结果信息）'}}}}, 'test_data': {'valid_login': {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}}}
+2026-05-12 17:05:27,925 - login_page_test - INFO - valid_credentials: {'username': 'admin', 'password': '1', 'expected_result': '登录成功，跳转至首页'}
+2026-05-12 17:05:27,925 - login_page_test - INFO - 使用用户名: admin, 密码: 1 进行登录测试
+2026-05-12 17:05:27,926 - login_page_test - INFO - 开始调用 login_handler.login_with_retry
+2026-05-12 17:05:55,984 - login_page_test - INFO - login_result 为 True，登录成功
+2026-05-12 17:05:56,141 - login_page_test - INFO - 开始添加开票，提货单号: 26050801, confirm=False
+2026-05-12 17:06:55,522 - login_page_test - INFO - 添加开票结果: {'success': True, 'message': '已取消添加'}
+2026-05-12 17:06:55,522 - login_page_test - INFO - ✓ 开票添加完成，提货单号: 26050801
+2026-05-12 17:06:55,523 - login_page_test - INFO - 在表格中选择开票信息: 26050801
+2026-05-12 17:07:00,618 - login_page_test - ERROR - ✗ 选中提货单号失败: 26050801
+2026-05-12 17:07:00,618 - login_page_test - INFO - 审核提货单号: 26050801
+2026-05-12 17:07:08,718 - login_page_test - ERROR - ✗ 审核失败: 选择开票行失败: 26050801
+2026-05-12 17:07:08,718 - login_page_test - INFO - 导航到监控页面
+2026-05-12 17:07:25,606 - login_page_test - INFO - ✓ 监控页面已打开
+2026-05-12 17:07:25,607 - login_page_test - INFO - 双击货位 1 打开远程控制
+2026-05-12 17:07:29,558 - login_page_test - ERROR - ✗ 打开远程控制失败: 双击货位 1 失败
+2026-05-12 17:07:30,430 - login_page_test - INFO - === LoginPage 测试类结束 ===

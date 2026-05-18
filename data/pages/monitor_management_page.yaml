@@ -99,7 +99,7 @@ elements:
         type: "Label"
       label_hw:
         # 货位号
-        automation_id: "label4"
+        automation_id: "label13"
         type: "Label"
       label_ltj:
         # 联机状态
@@ -109,14 +109,12 @@ elements:
         # 剩余
         automation_id: "labelSurplus"
         type: "Label"
-      panel_remote:
-        # 双击打开远程控制
-        automation_id: "panel3"
-        type: "Panel"
       panel_ex_remote:
         # 双击打开远程控制
         automation_id: "panelEx1"
         type: "Panel"
+        # 相对于 label13 货位号元素的垂直向下偏移量（像素），用于点击货位区域
+        click_offset_y: 30
       annulus_progress:
         # 环形进度条
         automation_id: "annulusProgress1"
@@ -191,16 +189,12 @@ elements:
         type: "Label"
       label_hw:
         # 货位号
-        automation_id: "label4"
+        automation_id: "label13"
         type: "Label"
       label_ltj:
         # 联机状态
         automation_id: "lblLTJ"
         type: "Label"
-      panel_remote:
-        # 双击打开远程控制
-        automation_id: "panel1"
-        type: "Panel"
       panel_ex_remote:
         # 双击打开远程控制
         automation_id: "panelEx1"

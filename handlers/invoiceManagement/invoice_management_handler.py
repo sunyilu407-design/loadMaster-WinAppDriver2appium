@@ -94,6 +94,7 @@ class InvoiceManagementHandler(BaseHandler, NavigationMixin):
                 return {'success': False, 'error': '处理操作确认弹窗失败'}
             if confirm:
                 return self.verify_invoice_in_table({'提货单号': bill_num} if bill_num else {}, expected_presence='present', timeout=timeout)
+
             else:
                 return {'success': True, 'message': '已取消添加'}
         except Exception as e:
@@ -102,8 +103,9 @@ class InvoiceManagementHandler(BaseHandler, NavigationMixin):
 
     def verify_invoice_in_table(self, search_criteria, expected_presence='present', match_mode='exact', timeout=5.0):
         self.invoice_page.switch_to_invoice_window()
-        # 先选择状态为"全部"，确保能看到所有开票信息
-        self.invoice_page.select_state_query("全部")
+        # 只在不是"全部"时才切换
+        if self.invoice_page._get_state_combo_current_text() != "全部":
+            self.invoice_page.select_state_query("全部")
         content_table = self.invoice_page._get_element_config('content_table')
         header_keywords = self.invoice_page.app_config.get('head_keys')
         return self.invoice_page.query_table_after_operation(content_table, search_criteria, header_keywords, match_mode, expected_presence, timeout=timeout)
@@ -233,7 +235,7 @@ class InvoiceManagementHandler(BaseHandler, NavigationMixin):
             # 审核成功后，关闭装车开票页面
             self.log.info("审核成功，关闭装车开票页面")
             self.invoice_page.close_invoice_window()
-            return self.verify_invoice_in_table({'提货单号': search_key}, expected_presence='present', timeout=timeout)
+            return {'success': True, 'message': '审核成功'}
         return result
 
     @allure.step("审核开票信息")

@@ -108,6 +108,91 @@ def _check_port(port: int, timeout: float = 1.0) -> bool:
             return False
 
 
+def _activate_window(window_title: str) -> bool:
+    """
+    使用 Windows API 激活窗口（带到前台）
+    
+    Args:
+        window_title: 窗口标题（部分匹配）
+        
+    Returns:
+        bool: 是否成功激活
+    """
+    try:
+        import ctypes
+        from ctypes import wintypes
+        
+        user32 = ctypes.windll.user32
+        
+        # 查找窗口
+        EnumWindowsProc = ctypes.WINFUNCTYPE(
+            ctypes.c_bool,
+            wintypes.HWND,
+            wintypes.LPARAM
+        )
+        
+        found_hwnd = [None]
+        
+        def enum_callback(hwnd, lparam):
+            length = user32.GetWindowTextLengthW(hwnd)
+            if length > 0:
+                buff = ctypes.create_unicode_buffer(length + 1)
+                user32.GetWindowTextW(hwnd, buff, length + 1)
+                if window_title in buff.value:
+                    # 检查窗口是否可见
+                    if user32.IsWindowVisible(hwnd):
+                        found_hwnd[0] = hwnd
+                        return False  # 停止枚举
+            return True
+        
+        user32.EnumWindows(EnumWindowsProc(enum_callback), 0)
+        
+        hwnd = found_hwnd[0]
+        if hwnd:
+            # 获取当前前台窗口
+            foreground_hwnd = user32.GetForegroundWindow()
+            
+            # 如果当前窗口不是目标窗口，需要激活
+            if foreground_hwnd != hwnd:
+                # 方法1：先恢复窗口（如果最小化）
+                if user32.IsIconic(hwnd):
+                    user32.ShowWindow(hwnd, 9)  # SW_RESTORE = 9
+                    time.sleep(0.1)
+                
+                # 方法2：模拟按键 Alt+Tab 来激活窗口
+                # 先将目标窗口设为前景
+                user32.BringWindowToTop(hwnd)
+                time.sleep(0.05)
+                user32.ShowWindow(hwnd, 5)  # SW_SHOW = 5
+                time.sleep(0.05)
+                
+                # 方法3：直接设置前台窗口
+                user32.SetForegroundWindow(hwnd)
+                time.sleep(0.1)
+                
+                # 方法4：如果还是不行，尝试交换前台窗口
+                if user32.GetForegroundWindow() != hwnd:
+                    # 记录当前前台窗口
+                    current_foreground = user32.GetForegroundWindow()
+                    # 将目标窗口设为前台
+                    user32.SetForegroundWindow(hwnd)
+                    time.sleep(0.1)
+                    # 再设置回来，然后再次设置目标窗口（有时需要两次）
+                    user32.SetForegroundWindow(current_foreground)
+                    time.sleep(0.05)
+                    user32.SetForegroundWindow(hwnd)
+                    time.sleep(0.1)
+            
+            logger.info(f"已激活窗口: {window_title}")
+            return True
+        else:
+            logger.warning(f"未找到可激活的窗口: {window_title}")
+            return False
+    except Exception as e:
+        logger.warning(f"窗口激活失败: {e}")
+        return False
+
+
 class AppiumServerManager:
     """
     Appium服务器管理器 - 自动启动和管理Appium服务器
@@ -287,6 +372,7 @@ class DriverFactory:
             # Windows桌面应用配置
             app_path = cls._config.get_app_path()
             app_name = cls._config.get_app_name()
+            auto_launch = cls._config.get_auto_launch()
 
             options.set_capability('platformName', 'Windows')
             options.set_capability('deviceName', 'WindowsPC')
@@ -294,47 +380,119 @@ class DriverFactory:
             options.set_capability('noReset', True)
             options.set_capability('fullReset', False)
 
-            if app_path:
+            if auto_launch and app_path:
                 options.set_capability('app', app_path)
                 logger.info(f"使用应用路径启动: {app_path}")
             elif app_name:
-                options.set_capability('app', 'Root')
-                logger.info(f"使用 Root 连接模式，通过窗口标题: {app_name}")
+                # 连接到已运行的应用：通过 HWND 直接绑定到目标窗口
+                target_hwnd = cls._find_target_window_hwnd(app_name, timeout=10)
+                if target_hwnd:
+                    options.set_capability('appium:appTopLevelWindow', target_hwnd)
+                    logger.info(f"使用 appium:appTopLevelWindow 连接模式: {target_hwnd}")
+                else:
+                    options.set_capability('app', 'Root')
+                    logger.warning(f"未找到窗口 '{app_name}'，降级使用 Root 模式")
             else:
                 raise ValueError("必须提供 app_path 或 app_name 配置")
 
         return options
 
     @classmethod
-    def _find_window_by_title(cls, driver, title: str, timeout: int = 10) -> Optional[str]:
+    def _find_target_window_hwnd(cls, window_title: str, timeout: int = 10) -> Optional[str]:
         """
-        通过窗口标题查找窗口句柄
+        通过窗口标题查找窗口句柄(HWND)，用于连接到已运行的应用
 
         Args:
-            driver: WebDriver实例
-            title: 窗口标题（部分匹配）
+            window_title: 窗口标题（部分匹配）
             timeout: 超时时间（秒）
 
         Returns:
-            窗口句柄或None
+            十六进制窗口句柄字符串或None
         """
-        import time
+        import ctypes
+        from ctypes import wintypes
+
+        user32 = ctypes.windll.user32
         end_time = time.time() + timeout
 
         while time.time() < end_time:
-            try:
-                window_handles = driver.window_handles
-                for handle in window_handles:
-                    driver.switch_to.window(handle)
-                    if title in driver.title:
-                        logger.info(f"找到窗口: '{title}', 句柄: {handle}, 标题: {driver.title}")
-                        return handle
-            except Exception as e:
-                logger.debug(f"查找窗口时出错: {e}")
+            found_hwnd = None
+
+            def enum_callback(hwnd, lparam):
+                nonlocal found_hwnd
+                length = user32.GetWindowTextLengthW(hwnd)
+                if length > 0:
+                    buff = ctypes.create_unicode_buffer(length + 1)
+                    user32.GetWindowTextW(hwnd, buff, length + 1)
+                    if window_title in buff.value:
+                        if user32.IsWindowVisible(hwnd):
+                            found_hwnd = hwnd
+                            return False
+                return True
+
+            EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, wintypes.LPARAM)
+            user32.EnumWindows(EnumWindowsProc(enum_callback), 0)
+
+            if found_hwnd:
+                # 返回十六进制字符串（WinAppDriver期望的格式）
+                hwnd_hex = hex(found_hwnd)
+                logger.info(f"找到目标窗口 HWND: {hwnd_hex}, 标题包含: '{window_title}'")
+                return hwnd_hex
+
             time.sleep(0.5)
 
-        logger.warning(f"未找到标题包含 '{title}' 的窗口")
+        logger.warning(f"未找到标题包含 '{window_title}' 的窗口")
         return None
+
+    @classmethod
+    def _activate_window(cls, window_title: str) -> bool:
+        """
+        使用 Windows API 激活窗口（带到前台）
+
+        Args:
+            window_title: 窗口标题（部分匹配）
+
+        Returns:
+            bool: 是否成功激活
+        """
+        hwnd_hex = cls._find_target_window_hwnd(window_title, timeout=2)
+        if not hwnd_hex:
+            return False
+
+        try:
+            import ctypes
+            from ctypes import wintypes
+
+            user32 = ctypes.windll.user32
+            hwnd = int(hwnd_hex, 16)
+
+            foreground_hwnd = user32.GetForegroundWindow()
+            if foreground_hwnd != hwnd:
+                if user32.IsIconic(hwnd):
+                    user32.ShowWindow(hwnd, 9)
+                    time.sleep(0.1)
+
+                user32.BringWindowToTop(hwnd)
+                time.sleep(0.05)
+                user32.ShowWindow(hwnd, 5)
+                time.sleep(0.05)
+                user32.SetForegroundWindow(hwnd)
+                time.sleep(0.1)
+
+                if user32.GetForegroundWindow() != hwnd:
+                    current_foreground = user32.GetForegroundWindow()
+                    user32.SetForegroundWindow(hwnd)
+                    time.sleep(0.1)
+                    user32.SetForegroundWindow(current_foreground)
+                    time.sleep(0.05)
+                    user32.SetForegroundWindow(hwnd)
+                    time.sleep(0.1)
+
+            logger.info(f"已激活窗口: {window_title}")
+            return True
+        except Exception as e:
+            logger.warning(f"窗口激活失败: {e}")
+            return False
     
     @classmethod
     def _get_server_url(cls) -> str:
@@ -385,16 +543,19 @@ class DriverFactory:
             # 设置隐式等待（智能等待）
             driver.implicitly_wait(2)  # 基础等待，配合缓存使用
 
-            # 如果配置了窗口标题，切换到该窗口
+            # 等待应用初始化
+            time.sleep(2)
+
+            # 由于使用 appTopLevelWindow 直连，Driver 已经绑定到目标窗口
+            # 尝试激活并最大化窗口（确保窗口在前台且正常渲染）
             app_name = cls._config.get_app_name()
-            if app_name and not cls._config.get_app_path():
-                # 只在没有应用路径时才尝试切换（避免冲突）
-                target_handle = cls._find_window_by_title(driver, app_name, timeout=10)
-                if target_handle:
-                    driver.switch_to.window(target_handle)
-                    logger.info(f"已切换到目标窗口: {app_name}")
-                else:
-                    logger.warning(f"未找到目标窗口 '{app_name}'，当前窗口: {driver.title}")
+            if app_name:
+                try:
+                    time.sleep(1)
+                    cls._activate_window(app_name)
+                    logger.info("窗口已激活")
+                except Exception as e:
+                    logger.warning(f"窗口激活失败（非关键）: {e}")
 
             logger.info(f"Appium Driver初始化成功 ({platform})")
             return driver
